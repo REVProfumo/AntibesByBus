@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Button_read</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_id">Read</string>
+
+</resources>
