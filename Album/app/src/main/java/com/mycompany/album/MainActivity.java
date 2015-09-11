@@ -1,6 +1,7 @@
 package com.mycompany.album;
 
 import android.app.Activity;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,11 +12,17 @@ import android.widget.ImageView;
 import android.view.View.OnClickListener;
 import android.support.v4.content.ContextCompat;
 import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends Activity {
     public static int nrpic=0;
+    public static int flag=0;
 
     Button button;
+    Button button2;
     ImageView image;
 
     @Override
@@ -24,6 +31,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         addListenerOnButton();
+        addListenerOnButton2();
+
 
     }
 
@@ -36,15 +45,58 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View arg0) {
                 nrpic += 1;
-                nrpic= nrpic % 4;
-                String string=Integer.toString(nrpic);
+                nrpic = nrpic % 4;
+                String string = Integer.toString(nrpic);
                 System.out.println(string);
 
-                String mDrawableName = "aa"+string;
-                int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+                String mDrawableName = "aa" + string;
+                int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
                 image.setImageResource(resID);
 
             }
+        });
+
+    }
+
+    public void addListenerOnButton2() {
+
+
+        image = (ImageView) findViewById(R.id.imageView1);
+
+        button = (Button) findViewById(R.id.button_id2);
+        button.setOnClickListener(new OnClickListener() {
+            Timer timer = new Timer();
+
+            @Override
+            public void onClick(View arg0) {
+
+                flag +=1;
+                flag %= 2;
+                System.out.println(flag);
+                timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            if(flag !=0) {
+                                //do your thing
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        nrpic += 1;
+                                        nrpic = nrpic % 4;
+                                        String string = Integer.toString(nrpic);
+                                        //System.out.println(string);
+
+                                        String mDrawableName = "aa" + string;
+                                        int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
+                                        image.setImageResource(resID);                        // task to be done every 1000 milliseconds
+                                    }
+                                });
+                            }
+                        }
+                    }, 0, 5000);
+                }
+
         });
 
     }
