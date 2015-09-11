@@ -32,7 +32,8 @@ public class MainActivity extends Activity {
 
         addListenerOnButton();
         addListenerOnButton2();
-
+        Button p1_button = (Button)findViewById(R.id.button_id2);
+        p1_button.setText("Start scroll");
 
     }
 
@@ -90,9 +91,17 @@ public class MainActivity extends Activity {
                                         update();                       // task to be done every 1000 milliseconds
                                     }
                                 });
+
                             }
                         }
                     }, 0, 5000);
+                Button p1_button = (Button)findViewById(R.id.button_id2);
+                if (flag == 0){
+                    p1_button.setText("Start again");
+                }
+                    else {
+                        p1_button.setText("Pause");
+                    }
                 }
 
         });
