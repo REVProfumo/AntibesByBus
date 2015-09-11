@@ -36,6 +36,18 @@ public class MainActivity extends Activity {
 
     }
 
+    public void update(){
+        nrpic += 1;
+        nrpic = nrpic % 4;
+        String string = Integer.toString(nrpic);
+        System.out.println(string);
+
+        String mDrawableName = "aa" + string;
+        int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
+        image.setImageResource(resID);
+
+    }
+
     public void addListenerOnButton() {
         image = (ImageView) findViewById(R.id.imageView1);
 
@@ -44,14 +56,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                nrpic += 1;
-                nrpic = nrpic % 4;
-                String string = Integer.toString(nrpic);
-                System.out.println(string);
-
-                String mDrawableName = "aa" + string;
-                int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
-                image.setImageResource(resID);
+                update();
 
             }
         });
@@ -82,14 +87,7 @@ public class MainActivity extends Activity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        nrpic += 1;
-                                        nrpic = nrpic % 4;
-                                        String string = Integer.toString(nrpic);
-                                        //System.out.println(string);
-
-                                        String mDrawableName = "aa" + string;
-                                        int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
-                                        image.setImageResource(resID);                        // task to be done every 1000 milliseconds
+                                        update();                       // task to be done every 1000 milliseconds
                                     }
                                 });
                             }
