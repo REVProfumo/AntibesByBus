@@ -14,6 +14,9 @@ import android.widget.LinearLayout.LayoutParams;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
+
+import org.w3c.dom.Text;
+
 /**
  * Created by elio-profumo on 21/09/15.
  */
@@ -65,6 +68,11 @@ public class New_set extends AppCompatActivity {
         btn.setText("Remove");
         //btn.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         row.addView(btn);
+
+        Button btn2 = new Button(this);
+        btn2.setText("Modify");
+        row.addView(btn2);
+
         ll.addView(row);
         integer +=1;
 

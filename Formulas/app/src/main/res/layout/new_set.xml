@@ -1,35 +1,70 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:id="@+id/new_formulas"
-    >
-    <Button
-        android:textSize="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/add"
-        android:id="@+id/add"
-        />
-    <EditText
-        android:textSize="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/add_hint"
-        android:id="@+id/add_hint"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/add"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_below="@id/add_hint"
-        android:layout_height="match_parent">
-    <TableLayout
-        android:id="@+id/hints"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
-    </ScrollView>
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_weight=".2"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/new_formulas"
+        >
+        <Button
+            android:textSize="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            android:id="@+id/add"
+            />
+        <EditText
+            android:textSize="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/add_hint"
+            android:id="@+id/add_hint"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/add"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@id/add_hint"
+            android:layout_height="match_parent">
+            <TableLayout
+                android:id="@+id/hints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>
