@@ -21,11 +21,15 @@
         android:id="@+id/add_hint"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@id/add"/>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@id/add_hint"
+        android:layout_height="match_parent">
     <TableLayout
         android:id="@+id/hints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_hint"
         android:orientation="vertical"/>
+    </ScrollView>
+
 </RelativeLayout>
