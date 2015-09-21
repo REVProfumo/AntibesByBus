@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
-
+import android.widget.TableRow;
 /**
  * Created by elio-profumo on 21/09/15.
  */
@@ -27,7 +28,7 @@ public class New_set extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_set);
-        mLayout = (LinearLayout) findViewById(R.id.hints);
+        mLayout = (TableLayout) findViewById(R.id.hints);
         mEditText = (EditText) findViewById(R.id.add_hint);
 
         mButton = (Button) findViewById(R.id.add);
@@ -47,14 +48,24 @@ public class New_set extends AppCompatActivity {
     }
 
     private void createNewTextView(String text) {
-        LinearLayout layout = new LinearLayout(this);
+        TableLayout ll = (TableLayout) findViewById(R.id.hints);
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+
+        TableRow row= new TableRow(this);
+        row.setLayoutParams(lp);
 
         final TextView textView = new TextView(this);
         textView.setId(integer);
 
         textView.setText(text);
 
-        mLayout.addView(textView);
+        row.addView(textView);
+
+        Button btn = new Button(this);
+        btn.setText("Remove");
+        //btn.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        row.addView(btn);
+        ll.addView(row);
         integer +=1;
 
     }
