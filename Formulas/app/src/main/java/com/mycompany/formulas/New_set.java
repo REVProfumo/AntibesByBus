@@ -125,6 +125,7 @@ public class New_set extends AppCompatActivity {
         btn2.setOnClickListener( onClick2 );
 
     }
+    
     public void average(View v)
     {
         TableLayout table = (TableLayout)findViewById(R.id.hints);
@@ -165,12 +166,13 @@ public class New_set extends AppCompatActivity {
                 float firstText = Float.parseFloat(firstTextView.getText().toString());
                 sum2 += firstText;
                 num += 1;
-                sqr += Math.pow(firstText, 2);
+                sqr += Math.pow(firstText, 2.0);
             }
         }
         sum2 /= num;
         sqr /= num;
-        sqr -= sum2;
+        sqr -= Math.pow(sum2, 2.0);
+
         TextView tv = (TextView)findViewById(R.id.sigma);
         tv.setText("sigma\n"+sqr);
     }

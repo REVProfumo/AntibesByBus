@@ -12,7 +12,7 @@
             android:layout_weight=".2"
             android:layout_height="wrap_content"
             android:onClick="average"
-            android:text="average"
+            android:text="mean"
             />
 
         <Button
