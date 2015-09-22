@@ -3,6 +3,7 @@ package com.mycompany.formulas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.KeyListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -26,6 +27,9 @@ public class New_set extends AppCompatActivity {
     private EditText mEditText;
     private Button mButton;
     private OnClickListener onClick;
+    private OnClickListener onClick2;
+    private KeyListener listener;
+    private KeyListener nonnulllistener;
 
     public static int integer = 0;
 
@@ -56,40 +60,64 @@ public class New_set extends AppCompatActivity {
         TableLayout ll = (TableLayout) findViewById(R.id.hints);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 
-        TableRow row= new TableRow(this);
+        TableRow row = new TableRow(this);
         row.setLayoutParams(lp);
 
-        final TextView textView = new TextView(this);
+        final EditText textView= new EditText(this);
         textView.setId(integer);
 
         textView.setText(text);
+        nonnulllistener = textView.getKeyListener(); // Save the default KeyListener!!!
+
+        textView.setKeyListener(null);
 
         row.addView(textView);
 
         Button btn = new Button(this);
-        btn.setText("Remove");
+        btn.setText("X");
         //btn.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         row.addView(btn);
 
         Button btn2 = new Button(this);
-        btn2.setText("Modify");
+        btn2.setText("V");
         row.addView(btn2);
 
         ll.addView(row);
-        integer +=1;
+        integer += 1;
 
         onClick = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 View row = (View) v.getParent();
-                ViewGroup container = ((ViewGroup)row.getParent());
+                ViewGroup container = ((ViewGroup) row.getParent());
                 container.removeView(row);
                 container.invalidate();
             }
         };
 
 
-        btn.setOnClickListener( onClick );
+        btn.setOnClickListener(onClick);
+
+
+        onClick2 = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener = textView.getKeyListener(); // Save the default KeyListener!!!
+
+                if (listener==null){
+                    textView.setKeyListener(nonnulllistener);
+                }
+                    else{
+                    textView.setKeyListener(null);
+                }
+
+
+            }
+        };
+
+
+
+        btn2.setOnClickListener( onClick2 );
 
 
     }
