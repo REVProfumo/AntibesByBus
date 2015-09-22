@@ -26,6 +26,12 @@
             android:name=".Show_sets"
             android:label="@string/app_name">
         </activity>
+
+        <activity
+            android:name=".Second"
+            android:label="@string/app_name">
+        </activity>
+
     </application>
 
 </manifest>
