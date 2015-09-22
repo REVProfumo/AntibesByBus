@@ -14,6 +14,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
+import android.view.ViewGroup;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +25,7 @@ public class New_set extends AppCompatActivity {
     private LinearLayout mLayout;
     private EditText mEditText;
     private Button mButton;
+    private OnClickListener onClick;
 
     public static int integer = 0;
 
@@ -76,5 +78,20 @@ public class New_set extends AppCompatActivity {
         ll.addView(row);
         integer +=1;
 
+        onClick = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View row = (View) v.getParent();
+                ViewGroup container = ((ViewGroup)row.getParent());
+                container.removeView(row);
+                container.invalidate();
+            }
+        };
+
+
+        btn.setOnClickListener( onClick );
+
+
     }
+
 }

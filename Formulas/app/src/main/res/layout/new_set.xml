@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:text="Mean\n"
                 android:textSize="40dp" android:layout_gravity="right"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="5dp"
                 android:background="#FFFF0000"
                 android:gravity="center"/>
             <TextView
@@ -94,7 +94,7 @@
                 android:gravity="center"
                 android:text="Sigma\n" android:textSize="40dp"
                 android:layout_gravity="right"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="5dp"
                 android:background="#FFFFFF00"/>
             <TextView
                 android:layout_width="200dp"
@@ -103,7 +103,7 @@
                 android:gravity="center"
                 android:text="Plot\n" android:textSize="40dp"
                 android:layout_gravity="right"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="5dp"
                 android:background="#FF00FF00"/>
            </LinearLayout>
     </RelativeLayout>
