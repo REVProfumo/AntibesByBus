@@ -127,8 +127,52 @@ public class New_set extends AppCompatActivity {
     }
     public void average(View v)
     {
+        TableLayout table = (TableLayout)findViewById(R.id.hints);
+        float sum =0;
+        int num=0;
+        for(int i = 0, j = table.getChildCount(); i < j; i++) {
+            View view = table.getChildAt(i);
+            if (view instanceof TableRow) {
+                // then, you can remove the the row you want...
+                // for instance...
+                TableRow row = (TableRow) view;
+                TextView firstTextView = (TextView) row.getChildAt(0);
+                float firstText = Float.parseFloat(firstTextView.getText().toString());
+                sum += firstText;
+                num += 1;
+            }
+        }
+        sum /= num;
+
         TextView tv = (TextView)findViewById(R.id.average);
-        tv.setText(tv.getText()+"\n 11");
+        tv.setText("mean\n"+sum);
+    }
+
+
+    public void sigma(View v)
+    {
+        TableLayout table = (TableLayout)findViewById(R.id.hints);
+        float sum2 =0;
+        float sqr=0;
+        int num=0;
+        for(int i = 0, j = table.getChildCount(); i < j; i++) {
+            View view = table.getChildAt(i);
+            if (view instanceof TableRow) {
+                // then, you can remove the the row you want...
+                // for instance...
+                TableRow row = (TableRow) view;
+                TextView firstTextView = (TextView) row.getChildAt(0);
+                float firstText = Float.parseFloat(firstTextView.getText().toString());
+                sum2 += firstText;
+                num += 1;
+                sqr += Math.pow(firstText, 2);
+            }
+        }
+        sum2 /= num;
+        sqr /= num;
+        sqr -= sum2;
+        TextView tv = (TextView)findViewById(R.id.sigma);
+        tv.setText("sigma\n"+sqr);
     }
 
 }
