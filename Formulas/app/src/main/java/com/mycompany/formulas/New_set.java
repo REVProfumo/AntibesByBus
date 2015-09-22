@@ -120,42 +120,31 @@ public class New_set extends AppCompatActivity {
             }
         };
 
-
-
         btn2.setOnClickListener( onClick2 );
 
     }
-    
-    public void average(View v)
-    {
-        TableLayout table = (TableLayout)findViewById(R.id.hints);
-        float sum =0;
-        int num=0;
-        for(int i = 0, j = table.getChildCount(); i < j; i++) {
-            View view = table.getChildAt(i);
-            if (view instanceof TableRow) {
-                // then, you can remove the the row you want...
-                // for instance...
-                TableRow row = (TableRow) view;
-                TextView firstTextView = (TextView) row.getChildAt(0);
-                float firstText = Float.parseFloat(firstTextView.getText().toString());
-                sum += firstText;
-                num += 1;
-            }
-        }
-        sum /= num;
 
-        TextView tv = (TextView)findViewById(R.id.average);
-        tv.setText("mean\n"+sum);
+    public class Example
+    {
+        float ar[] = new float[3];
+
+    public float[] setAr(float sum, float sqrt, float num){
+        ar[0] = sum;
+        ar[1] = sqrt;
+        ar[2] = num;
+        return ar;
+
+    }
     }
 
 
-    public void sigma(View v)
-    {
+
+
+    public float[] averages(View v){
         TableLayout table = (TableLayout)findViewById(R.id.hints);
         float sum2 =0;
         float sqr=0;
-        int num=0;
+        float num=0;
         for(int i = 0, j = table.getChildCount(); i < j; i++) {
             View view = table.getChildAt(i);
             if (view instanceof TableRow) {
@@ -169,12 +158,38 @@ public class New_set extends AppCompatActivity {
                 sqr += Math.pow(firstText, 2.0);
             }
         }
-        sum2 /= num;
-        sqr /= num;
-        sqr -= Math.pow(sum2, 2.0);
+
+        Example arrayy = new Example();
+        return arrayy.setAr(sum2, sqr, num);
+    }
+
+
+    public void average(View v)
+    {
+        float sum =0;
+        float num = 0;
+        float[] array = averages(v);
+        num = array[2];
+        sum =  array[0]/num;
+
+        TextView tv = (TextView)findViewById(R.id.average);
+        tv.setText("mean\n"+sum);
+    }
+
+
+    public void sigma(View v)
+    {
+        float sum2 =0;
+        float sum =0;
+        float sqr = 0;
+        float num = 0;
+        float[] array = averages(v);
+        num = array[2];
+        sum =  array[0]/num;
+        sqr = array[1]/num;
+        sqr -= Math.pow(sum, 2.0);
 
         TextView tv = (TextView)findViewById(R.id.sigma);
         tv.setText("sigma\n"+sqr);
     }
-
 }
