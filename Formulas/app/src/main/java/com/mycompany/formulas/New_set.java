@@ -30,6 +30,7 @@ public class New_set extends AppCompatActivity {
     private OnClickListener onClick2;
     private KeyListener listener;
     private KeyListener nonnulllistener;
+    public TextView mean;
 
     public static int integer = 0;
 
@@ -37,6 +38,10 @@ public class New_set extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_set);
+
+        TextView mean = (TextView)this.findViewById(R.id.average);
+        mean.setText("mean");
+
         mLayout = (TableLayout) findViewById(R.id.hints);
         mEditText = (EditText) findViewById(R.id.add_hint);
 
@@ -119,7 +124,11 @@ public class New_set extends AppCompatActivity {
 
         btn2.setOnClickListener( onClick2 );
 
-
+    }
+    public void average(View v)
+    {
+        TextView tv = (TextView)findViewById(R.id.average);
+        tv.setText(tv.getText()+"\n 11");
     }
 
 }

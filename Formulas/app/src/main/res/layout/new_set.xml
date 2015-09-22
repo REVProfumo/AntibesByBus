@@ -10,7 +10,10 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:onClick="average"
+            android:text="Mean"
+            />
 
         <Button
             android:layout_width="wrap_content"
@@ -82,11 +85,11 @@
             android:layout_width="200dp"
                 android:layout_weight="0.3"
             android:layout_height="wrap_content"
-            android:text="Mean\n"
                 android:textSize="40dp" android:layout_gravity="right"
                 android:layout_marginRight="5dp"
                 android:background="#FFFF0000"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:id="@+id/average"/>
             <TextView
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
