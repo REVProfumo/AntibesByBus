@@ -56,15 +56,56 @@
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/add"/>
         <ScrollView
+            android:layout_weight="0.2"
             android:layout_width="match_parent"
             android:layout_below="@id/add_hint"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            >
             <TableLayout
                 android:id="@+id/hints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
         </ScrollView>
+        <LinearLayout
+            android:layout_weight="0.2"
+            android:id="@+id/hints3"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/add_hint"
+            android:layout_toRightOf="@id/hints"
+            android:layout_alignParentRight="true"
+            >
+            <TextView
+            android:layout_width="200dp"
+                android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:text="Mean\n"
+                android:textSize="40dp" android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:background="#FFFF0000"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:text="Sigma\n" android:textSize="40dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:background="#FFFFFF00"/>
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:text="Plot\n" android:textSize="40dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:background="#FF00FF00"/>
+           </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
