@@ -31,7 +31,7 @@ public class New_set_3 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_set);
+        setContentView(R.layout.new_set_3);
 
         TextView mean = (TextView)this.findViewById(R.id.average);
         mean.setText("mean");

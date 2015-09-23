@@ -18,7 +18,7 @@ import android.widget.TextView;
  */
 public class New_set_2 extends AppCompatActivity {
     private LinearLayout mLayout;
-    private EditText mEditText;
+    private EditText mEditText, mEditText2;
     private Button mButton;
     private OnClickListener onClick;
     private OnClickListener onClick2;
@@ -31,13 +31,14 @@ public class New_set_2 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_set);
+        setContentView(R.layout.new_set_2);
 
         TextView mean = (TextView)this.findViewById(R.id.average);
         mean.setText("mean");
 
         mLayout = (TableLayout) findViewById(R.id.hints);
         mEditText = (EditText) findViewById(R.id.add_hint);
+        mEditText2 = (EditText) findViewById(R.id.add_hint2);
 
         mButton = (Button) findViewById(R.id.add);
         mButton.setOnClickListener(onClick());
