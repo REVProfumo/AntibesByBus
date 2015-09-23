@@ -17,4 +17,15 @@ public class Second extends AppCompatActivity {
         Intent intent = new Intent(Second.this, New_set.class);
         startActivity(intent);
     }
+
+    public void Second_two_open(View view) {
+        Intent intent = new Intent(Second.this, New_set_2.class);
+        startActivity(intent);
+    }
+
+    public void Second_three_open(View view) {
+        Intent intent = new Intent(Second.this, New_set_3.class);
+        startActivity(intent);
+    }
+
 }
