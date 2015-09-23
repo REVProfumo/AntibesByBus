@@ -13,7 +13,7 @@ public class Second extends AppCompatActivity {
 
     }
 
-    public void Second(View view) {
+    public void Second_open(View view) {
         Intent intent = new Intent(Second.this, New_set.class);
         startActivity(intent);
     }

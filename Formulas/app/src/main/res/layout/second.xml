@@ -23,7 +23,7 @@
             android:id="@+id/one"
             android:layout_below="@+id/choice_here"
             android:layout_alignParentLeft="true"
-            android:onClick="New_set"
+            android:onClick="Second_open"
 
             />
 

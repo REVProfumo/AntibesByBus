@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void New_set(View view)
     {
-        Intent intent = new Intent(MainActivity.this, New_set.class);
+        Intent intent = new Intent(MainActivity.this, Second.class);
         startActivity(intent);
     }
 
