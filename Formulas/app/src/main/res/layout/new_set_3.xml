@@ -44,22 +44,38 @@
         android:orientation="horizontal"
         android:id="@+id/new_formulas"
         >
-        <Button
-            android:textSize="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/add"
-            android:id="@+id/add"
-            />
         <EditText
-            android:textSize="30dp"
+            android:id="@+id/add_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/add_hint"
-            android:id="@+id/add_hint"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/add"/>
+            android:minWidth="170dp"
+            android:hint="Hint"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/add_hint2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/add_hint"
+            android:minWidth="170dp"
+            android:hint="hint2"
+            android:textSize="20dp" />
+        <EditText
+            android:id="@+id/add_hint3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/add_hint2"
+            android:minWidth="170dp"
+            android:hint="hint3"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/add_hint3"
+            android:text="Add"
+            android:textSize="10dp" />
         <ScrollView
             android:layout_weight="0.2"
             android:layout_width="match_parent"

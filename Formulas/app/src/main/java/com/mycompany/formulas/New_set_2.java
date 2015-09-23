@@ -22,8 +22,8 @@ public class New_set_2 extends AppCompatActivity {
     private Button mButton;
     private OnClickListener onClick;
     private OnClickListener onClick2;
-    private KeyListener listener;
-    private KeyListener nonnulllistener;
+    private KeyListener listener, listener2;
+    private KeyListener nonnulllistener, nonnulllistener2;
     public TextView mean;
 
     public static int integer = 0;
@@ -42,8 +42,12 @@ public class New_set_2 extends AppCompatActivity {
 
         mButton = (Button) findViewById(R.id.add);
         mButton.setOnClickListener(onClick());
+
         TextView textView = new TextView(this);
+        TextView textView2 = new TextView(this);
         textView.setText(mEditText.getText().toString());
+        textView2.setText(mEditText2.getText().toString());
+
     }
 
     private OnClickListener onClick() {
@@ -51,12 +55,13 @@ public class New_set_2 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                createNewTextView(mEditText.getText().toString());
+                createNewTextView(mEditText.getText().toString(), mEditText2.getText().toString());
+
             }
         };
     }
 
-    private void createNewTextView(String text) {
+    private void createNewTextView(String text, String text2) {
         TableLayout ll = (TableLayout) findViewById(R.id.hints);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 
@@ -64,14 +69,21 @@ public class New_set_2 extends AppCompatActivity {
         row.setLayoutParams(lp);
 
         final EditText textView= new EditText(this);
+        final EditText textView2= new EditText(this);
+
         textView.setId(integer);
+        textView2.setId(integer);
 
         textView.setText(text);
+        textView2.setText(text2);
+
         nonnulllistener = textView.getKeyListener(); // Save the default KeyListener!!!
 
         textView.setKeyListener(null);
+        textView2.setKeyListener(null);
 
         row.addView(textView);
+        row.addView(textView2);
 
         Button btn = new Button(this);
         btn.setText("X");
@@ -103,12 +115,16 @@ public class New_set_2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listener = textView.getKeyListener(); // Save the default KeyListener!!!
+                listener2 = textView.getKeyListener(); // Save the default KeyListener!!!
 
                 if (listener==null){
                     textView.setKeyListener(nonnulllistener);
+                    textView2.setKeyListener(nonnulllistener2);
                 }
                     else{
                     textView.setKeyListener(null);
+                    textView2.setKeyListener(null);
+
                 }
 
 

@@ -47,7 +47,7 @@
             android:id="@+id/add_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="150dp"
+            android:minWidth="258dp"
             android:hint="Hint"
             android:textSize="20dp" />
 
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/add_hint"
-            android:minWidth="150dp"
+            android:minWidth="258dp"
             android:hint="hint2"
             android:textSize="20dp" />
 
@@ -66,7 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/add_hint2"
             android:text="Add"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginRight="10dp"/>
 
         <ScrollView
             android:layout_weight="0.2"

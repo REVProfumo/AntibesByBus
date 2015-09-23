@@ -18,12 +18,12 @@ import android.widget.TextView;
  */
 public class New_set_3 extends AppCompatActivity {
     private LinearLayout mLayout;
-    private EditText mEditText;
+    private EditText mEditText, mEditText2, mEditText3;
     private Button mButton;
     private OnClickListener onClick;
     private OnClickListener onClick2;
-    private KeyListener listener;
-    private KeyListener nonnulllistener;
+    private KeyListener listener, listener2, listener3;
+    private KeyListener nonnulllistener, nonnulllistener2, nonnulllistener3;
     public TextView mean;
 
     public static int integer = 0;
@@ -38,11 +38,19 @@ public class New_set_3 extends AppCompatActivity {
 
         mLayout = (TableLayout) findViewById(R.id.hints);
         mEditText = (EditText) findViewById(R.id.add_hint);
+        mEditText2 = (EditText) findViewById(R.id.add_hint2);
+        mEditText3 = (EditText) findViewById(R.id.add_hint3);
 
         mButton = (Button) findViewById(R.id.add);
         mButton.setOnClickListener(onClick());
+
         TextView textView = new TextView(this);
+        TextView textView2 = new TextView(this);
         textView.setText(mEditText.getText().toString());
+        textView2.setText(mEditText2.getText().toString());
+        textView2.setText(mEditText3.getText().toString());
+
+
     }
 
     private OnClickListener onClick() {
@@ -50,12 +58,14 @@ public class New_set_3 extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                createNewTextView(mEditText.getText().toString());
+                createNewTextView(mEditText.getText().toString(),
+                        mEditText2.getText().toString(), mEditText3.getText().toString());
+
             }
         };
     }
 
-    private void createNewTextView(String text) {
+    private void createNewTextView(String text, String text2, String text3) {
         TableLayout ll = (TableLayout) findViewById(R.id.hints);
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
 
@@ -63,14 +73,28 @@ public class New_set_3 extends AppCompatActivity {
         row.setLayoutParams(lp);
 
         final EditText textView= new EditText(this);
+        final EditText textView2= new EditText(this);
+        final EditText textView3= new EditText(this);
+
         textView.setId(integer);
+        textView2.setId(integer);
+        textView3.setId(integer);
 
         textView.setText(text);
+        textView2.setText(text2);
+        textView3.setText(text3);
+
         nonnulllistener = textView.getKeyListener(); // Save the default KeyListener!!!
+        nonnulllistener2 = textView2.getKeyListener(); // Save the default KeyListener!!!
+        nonnulllistener3 = textView3.getKeyListener(); // Save the default KeyListener!!!
 
         textView.setKeyListener(null);
+        textView2.setKeyListener(null);
+        textView3.setKeyListener(null);
 
         row.addView(textView);
+        row.addView(textView2);
+        row.addView(textView3);
 
         Button btn = new Button(this);
         btn.setText("X");
@@ -102,12 +126,20 @@ public class New_set_3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listener = textView.getKeyListener(); // Save the default KeyListener!!!
+                listener2 = textView.getKeyListener(); // Save the default KeyListener!!!
+                listener3 = textView.getKeyListener(); // Save the default KeyListener!!!
 
                 if (listener==null){
                     textView.setKeyListener(nonnulllistener);
+                    textView2.setKeyListener(nonnulllistener2);
+                    textView3.setKeyListener(nonnulllistener3);
+
                 }
                     else{
                     textView.setKeyListener(null);
+                    textView2.setKeyListener(null);
+                    textView3.setKeyListener(null);
+
                 }
 
 
