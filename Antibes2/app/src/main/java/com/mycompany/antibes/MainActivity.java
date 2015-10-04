@@ -1,6 +1,7 @@
 package com.mycompany.antibes;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
@@ -39,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         int id = 999;
-        String title = "title";
+        String title = "Sophia";
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID, id);
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, title);
 
@@ -72,5 +75,36 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void request(View v) {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+// Define a projection that specifies which columns from the database
+// you will actually use after this query.
+        String[] projection = {
+                FeedReaderContract.FeedEntry._ID,
+                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
+        };
+/*
+* The arguments that will be replaced for each ?
+* in the above statement.
+*/
+
+
+// How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + " DESC";
+
+        Cursor cursor = db.query(
+                FeedReaderContract.FeedEntry.TABLE_NAME,  // The table to query
+                projection,                               // The columns to return
+                null,                                // The columns for the WHERE clause
+                null,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                    // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+
     }
 }
