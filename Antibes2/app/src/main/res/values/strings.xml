@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Antibes</string>
+    <string name="action_settings">Settings</string>
+    <string name="nr_hint">999</string>
+    <string name="choose_number">choose line</string>
+
+</resources>
