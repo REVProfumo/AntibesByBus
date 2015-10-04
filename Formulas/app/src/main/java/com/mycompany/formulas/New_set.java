@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.KeyListener;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -16,8 +18,12 @@ import android.view.Gravity;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.view.ViewGroup;
-
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.Viewport;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import org.w3c.dom.Text;
+import com.jjoe64.graphview.GraphView.*;
 
 /**
  * Created by elio-profumo on 21/09/15.
@@ -25,7 +31,7 @@ import org.w3c.dom.Text;
 public class New_set extends AppCompatActivity {
     private LinearLayout mLayout;
     private EditText mEditText;
-    private Button mButton;
+    private Button mButton, mButton_back;
     private OnClickListener onClick;
     private OnClickListener onClick2;
     private KeyListener listener;
@@ -34,6 +40,7 @@ public class New_set extends AppCompatActivity {
 
     public static int integer = 0;
 
+    private int lastX = 0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,17 @@ public class New_set extends AppCompatActivity {
         mButton.setOnClickListener(onClick());
         TextView textView = new TextView(this);
         textView.setText(mEditText.getText().toString());
+
+        mButton.setOnClickListener(onClick());
+
+    }
+
+//onCreate
+
+
+    public void onBackPressed() {
+        Intent myIntent = new Intent(New_set.this, Second.class);
+        New_set.this.startActivity(myIntent);
     }
 
     private OnClickListener onClick() {
@@ -59,7 +77,7 @@ public class New_set extends AppCompatActivity {
                 createNewTextView(mEditText.getText().toString());
             }
         };
-    }
+    };
 
     private void createNewTextView(String text) {
         TableLayout ll = (TableLayout) findViewById(R.id.hints);
@@ -177,8 +195,7 @@ public class New_set extends AppCompatActivity {
     }
 
 
-    public void sigma(View v)
-    {
+    public void sigma(View v) {
         float sum2 =0;
         float sum =0;
         float sqr = 0;
@@ -190,6 +207,45 @@ public class New_set extends AppCompatActivity {
         sqr -= Math.pow(sum, 2.0);
 
         TextView tv = (TextView)findViewById(R.id.sigma);
-        tv.setText("sigma\n"+sqr);
+        tv.setText("sigma\n" + sqr);
     }
+    public void plot(){
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> mySeries = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0, 0),
+                new DataPoint(1, 5),
+                new DataPoint(2, 10)
+        });
+
+        graph.addSeries(mySeries);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.new_set);
+        layout.addView(graph);
+    }
+    public void cancel(){
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

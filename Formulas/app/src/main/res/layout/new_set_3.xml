@@ -25,17 +25,22 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="plot"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="wrap_content"
+            android:text="canc \nplot"/>
+        />
         <Button
             android:layout_width="wrap_content"
             android:layout_weight=".2"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="save"
+            android:id="@+id/save"/>
+
     </LinearLayout>
 
     <RelativeLayout
@@ -48,7 +53,7 @@
             android:id="@+id/add_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="170dp"
+            android:minWidth="130dp"
             android:hint="Hint"
             android:textSize="20dp" />
 
@@ -57,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/add_hint"
-            android:minWidth="170dp"
+            android:minWidth="130dp"
             android:hint="hint2"
             android:textSize="20dp" />
         <EditText
@@ -65,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/add_hint2"
-            android:minWidth="170dp"
+            android:minWidth="130dp"
             android:hint="hint3"
             android:textSize="20dp" />
 
