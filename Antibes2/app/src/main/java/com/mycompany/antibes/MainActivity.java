@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         String title = "Sophia";
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID, id);
         values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, title);
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE, title);
 
 // Insert the new row, returning the primary key value of the new row
         long newRowId;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                null,                                // The columns for the WHERE clause
+                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE+" = "+"999",                                // The columns for the WHERE clause
                 null,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                    // don't filter by row groups
