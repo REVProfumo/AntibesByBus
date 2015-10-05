@@ -3,6 +3,7 @@ package com.mycompany.antibes;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -105,6 +108,26 @@ public class MainActivity extends AppCompatActivity {
                 null,                                    // don't filter by row groups
                 sortOrder                                 // The sort order
         );
+        String result = "";
 
+        int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry._ID);
+        int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE);
+
+
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
+            result = result + cursor.getString(iRow) + " " + cursor.getString(iName) + "\n";
+        }
+        System.out.println(result);
+
+        TextView textview = new TextView(getApplicationContext());
+        textview.setText(result);
+        RelativeLayout myLayout;
+        myLayout = (RelativeLayout) findViewById(R.id.content_main);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        TextView tv = (TextView) findViewById(R.id.button);
+        textview.setTextColor(Color.RED);
+        params.addRule(RelativeLayout.BELOW, tv.getId());
+        myLayout.addView(textview, params);
     }
 }
