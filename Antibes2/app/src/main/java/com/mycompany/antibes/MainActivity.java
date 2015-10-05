@@ -2,6 +2,7 @@ package com.mycompany.antibes;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
-        put_info();
+        //put_info();
     }
 
     public void put_info(){
@@ -55,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.TABLE_NAME,
                 null,
                 values);
-
     }
 
     @Override
@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         );
         String result = "";
 
+        DatabaseUtils.dumpCursor(cursor);
         int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry._ID);
         int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE);
 
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             result = result + cursor.getString(iRow) + " " + cursor.getString(iName) + "\n";
         }
         System.out.println(result);
+
 
         TextView textview = new TextView(getApplicationContext());
         textview.setText(result);

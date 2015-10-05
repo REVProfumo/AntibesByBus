@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="my_array">
+
+        <item>Sophia 999</item>
+        <item>Sophia 10</item>
+        <item>Sophia 111</item>
+        <item>Sophia 101</item>
+
+    </string-array>
+
+</resources>
