@@ -10,9 +10,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,6 +23,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
+    Button mButton;
+    EditText mEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         //put_info();
+
     }
 
     public void put_info(){
@@ -57,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.TABLE_NAME,
                 null,
                 values);
-    }
+        }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void request(View v) {
+
+        mEdit = (EditText) findViewById(R.id.text);
+        String string = mEdit.getText().toString();
+
+
+
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 // Define a projection that specifies which columns from the database
@@ -104,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,  // The table to query
                 projection,                               // The columns to return
-                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE+" = "+"999",                                // The columns for the WHERE clause
+                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE+" = " + string ,                                // The columns for the WHERE clause
                 null,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                    // don't filter by row groups
