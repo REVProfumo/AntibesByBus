@@ -36,6 +36,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
             values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID, split[0]);
             values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, split[1]);
+            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE, split[2]);
             db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
         }
 
@@ -59,7 +60,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " ( " +
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
                     FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE + TEXT_TYPE +
 //        ... // Any other options for the CREATE command
                     " )";
 

@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String[] projection = {
                 FeedReaderContract.FeedEntry._ID,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
+                FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE,
         };
 /*
 * The arguments that will be replaced for each ?
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
 // How you want the results sorted in the resulting Cursor
         String sortOrder =
-                FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + " DESC";
+                FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE + " ASC";
 
         Cursor cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,  // The table to query
@@ -113,10 +114,13 @@ public class MainActivity extends AppCompatActivity {
         DatabaseUtils.dumpCursor(cursor);
         int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry._ID);
         int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE);
+        int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE);
 
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
-            result = result + cursor.getString(iRow) + " " + cursor.getString(iName) + "\n";
+            result = result + cursor.getString(iRow) + " " + cursor.getString(iName) +
+                    " " + cursor.getString(iSchedule) +
+                    "\n";
         }
         System.out.println(result);
 
