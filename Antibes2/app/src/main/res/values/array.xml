@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="my_array">
+    <string-array name="my_array" type="xs:string">
 
-        <item>Eganaude 999 4 5 7 9 11 17</item>
+        <item>Eganaude 999 3 4 5 7 9 11 17</item>
 
     </string-array>
 
