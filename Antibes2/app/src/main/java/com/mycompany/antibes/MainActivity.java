@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 // Define a projection that specifies which columns from the database
 // you will actually use after this query.
         String[] projection = {
-                FeedReaderContract.FeedEntry._ID,
+                FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
                 FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE,
         };
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         String result = "";
 
         DatabaseUtils.dumpCursor(cursor);
-        int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry._ID);
+        int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID);
         int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE);
         int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE);
 
