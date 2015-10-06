@@ -20,7 +20,6 @@
     <EditText
         android:id="@+id/text"
         android:hint="@string/nr_hint"
-        android:inputType="number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
