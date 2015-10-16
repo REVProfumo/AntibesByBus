@@ -6,14 +6,8 @@ import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by elio-profumo on 04/10/15.
- */
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
-    // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "FeedReader.db";
     private final Context fContext;
@@ -34,8 +28,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         for (String item : myArray){
             String[] split = item.split("\\s+");
 
-            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID, split[0]);
-            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, split[1]);
+            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
+            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
             String schedule="";
 
             String[] stringArray = item.split("\\s+");
@@ -49,18 +43,12 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                     schedule = split[i];
                 }
             }
-
-
-            values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE, schedule);
+            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
             db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
         }
-
-
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // This database is only a cache for online data, so its upgrade policy is
-        // to simply to discard the data and start over
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
@@ -74,10 +62,9 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " ( " +
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.COLUMN_NAME_SCHEDULE + TEXT_TYPE +
-//        ... // Any other options for the CREATE command
+                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
                     " )";
 
     private static final String SQL_DELETE_ENTRIES =
