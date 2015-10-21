@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void request(View v) {
+    public void lookUp(View v) {
         mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,
                 projection,
-                FeedReaderContract.FeedEntry.LINE+" = " + string ,
+                FeedReaderContract.FeedEntry.LINE+" = \'" + string + "\'" ,
                 null,
                 null,
                 null,
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
         int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
         int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
         int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
-
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
             result = result + cursor.getString(iRow) + " " + cursor.getString(iName) +
@@ -85,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
         textview.setText(result);
         RelativeLayout myLayout;
         myLayout = (RelativeLayout) findViewById(R.id.content_main);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams params =
+                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         TextView tv = (TextView) findViewById(R.id.button);
         textview.setTextColor(Color.RED);

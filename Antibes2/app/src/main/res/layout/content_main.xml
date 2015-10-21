@@ -22,7 +22,6 @@
         android:hint="@string/nr_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_below="@+id/choose"/>
 
     <Button
@@ -30,9 +29,8 @@
         android:text="Request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_below="@+id/text"
-        android:onClick="request"
+        android:onClick="lookUp"
         />
 
 

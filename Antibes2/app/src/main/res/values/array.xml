@@ -3,7 +3,8 @@
 
     <string-array name="my_array" type="xs:string">
 
-        <item>Eganaude 999 3 4 5 7 9 11 17</item>
+        <item>Eganaude line1 3 4 5 7 9 11 17</item>
+        <item>Eganaude line1 7 5 13 19 21</item>
 
     </string-array>
 
