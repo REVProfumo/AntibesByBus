@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void lookUp(View v) {
+        ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
+        View toRemove = layout.findViewById(1);
+        layout.removeView(toRemove);
+
         mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 FeedReaderContract.FeedEntry.STOP,
                 FeedReaderContract.FeedEntry.LINE,
                 FeedReaderContract.FeedEntry.SCHEDULE,
+                FeedReaderContract.FeedEntry.DIRECTION,
+
         };
 
         String sortOrder =
@@ -72,9 +79,11 @@ public class MainActivity extends AppCompatActivity {
         int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
         int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
         int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
+        int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
             result = result + cursor.getString(iRow) + " " + cursor.getString(iName) +
+                    " " + cursor.getString(iDirection) +
                     " " + cursor.getString(iSchedule) +
                     "\n";
         }
@@ -82,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textview = new TextView(getApplicationContext());
         textview.setText(result);
+        textview.setId(1);
         RelativeLayout myLayout;
         myLayout = (RelativeLayout) findViewById(R.id.content_main);
         RelativeLayout.LayoutParams params =

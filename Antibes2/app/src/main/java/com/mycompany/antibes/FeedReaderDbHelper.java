@@ -30,12 +30,14 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
             values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
             values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
+            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
+
             String schedule="";
 
             String[] stringArray = item.split("\\s+");
             int length = stringArray.length;
 
-            for (int i = 2; i < length; i++) {
+            for (int i = 3; i < length; i++) {
                 System.out.println(i);
                 if(schedule.trim().length()>0){
                     schedule += split[i]+" ";
@@ -66,6 +68,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                     FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
                     FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
                     FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
                     FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
                     " )";
 
