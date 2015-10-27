@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
+        string = string.replace(" ", "-");
+
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,
                 projection,
-                FeedReaderContract.FeedEntry.LINE+" = \'" + string + "\'" ,
+                FeedReaderContract.FeedEntry.STOP+" = \'" + string + "\'" ,
                 null,
                 null,
                 null,
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
-            result = result + cursor.getString(iRow) + " " + cursor.getString(iName) +
+            result = result + cursor.getString(iRow).replace("-", " ") + " " + cursor.getString(iName) +
                     " " + cursor.getString(iDirection) +
                     " " + cursor.getString(iSchedule) +
                     "\n";
