@@ -3,15 +3,15 @@
 
     <string-array name="my_array" type="xs:string">
 
-        <item>Eganaude line1 Sophia 3 4 5 7 9 11 17</item>
-        <item>Eganaude line1 Antibes 7 5 13 19 21</item>
-        <item>Eganaude line2 Sophia 15 20</item>
-        <item>Eganaude line2 Antibes 19 21</item>
-        <item>Eganaude line3 Antibes 13 24</item>
-        <item>Pin-Montard line2 Antibes 19 21</item>
-        <item>Pin-Montard line3 Antibes 13 24</item>
-        <item>Dolines line2 Antibes 19 21</item>
-        <item>Dolines line3 Antibes 13 24</item>
+        <item>eganaude line1 Sophia 3 4 5 7 9 11 17</item>
+        <item>eganaude line1 Antibes 7 5 13 19 21</item>
+        <item>eganaude line2 Sophia 15 20</item>
+        <item>eganaude line2 Antibes 19 21</item>
+        <item>eganaude line3 Antibes 13 24</item>
+        <item>pin-montard line2 Antibes 19 21</item>
+        <item>pin-montard line3 Antibes 13 24</item>
+        <item>dolines line2 Antibes 19 21</item>
+        <item>dolines line3 Antibes 13 24</item>
 
 
 

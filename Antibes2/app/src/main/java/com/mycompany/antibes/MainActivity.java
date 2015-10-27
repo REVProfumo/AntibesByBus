@@ -52,7 +52,14 @@ public class MainActivity extends AppCompatActivity {
         mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
-        string = string.replace(" ", "-");
+
+        if (string.indexOf('-')>=0){
+            string = string.replace("-", "&");
+        }
+        else{
+            string = string.replace(" ", "-");
+        }
+        string = string.toLowerCase();
 
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -84,12 +91,28 @@ public class MainActivity extends AppCompatActivity {
         int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
-            result = result + cursor.getString(iRow).replace("-", " ") + " " + cursor.getString(iName) +
+            String auxString = cursor.getString(iRow);
+
+            auxString = auxString.replace("-", " ");
+            System.out.println(auxString);
+
+            String toBeCapped = auxString;
+
+            String[] tokens = toBeCapped.split("\\s");
+            toBeCapped = "";
+
+            for(int i = 0; i < tokens.length; i++){
+                char capLetter = Character.toUpperCase(tokens[i].charAt(0));
+                toBeCapped +=  " " + capLetter + tokens[i].substring(1);
+            }
+            toBeCapped = toBeCapped.trim();
+            auxString = toBeCapped;
+
+            result = result + auxString + " " + cursor.getString(iName) +
                     " " + cursor.getString(iDirection) +
                     " " + cursor.getString(iSchedule) +
                     "\n";
         }
-        System.out.println(result);
 
         TextView textview = new TextView(getApplicationContext());
         textview.setText(result);
