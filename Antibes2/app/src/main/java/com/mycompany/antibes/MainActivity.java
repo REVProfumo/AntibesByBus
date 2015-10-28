@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             String auxString = cursor.getString(iRow);
 
             auxString = auxString.replace("-", " ");
-            System.out.println(cursor.getString(iSchedule));
+            //System.out.println(cursor.getString(iSchedule));
 
             String toBeCapped = auxString;
 
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
             int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
                     + Integer.parseInt(timeSplitted[2]);
 
-            System.out.println(time);
-            System.out.println(seconds);
+            //System.out.println(time);
+            //System.out.println(seconds);
 
 
             String[] parts = cursor.getString(iSchedule).split(" ");
@@ -133,7 +133,11 @@ public class MainActivity extends AppCompatActivity {
             int[] nextTimes = new int[2];
             for (int i = 0; i < parts.length; i++) {
                 try {
-                    times[i] = Integer.parseInt(parts[i]);
+                    String[] partsSplit =parts[i].split(":");
+                    times[i] = Integer.parseInt(partsSplit[0])*3600+Integer.parseInt(partsSplit[1])*60+
+                            Integer.parseInt(partsSplit[2]);
+
+
                     if ((times[i] > seconds) & (j < 2)) {
                         nextTimes[j] = times[i];
                         j += 1;
@@ -146,14 +150,21 @@ public class MainActivity extends AppCompatActivity {
 
 
             if (flag == 1) {
-                String nextTimesString = "";
+                String nextTimesString="";
+                String nextTimesChrono ="";
                 for (int i = 0; i < 2; i++) {
+                    int hours = nextTimes[i]/3600;
+                    int mins = (nextTimes[i]-hours*3600)/60;
+                    int secs = nextTimes[i]-hours*3600 - mins*60;
+                    nextTimesChrono += Integer.toString(hours)+":"+Integer.toString(mins)+":"+
+                            Integer.toString(secs)+" ";
+
                     nextTimesString += Integer.toString(nextTimes[i]) + " ";
                 }
 
                 resultSchedule = resultSchedule + auxString + " " + cursor.getString(iName) +
                         " " + cursor.getString(iDirection) +
-                        " " + nextTimesString +
+                        " " + nextTimesChrono +
                         "\n";
             }
         }
