@@ -13,6 +13,12 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.text.TextUtils;
+
+
+import java.text.DateFormat;
+import java.util.Arrays;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
@@ -81,41 +87,79 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null,
                 null,
-                sortOrder
+                null
         );
-        String result = "";
+        String resultSchedule = "";
 
         int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
         int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
         int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
         int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
 
-        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()){
+        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             String auxString = cursor.getString(iRow);
 
             auxString = auxString.replace("-", " ");
-            System.out.println(auxString);
+            System.out.println(cursor.getString(iSchedule));
 
             String toBeCapped = auxString;
 
             String[] tokens = toBeCapped.split("\\s");
             toBeCapped = "";
 
-            for(int i = 0; i < tokens.length; i++){
+            for (int i = 0; i < tokens.length; i++) {
                 char capLetter = Character.toUpperCase(tokens[i].charAt(0));
-                toBeCapped +=  " " + capLetter + tokens[i].substring(1);
+                toBeCapped += " " + capLetter + tokens[i].substring(1);
             }
             toBeCapped = toBeCapped.trim();
             auxString = toBeCapped;
 
-            result = result + auxString + " " + cursor.getString(iName) +
-                    " " + cursor.getString(iDirection) +
-                    " " + cursor.getString(iSchedule) +
-                    "\n";
+            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+            String[] currentTime = currentDateTimeString.split(" ");
+            String time = currentTime[3];
+            String[] timeSplitted = time.split(":");
+            int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
+                    + Integer.parseInt(timeSplitted[2]);
+
+            System.out.println(time);
+            System.out.println(seconds);
+
+
+            String[] parts = cursor.getString(iSchedule).split(" ");
+            int[] times = new int[parts.length];
+
+            int j = 0;
+            int flag = -1;
+            int[] nextTimes = new int[2];
+            for (int i = 0; i < parts.length; i++) {
+                try {
+                    times[i] = Integer.parseInt(parts[i]);
+                    if ((times[i] > seconds) & (j < 2)) {
+                        nextTimes[j] = times[i];
+                        j += 1;
+                        flag += 1;
+                    }
+                    if (j == 2) break;
+                } catch (NumberFormatException nfe) {
+                };
+            }
+
+
+            if (flag == 1) {
+                String nextTimesString = "";
+                for (int i = 0; i < 2; i++) {
+                    nextTimesString += Integer.toString(nextTimes[i]) + " ";
+                }
+
+                resultSchedule = resultSchedule + auxString + " " + cursor.getString(iName) +
+                        " " + cursor.getString(iDirection) +
+                        " " + nextTimesString +
+                        "\n";
+            }
         }
 
         TextView textview = new TextView(getApplicationContext());
-        textview.setText(result);
+        textview.setText(resultSchedule);
         textview.setId(1);
         RelativeLayout myLayout;
         myLayout = (RelativeLayout) findViewById(R.id.content_main);
