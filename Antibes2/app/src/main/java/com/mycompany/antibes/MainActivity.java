@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < parts.length; i++) {
                 try {
                     String[] partsSplit =parts[i].split(":");
-                    times[i] = Integer.parseInt(partsSplit[0])*3600+Integer.parseInt(partsSplit[1])*60+
-                            Integer.parseInt(partsSplit[2]);
+                    times[i] = Integer.parseInt(partsSplit[0])*3600+Integer.parseInt(partsSplit[1])*60;
+                            //+Integer.parseInt(partsSplit[2]);
 
 
                     if ((times[i] > seconds) & (j < 2)) {
@@ -155,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 2; i++) {
                     int hours = nextTimes[i]/3600;
                     int mins = (nextTimes[i]-hours*3600)/60;
-                    int secs = nextTimes[i]-hours*3600 - mins*60;
-                    nextTimesChrono += Integer.toString(hours)+":"+Integer.toString(mins)+":"+
-                            Integer.toString(secs)+" ";
+                    //int secs = nextTimes[i]-hours*3600 - mins*60;
+                    nextTimesChrono += Integer.toString(hours)+":"+Integer.toString(mins)+" ";
+                            //+":"+Integer.toString(secs)+" ";
 
                     nextTimesString += Integer.toString(nextTimes[i]) + " ";
                 }

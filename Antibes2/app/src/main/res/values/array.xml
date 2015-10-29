@@ -3,10 +3,10 @@
 
     <string-array name="my_array" type="xs:string">
 
-        <item>eganaude line1 Sophia 0:0:3 0:0:4 0:0:5 0:0:7 0:0:9 10:0:0 20:0:0</item>
-        <item>eganaude line1 Antibes 0:0:5 0:0:7 13:0:0 19:0:0 21:0:0</item>
-        <item>eganaude line2 Sophia 15:00:00 20:00:00</item>
-        <item>pin-montard line2 Antibes 19:0:0 21:0:0</item>
+        <item>eganaude 1 Sophia 0:0 0:4 0:5 0:7 0:9 10:0 20:0</item>
+        <item>eganaude 1 Antibes 0:0 0:7 13:0 19:0 21:0</item>
+        <item>eganaude 2 Sophia 15:00 20:00</item>
+        <item>pin-montard 2 Antibes 19:0 21:0</item>
 
     </string-array>
 
