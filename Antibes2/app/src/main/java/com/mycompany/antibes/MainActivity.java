@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
+        System.out.println(string);
 
         if (string.indexOf('-')>=0){
             string = string.replace("-", "&");
@@ -66,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
             string = string.replace(" ", "-");
         }
         string = string.toLowerCase();
+        System.out.println(string);
+        string = string.replaceAll("'", "''");
+        System.out.println(string);
+
 
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -83,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME,
                 projection,
-                FeedReaderContract.FeedEntry.STOP+" = \'" + string + "\'" ,
+                FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
                 null,
                 null,
                 null,
@@ -100,19 +105,18 @@ public class MainActivity extends AppCompatActivity {
             String auxString = cursor.getString(iRow);
 
             auxString = auxString.replace("-", " ");
-            //System.out.println(cursor.getString(iSchedule));
 
-            String toBeCapped = auxString;
+//            String toBeCapped = auxString;
 
-            String[] tokens = toBeCapped.split("\\s");
-            toBeCapped = "";
+//            String[] tokens = toBeCapped.split("\\s");
+//            toBeCapped = "";
 
-            for (int i = 0; i < tokens.length; i++) {
-                char capLetter = Character.toUpperCase(tokens[i].charAt(0));
-                toBeCapped += " " + capLetter + tokens[i].substring(1);
-            }
-            toBeCapped = toBeCapped.trim();
-            auxString = toBeCapped;
+//            for (int i = 0; i < tokens.length; i++) {
+//                char capLetter = Character.toUpperCase(tokens[i].charAt(0));
+//                toBeCapped += " " + capLetter + tokens[i].substring(1);
+//           }
+//            toBeCapped = toBeCapped.trim();
+//            auxString = toBeCapped;
 
             String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
             String[] currentTime = currentDateTimeString.split(" ");
@@ -120,10 +124,6 @@ public class MainActivity extends AppCompatActivity {
             String[] timeSplitted = time.split(":");
             int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
                     + Integer.parseInt(timeSplitted[2]);
-
-            //System.out.println(time);
-            //System.out.println(seconds);
-
 
             String[] parts = cursor.getString(iSchedule).split(" ");
             int[] times = new int[parts.length];
@@ -135,8 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String[] partsSplit =parts[i].split(":");
                     times[i] = Integer.parseInt(partsSplit[0])*3600+Integer.parseInt(partsSplit[1])*60;
-                            //+Integer.parseInt(partsSplit[2]);
-
 
                     if ((times[i] > seconds) & (j < 2)) {
                         nextTimes[j] = times[i];
@@ -155,9 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 2; i++) {
                     int hours = nextTimes[i]/3600;
                     int mins = (nextTimes[i]-hours*3600)/60;
-                    //int secs = nextTimes[i]-hours*3600 - mins*60;
                     nextTimesChrono += Integer.toString(hours)+":"+Integer.toString(mins)+" ";
-                            //+":"+Integer.toString(secs)+" ";
 
                     nextTimesString += Integer.toString(nextTimes[i]) + " ";
                 }

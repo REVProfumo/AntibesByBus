@@ -38,11 +38,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
             int length = stringArray.length;
 
             for (int i = 3; i < length; i++) {
-                System.out.println(i);
                 if(schedule.trim().length()>0){
                     schedule += split[i]+" ";
-                    System.out.println(split[i]);
-
                 }else{
                     schedule = split[i]+" ";
                 }
