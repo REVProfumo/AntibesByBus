@@ -106,17 +106,17 @@ public class MainActivity extends AppCompatActivity {
 
             auxString = auxString.replace("-", " ");
 
-//            String toBeCapped = auxString;
+            String toBeCapped = auxString;
 
-//            String[] tokens = toBeCapped.split("\\s");
-//            toBeCapped = "";
+            String[] tokens = toBeCapped.split("\\s");
+            toBeCapped = "";
 
-//            for (int i = 0; i < tokens.length; i++) {
-//                char capLetter = Character.toUpperCase(tokens[i].charAt(0));
-//                toBeCapped += " " + capLetter + tokens[i].substring(1);
-//           }
-//            toBeCapped = toBeCapped.trim();
-//            auxString = toBeCapped;
+            for (int i = 0; i < tokens.length; i++) {
+                char capLetter = Character.toUpperCase(tokens[i].charAt(0));
+                toBeCapped += " " + capLetter + tokens[i].substring(1);
+           }
+            toBeCapped = toBeCapped.trim();
+            auxString = toBeCapped;
 
             String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
             String[] currentTime = currentDateTimeString.split(" ");
@@ -157,9 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
                     nextTimesString += Integer.toString(nextTimes[i]) + " ";
                 }
+                String newiName = cursor.getString(iName).replace('+',' ');
 
-                resultSchedule = resultSchedule + auxString + " " + cursor.getString(iName) +
-                        " " + cursor.getString(iDirection) +
+                resultSchedule = resultSchedule + auxString + " " + newiName +
+                        " " +  cursor.getString(iDirection)+
                         " " + nextTimesChrono +
                         "\n";
             }
