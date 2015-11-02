@@ -8,16 +8,20 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.text.TextUtils;
-
+import android.widget.Toast;
+import android.view.Menu;
 
 import java.text.DateFormat;
 import java.util.Arrays;
@@ -34,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
-
     }
 
     @Override
@@ -46,15 +49,32 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //int id = item.getItemId();
+        Toast toast;
         switch (item.getItemId()) {
 
          case R.id.action_settings:
             return true;
 
-            case R.id.action_favorite:
-        // User chose the "Favorite" action
-        return true;
+            case R.id.action_favorite: {
+                RelativeLayout myLayout=(RelativeLayout) this.findViewById(R.id.content_main);
+
+                TextView tv=new TextView(this);
+                tv.setText("test");
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+                tv.setLayoutParams(lp);
+                myLayout.addView(tv);
+
+                return true;
+
+            }
+
+            case R.id.action_favorite2: {
+                toast = Toast.makeText(this, item.getTitle()+" Clicked!", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
 
         return super.onOptionsItemSelected(item);
