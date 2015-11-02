@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
     EditText mEdit;
     Cursor cursorGlobal;
+
+    private void cleanTable(TableLayout table) {
+        table.removeAllViews();
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +72,13 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
                                 View toRemove = layout.findViewById(1);
-                                if (toRemove!=null)
+
+                                if ((toRemove!=null))
                                     layout.removeView(toRemove);
+                                    TableLayout table = (TableLayout) findViewById(R.id.table_main);
+                                    cleanTable(table);
                                     generateTextView(cursorGlobal);
+
                             }
                         });}
                     }
@@ -299,7 +310,6 @@ public class MainActivity extends AppCompatActivity {
                 t4v.setGravity(Gravity.CENTER);
                 tbrow.addView(t4v);
                 stk.addView(tbrow);
-
         }
 
 
