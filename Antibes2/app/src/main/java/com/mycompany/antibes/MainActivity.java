@@ -56,11 +56,6 @@ public class MainActivity extends AppCompatActivity {
                         int seconds =  Integer.parseInt(timeSplitted[2]);
                         if (seconds == 0){
 
-
-
-
-
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -120,28 +115,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void lookUp(View v) {
-        ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
-        View toRemove = layout.findViewById(1);
-        layout.removeView(toRemove);
-
-        mEdit = (EditText) findViewById(R.id.text);
-        String string = mEdit.getText().toString();
-
-        System.out.println(string);
-
-        if (string.indexOf('-')>=0){
-            string = string.replace("-", "&");
-        }
-        else{
-            string = string.replace(" ", "-");
-        }
-        string = string.toLowerCase();
-        System.out.println(string);
-        string = string.replaceAll("'", "''");
-        System.out.println(string);
-
-
+    public Cursor cursor(String string){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         String[] projection = {
@@ -164,6 +138,33 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null
         );
+        return cursor;
+    }
+
+
+    public void lookUp(View v) {
+        ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
+        View toRemove = layout.findViewById(1);
+        layout.removeView(toRemove);
+
+        mEdit = (EditText) findViewById(R.id.text);
+        String string = mEdit.getText().toString();
+
+        System.out.println(string);
+
+        if (string.indexOf('-')>=0){
+            string = string.replace("-", "&");
+        }
+        else{
+            string = string.replace(" ", "-");
+        }
+        string = string.toLowerCase();
+        System.out.println(string);
+        string = string.replaceAll("'", "''");
+        System.out.println(string);
+
+        Cursor cursor = cursor(string);
+
         String resultSchedule = "";
 
         int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
