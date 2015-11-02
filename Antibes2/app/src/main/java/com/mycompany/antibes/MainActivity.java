@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void lookUp(View v) {
         ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
         View toRemove = layout.findViewById(1);
