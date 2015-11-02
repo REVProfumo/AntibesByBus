@@ -38,6 +38,46 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
+
+        //following is to update the textview each 1 minute
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
+                    while (!isInterrupted()) {
+                        Thread.sleep(1000);
+
+
+                        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                        String[] currentTime = currentDateTimeString.split(" ");
+                        String time = currentTime[3];
+                        String[] timeSplitted = time.split(":");
+                        int seconds =  Integer.parseInt(timeSplitted[2]);
+                        if (seconds == 0){
+
+
+
+
+
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
+                                View toRemove = layout.findViewById(1);
+                                if (toRemove!=null)
+                                    layout.removeView(toRemove);
+
+                            }
+                        });}
+                    }
+                } catch (InterruptedException e) {
+                }
+            }
+        };
+
+        t.start();
     }
 
     @Override
