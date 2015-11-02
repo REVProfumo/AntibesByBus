@@ -172,9 +172,16 @@ public class MainActivity extends AppCompatActivity {
             String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
             String[] currentTime = currentDateTimeString.split(" ");
             String time = currentTime[3];
+
+            int actualMins;
+            int actualHours;
+
             String[] timeSplitted = time.split(":");
             int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
                     + Integer.parseInt(timeSplitted[2]);
+
+            actualMins = Integer.parseInt(timeSplitted[1]);
+            actualHours = Integer.parseInt(timeSplitted[0]);
 
             String[] parts = cursor.getString(iSchedule).split(" ");
             int[] times = new int[parts.length];
@@ -192,11 +199,13 @@ public class MainActivity extends AppCompatActivity {
                         j += 1;
                         flag += 1;
                     }
+
                     if (j == 2) break;
                 } catch (NumberFormatException nfe) {
                 };
             }
 
+            int minsNext = 0;
 
             if (flag == 1) {
                 String nextTimesString="";
@@ -204,6 +213,10 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 2; i++) {
                     int hours = nextTimes[i]/3600;
                     int mins = (nextTimes[i]-hours*3600)/60;
+
+                    if (i==0)
+                            minsNext = hours*60+mins- actualHours*60- actualMins;
+
 
                     String formattedHours = Integer.toString(hours);
                     if (formattedHours.length()==1)
@@ -222,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
                 resultSchedule = resultSchedule + auxString + " " + newiName +
                         " " +  cursor.getString(iDirection)+
-                        " " + nextTimesChrono +
+                        " " + nextTimesChrono + "(next in "+ Integer.toString(minsNext) + " mins)" +
                         "\n";
             }
         }
