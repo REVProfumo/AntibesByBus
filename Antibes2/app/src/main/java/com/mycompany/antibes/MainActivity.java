@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.text.TextUtils;
 import android.widget.Toast;
 import android.view.Menu;
+import java.text.Normalizer;
 
 import java.text.DateFormat;
 import java.util.Arrays;
@@ -264,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
         mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
+        System.out.println(string);
+        string = Normalizer.normalize(string, Normalizer.Form.NFD);
+        string = string.replaceAll("[^\\p{ASCII}]", "");
         System.out.println(string);
 
         if (string.indexOf('-')>=0){
