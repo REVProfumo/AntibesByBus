@@ -204,7 +204,17 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < 2; i++) {
                     int hours = nextTimes[i]/3600;
                     int mins = (nextTimes[i]-hours*3600)/60;
-                    nextTimesChrono += Integer.toString(hours)+":"+Integer.toString(mins)+" ";
+
+                    String formattedHours = Integer.toString(hours);
+                    if (formattedHours.length()==1)
+                            formattedHours = "0"+formattedHours;
+
+                    String formattedMins = Integer.toString(mins);
+                    if (formattedMins.length()==1)
+                        formattedMins = "0"+formattedMins;
+
+
+                    nextTimesChrono += formattedHours+":"+formattedMins+" ";
 
                     nextTimesString += Integer.toString(nextTimes[i]) + " ";
                 }
