@@ -28,8 +28,10 @@ import android.view.Menu;
 import java.text.Normalizer;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
@@ -225,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
                     auxString = toBeCapped;
 
                     String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
                     String[] currentTime = currentDateTimeString.split(" ");
                     String time = currentTime[3];
 
@@ -263,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
                     String nextTimesChrono = "";
                     String newiName = "";
                     int minsNext = 0;
+                    int hoursNext = 0;
                     if (flag == 1) {
                         String nextTimesString = "";
 
@@ -270,9 +274,14 @@ public class MainActivity extends AppCompatActivity {
                             int hours = nextTimes[i] / 3600;
                             int mins = (nextTimes[i] - hours * 3600) / 60;
 
-                            if (i == 0)
-                                minsNext = hours * 60 + mins - actualHours * 60 - actualMins;
+                            if (i == 0) {
+                                minsNext = mins - actualMins;
+                                hoursNext = hours - actualHours;
+                                if (minsNext<0)
+                                    minsNext +=60;
+                                    hoursNext -= 1;
 
+                            }
 
                             String formattedHours = Integer.toString(hours);
                             if (formattedHours.length() == 1)
@@ -308,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                     t2v.setGravity(Gravity.LEFT);
                     tbrow.addView(t2v);
                     TextView t3v = new TextView(this);
-                    t3v.setText(nextTimesChrono + "(next in " + Integer.toString(minsNext) + " mins)");
+                    t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext)+ " hr "+ Integer.toString(minsNext)+" mn)");
                     t3v.setTextColor(Color.WHITE);
                     t3v.setGravity(Gravity.LEFT);
                     tbrow.addView(t3v);
