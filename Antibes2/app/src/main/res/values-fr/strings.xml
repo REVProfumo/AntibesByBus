@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Antibes</string>
+    <string name="action_settings">parametres</string>
+    <string name="nr_hint">999</string>
+    <string name="choose_number">choisir arret</string>
+</resources>

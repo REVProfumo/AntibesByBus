@@ -10,57 +10,81 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-
-    <TextView android:hint="@string/choose_number"
-        android:id="@+id/choose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        />
-
-    <EditText
-        android:id="@+id/text"
-        android:hint="eganaude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/choose"/>
-
-    <Button
-        android:id="@+id/button"
-        android:text="Request"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text"
-        android:onClick="lookUp"
-        />
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="#3d455b"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/button">
-
-        <HorizontalScrollView
-            android:id="@+id/hscrll1"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent"
+            android:gravity="top|center_horizontal"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="400dp">
 
-            <RelativeLayout
-                android:id="@+id/RelativeLayout1"
-                android:layout_width="fill_parent"
-                android:layout_gravity="center"
-                android:layout_height="fill_parent"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="0dp"
+                android:text="Please choose a line"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/text"
+                android:hint="eganaude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/choose" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <TableLayout
-                    android:id="@+id/table_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true" >
-                </TableLayout>
-            </RelativeLayout>
-        </HorizontalScrollView>
-    </ScrollView>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:text="Request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text"
+                android:onClick="lookUp"
+                />
+
+
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#3d455b"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/button">
+
+                <HorizontalScrollView
+                    android:id="@+id/hscrll1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <RelativeLayout
+                        android:id="@+id/RelativeLayout1"
+                        android:layout_width="fill_parent"
+                        android:layout_gravity="center"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <TableLayout
+                            android:id="@+id/table_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true" >
+                        </TableLayout>
+                    </RelativeLayout>
+                </HorizontalScrollView>
+            </ScrollView>
+
+        </LinearLayout>
+
+
 
 </RelativeLayout>
