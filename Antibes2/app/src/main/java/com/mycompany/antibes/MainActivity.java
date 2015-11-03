@@ -51,6 +51,27 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
+        TableLayout stk = (TableLayout) findViewById(R.id.table_main);
+        TableRow tbrow0 = new TableRow(this);
+        TextView tv0 = new TextView(this);
+        tv0.setText(" Line ");
+        tv0.setTextColor(Color.WHITE);
+        tv0.setGravity(Gravity.LEFT);
+
+        tbrow0.addView(tv0);
+        TextView tv1 = new TextView(this);
+        tv1.setText(" Direction ");
+        tv1.setTextColor(Color.WHITE);
+        tv1.setGravity(Gravity.LEFT);
+
+        tbrow0.addView(tv1);
+        TextView tv2 = new TextView(this);
+        tv2.setText(" time ");
+        tv2.setTextColor(Color.WHITE);
+        tv2.setGravity(Gravity.LEFT);
+
+        tbrow0.addView(tv2);
+        stk.addView(tbrow0);
 
         //following is to update the textview each 1 minute
         Thread t = new Thread() {
@@ -78,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
                                 TableLayout table = (TableLayout) findViewById(R.id.table_main);
                                 //if ((table!=null))
                                     //layout.removeView(toRemove);
-                                cleanTable(table);
                                 generateTextView(cursorGlobal);
 
                             }
@@ -158,30 +178,34 @@ public class MainActivity extends AppCompatActivity {
         return cursor;
     }
 
-
     public void generateTextView(Cursor cursor){
+        TableLayout stk = (TableLayout) findViewById(R.id.table_main);
+        cleanTable(stk);
 
-            TableLayout stk = (TableLayout) findViewById(R.id.table_main);
-            TableRow tbrow0 = new TableRow(this);
-            TextView tv0 = new TextView(this);
-            tv0.setText(" Line ");
-            tv0.setTextColor(Color.WHITE);
-            tbrow0.addView(tv0);
-            TextView tv1 = new TextView(this);
-            tv1.setText(" Direction ");
-            tv1.setTextColor(Color.WHITE);
-            tbrow0.addView(tv1);
-            TextView tv2 = new TextView(this);
-            tv2.setText(" time ");
-            tv2.setTextColor(Color.WHITE);
-            tbrow0.addView(tv2);
-            stk.addView(tbrow0);
+        TableRow tbrow0 = new TableRow(this);
+        TextView tv0 = new TextView(this);
+        tv0.setText(" Line ");
+        tv0.setTextColor(Color.WHITE);
+        tv0.setGravity(Gravity.LEFT);
+        tbrow0.addView(tv0);
+        TextView tv1 = new TextView(this);
+        tv1.setText(" Direction ");
+        tv1.setTextColor(Color.WHITE);
+        tv1.setGravity(Gravity.LEFT);
+        tbrow0.addView(tv1);
+        TextView tv2 = new TextView(this);
+        tv2.setText(" time ");
+        tv2.setTextColor(Color.WHITE);
+        tv2.setGravity(Gravity.LEFT);
+        tbrow0.addView(tv2);
+        stk.addView(tbrow0);
 
+        try {
             int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
             int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
             int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
             int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
-        try {
+
             if (cursor != null && cursor.getCount() > 0) {
                 for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                     //String resultSchedule = "";
@@ -292,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception e) {
-             System.out.println("Error in retrieving contacts from phone");
+             System.out.println("Still no selected stop");
         }
         /*
         TextView textview = new TextView(getApplicationContext());
