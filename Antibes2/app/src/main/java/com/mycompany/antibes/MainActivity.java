@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.View;
@@ -33,9 +34,10 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
     EditText mEdit;
-    Cursor cursorGlobal;
+    Cursor cursorGlobal=null;
 
     private void cleanTable(TableLayout table) {
+
         table.removeAllViews();
     }
 
@@ -71,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
-                                View toRemove = layout.findViewById(1);
-
-                                if ((toRemove!=null))
-                                    layout.removeView(toRemove);
-                                    TableLayout table = (TableLayout) findViewById(R.id.table_main);
-                                    cleanTable(table);
-                                    generateTextView(cursorGlobal);
+                                //View toRemove = layout.findViewById(1);
+                                //View toRemove = findViewById(R.id.table_main);
+                                TableLayout table = (TableLayout) findViewById(R.id.table_main);
+                                //if ((table!=null))
+                                    //layout.removeView(toRemove);
+                                cleanTable(table);
+                                generateTextView(cursorGlobal);
 
                             }
                         });}
@@ -159,134 +161,138 @@ public class MainActivity extends AppCompatActivity {
 
     public void generateTextView(Cursor cursor){
 
-        TableLayout stk = (TableLayout) findViewById(R.id.table_main);
-        TableRow tbrow0 = new TableRow(this);
-        TextView tv0 = new TextView(this);
-        tv0.setText(" Line ");
-        tv0.setTextColor(Color.WHITE);
-        tbrow0.addView(tv0);
-        TextView tv1 = new TextView(this);
-        tv1.setText(" Direction ");
-        tv1.setTextColor(Color.WHITE);
-        tbrow0.addView(tv1);
-        TextView tv2 = new TextView(this);
-        tv2.setText(" time ");
-        tv2.setTextColor(Color.WHITE);
-        tbrow0.addView(tv2);
-        stk.addView(tbrow0);
+            TableLayout stk = (TableLayout) findViewById(R.id.table_main);
+            TableRow tbrow0 = new TableRow(this);
+            TextView tv0 = new TextView(this);
+            tv0.setText(" Line ");
+            tv0.setTextColor(Color.WHITE);
+            tbrow0.addView(tv0);
+            TextView tv1 = new TextView(this);
+            tv1.setText(" Direction ");
+            tv1.setTextColor(Color.WHITE);
+            tbrow0.addView(tv1);
+            TextView tv2 = new TextView(this);
+            tv2.setText(" time ");
+            tv2.setTextColor(Color.WHITE);
+            tbrow0.addView(tv2);
+            stk.addView(tbrow0);
 
-        String resultSchedule = "";
+            int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
+            int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
+            int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
+            int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
+        try {
+            if (cursor != null && cursor.getCount() > 0) {
+                for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                    //String resultSchedule = "";
+                    String auxString = cursor.getString(iRow);
+                    auxString = auxString.replace("-", " ");
 
-        int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
-        int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
-        int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
-        int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
+                    String toBeCapped = auxString;
 
-        for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-            String auxString = cursor.getString(iRow);
+                    String[] tokens = toBeCapped.split("\\s");
+                    toBeCapped = "";
 
-            auxString = auxString.replace("-", " ");
-
-            String toBeCapped = auxString;
-
-            String[] tokens = toBeCapped.split("\\s");
-            toBeCapped = "";
-
-            for (int i = 0; i < tokens.length; i++) {
-                char capLetter = Character.toUpperCase(tokens[i].charAt(0));
-                toBeCapped += " " + capLetter + tokens[i].substring(1);
-            }
-            toBeCapped = toBeCapped.trim();
-            auxString = toBeCapped;
-
-            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-            String[] currentTime = currentDateTimeString.split(" ");
-            String time = currentTime[3];
-
-            int actualMins;
-            int actualHours;
-
-            String[] timeSplitted = time.split(":");
-            int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
-                    + Integer.parseInt(timeSplitted[2]);
-
-            actualMins = Integer.parseInt(timeSplitted[1]);
-            actualHours = Integer.parseInt(timeSplitted[0]);
-
-            String[] parts = cursor.getString(iSchedule).split(" ");
-            int[] times = new int[parts.length];
-
-            int j = 0;
-            int flag = -1;
-            int[] nextTimes = new int[2];
-            for (int i = 0; i < parts.length; i++) {
-                try {
-                    String[] partsSplit =parts[i].split(":");
-                    times[i] = Integer.parseInt(partsSplit[0])*3600+Integer.parseInt(partsSplit[1])*60;
-
-                    if ((times[i] > seconds) & (j < 2)) {
-                        nextTimes[j] = times[i];
-                        j += 1;
-                        flag += 1;
+                    for (int i = 0; i < tokens.length; i++) {
+                        char capLetter = Character.toUpperCase(tokens[i].charAt(0));
+                        toBeCapped += " " + capLetter + tokens[i].substring(1);
                     }
+                    toBeCapped = toBeCapped.trim();
+                    auxString = toBeCapped;
 
-                    if (j == 2) break;
-                } catch (NumberFormatException nfe) {
-                };
-            }
-            String nextTimesChrono ="";
-            String newiName="";
-            int minsNext = 0;
-            if (flag == 1) {
-                String nextTimesString="";
+                    String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    String[] currentTime = currentDateTimeString.split(" ");
+                    String time = currentTime[3];
 
-                for (int i = 0; i < 2; i++) {
-                    int hours = nextTimes[i]/3600;
-                    int mins = (nextTimes[i]-hours*3600)/60;
+                    int actualMins;
+                    int actualHours;
 
-                    if (i==0)
-                            minsNext = hours*60+mins- actualHours*60- actualMins;
+                    String[] timeSplitted = time.split(":");
+                    int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
+                            + Integer.parseInt(timeSplitted[2]);
+
+                    actualMins = Integer.parseInt(timeSplitted[1]);
+                    actualHours = Integer.parseInt(timeSplitted[0]);
+
+                    String[] parts = cursor.getString(iSchedule).split(" ");
+                    int[] times = new int[parts.length];
+
+                    int j = 0;
+                    int flag = -1;
+                    int[] nextTimes = new int[2];
+                    for (int i = 0; i < parts.length; i++) {
+                        try {
+                            String[] partsSplit = parts[i].split(":");
+                            times[i] = Integer.parseInt(partsSplit[0]) * 3600 + Integer.parseInt(partsSplit[1]) * 60;
+
+                            if ((times[i] > seconds) & (j < 2)) {
+                                nextTimes[j] = times[i];
+                                j += 1;
+                                flag += 1;
+                            }
+
+                            if (j == 2) break;
+                        } catch (NumberFormatException nfe) {
+                        }
+                        ;
+                    }
+                    String nextTimesChrono = "";
+                    String newiName = "";
+                    int minsNext = 0;
+                    if (flag == 1) {
+                        String nextTimesString = "";
+
+                        for (int i = 0; i < 2; i++) {
+                            int hours = nextTimes[i] / 3600;
+                            int mins = (nextTimes[i] - hours * 3600) / 60;
+
+                            if (i == 0)
+                                minsNext = hours * 60 + mins - actualHours * 60 - actualMins;
 
 
-                    String formattedHours = Integer.toString(hours);
-                    if (formattedHours.length()==1)
-                            formattedHours = "0"+formattedHours;
+                            String formattedHours = Integer.toString(hours);
+                            if (formattedHours.length() == 1)
+                                formattedHours = "0" + formattedHours;
 
-                    String formattedMins = Integer.toString(mins);
-                    if (formattedMins.length()==1)
-                        formattedMins = "0"+formattedMins;
+                            String formattedMins = Integer.toString(mins);
+                            if (formattedMins.length() == 1)
+                                formattedMins = "0" + formattedMins;
 
 
-                    nextTimesChrono += formattedHours+":"+formattedMins+" ";
+                            nextTimesChrono += formattedHours + ":" + formattedMins + " ";
 
-                    nextTimesString += Integer.toString(nextTimes[i]) + " ";
-                }
-                newiName += cursor.getString(iName).replace('+',' ');
+                            nextTimesString += Integer.toString(nextTimes[i]) + " ";
+                        }
+                        newiName += cursor.getString(iName).replace('+', ' ');
 
-                resultSchedule = resultSchedule + auxString + " " + newiName +
+                /*resultSchedule = resultSchedule + auxString + " " + newiName +
                         " " +  cursor.getString(iDirection)+
                         " " + nextTimesChrono + "(next in "+ Integer.toString(minsNext) + " mins)" +
-                        "\n";
+                        "\n";*/
+                    }
+
+
+                    TableRow tbrow = new TableRow(this);
+                    TextView t1v = new TextView(this);
+                    t1v.setText(cursor.getString(iDirection));
+                    t1v.setTextColor(Color.WHITE);
+                    t1v.setGravity(Gravity.LEFT);
+                    tbrow.addView(t1v);
+                    TextView t2v = new TextView(this);
+                    t2v.setText(newiName);
+                    t2v.setTextColor(Color.WHITE);
+                    t2v.setGravity(Gravity.LEFT);
+                    tbrow.addView(t2v);
+                    TextView t3v = new TextView(this);
+                    t3v.setText(nextTimesChrono + "(next in " + Integer.toString(minsNext) + " mins)");
+                    t3v.setTextColor(Color.WHITE);
+                    t3v.setGravity(Gravity.LEFT);
+                    tbrow.addView(t3v);
+                    stk.addView(tbrow);
+                }
             }
-
-
-            TableRow tbrow = new TableRow(this);
-            TextView t1v = new TextView(this);
-            t1v.setText(cursor.getString(iDirection));
-            t1v.setTextColor(Color.WHITE);
-            t1v.setGravity(Gravity.CENTER);
-            tbrow.addView(t1v);
-            TextView t2v = new TextView(this);
-            t2v.setText(newiName);
-            t2v.setTextColor(Color.WHITE);
-            t2v.setGravity(Gravity.CENTER);
-            tbrow.addView(t2v);
-            TextView t3v = new TextView(this);
-            t3v.setText(nextTimesChrono + "(next in "+ Integer.toString(minsNext) + " mins)");
-            t3v.setTextColor(Color.WHITE);
-            t3v.setGravity(Gravity.CENTER);
-            tbrow.addView(t3v);
-            stk.addView(tbrow);
+        } catch (Exception e) {
+             System.out.println("Error in retrieving contacts from phone");
         }
         /*
         TextView textview = new TextView(getApplicationContext());
@@ -305,8 +311,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
 
     public void lookUp(View v) {
         ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
