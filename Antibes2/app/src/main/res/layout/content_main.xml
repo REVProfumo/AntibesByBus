@@ -29,18 +29,38 @@
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
             <EditText
                 android:id="@+id/text"
                 android:hint="eganaude"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/choose" />
-
-            <LinearLayout
+                android:layout_below="@+id/choose"
+                android:layout_alignParentLeft="true"
+                android:minWidth="200dp"/>
+            <Button
+                android:id="@+id/text2"
+                android:hint="+Favorite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
+                android:layout_below="@+id/choose"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@+id/text"
+                />
+                <Button
+                    android:id="@+id/text2"
+                    android:hint="Clean"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/choose"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/text"
+                    />
             </LinearLayout>
 
             <Button
@@ -48,7 +68,7 @@
                 android:text="Request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/text"
+                android:layout_below="@+id/text2"
                 android:onClick="lookUp"
                 />
 
