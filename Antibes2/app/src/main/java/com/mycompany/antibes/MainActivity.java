@@ -277,10 +277,10 @@ public class MainActivity extends AppCompatActivity {
                             if (i == 0) {
                                 minsNext = mins - actualMins;
                                 hoursNext = hours - actualHours;
-                                if (minsNext<0)
-                                    minsNext +=60;
+                                if (minsNext<0) {
+                                    minsNext += 60;
                                     hoursNext -= 1;
-
+                                }
                             }
 
                             String formattedHours = Integer.toString(hours);
