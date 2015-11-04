@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
         spinner2.setAdapter(adapter2);
 
 
