@@ -1,4 +1,4 @@
-package com.mycompany.spinner;
+package com.mycompany.schema_app_try;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,8 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,26 +26,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        Spinner spinner = (Spinner) findViewById(R.id.colors_spinner);
-        String colors[] = {"Red","Blue","White","Yellow","Black", "Green","Purple","Orange","Grey"};
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, colors);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-// Apply the adapter to the spinner
-        spinner.setAdapter(spinnerArrayAdapter);
-
-
-
-        Spinner spinner2 = (Spinner) findViewById(R.id.planets_spinner2);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
-                R.array.planets_array, android.R.layout.simple_spinner_item);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-        spinner2.setAdapter(adapter2);
-
-
-
     }
 
     @Override
