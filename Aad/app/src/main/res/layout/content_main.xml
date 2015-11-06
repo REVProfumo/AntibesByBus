@@ -14,6 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
+    <EditText
+    android:id="@+id/edittext"
+        android:layout_below="@+id/button_additem"
+    android:hint="eganaude"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
 
 
 </RelativeLayout>
