@@ -40,11 +40,12 @@ public class MainActivity extends AppCompatActivity {
     EditText mEdit;
     Cursor cursorGlobal=null;
     Menu menu_global;
-
+    int flag_update=0;
 
     private void cleanTable(TableLayout table) {
 
         table.removeAllViews();
+        flag_update = 0;
     }
 
     private void createFirstLineTable(TableLayout table)
@@ -96,26 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
-        TableRow tbrow0 = new TableRow(this);
-        TextView tv0 = new TextView(this);
-        tv0.setText(" Line ");
-        tv0.setTextColor(Color.WHITE);
-        tv0.setGravity(Gravity.LEFT);
-
-        tbrow0.addView(tv0);
-        TextView tv1 = new TextView(this);
-        tv1.setText(" Direction ");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setGravity(Gravity.LEFT);
-
-        tbrow0.addView(tv1);
-        TextView tv2 = new TextView(this);
-        tv2.setText(" time ");
-        tv2.setTextColor(Color.WHITE);
-        tv2.setGravity(Gravity.LEFT);
-
-        tbrow0.addView(tv2);
-        stk.addView(tbrow0);
+        createFirstLineTable(stk);
 
         //following is to update the textview each 1 minute
         Thread t = new Thread() {
@@ -126,27 +108,29 @@ public class MainActivity extends AppCompatActivity {
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
 
+                        if (flag_update ==1) {
+                            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                            String[] currentTime = currentDateTimeString.split(" ");
+                            String time = currentTime[3];
+                            String[] timeSplitted = time.split(":");
+                            int seconds = Integer.parseInt(timeSplitted[2]);
+                            if (seconds == 0) {
 
-                        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
-                        String[] currentTime = currentDateTimeString.split(" ");
-                        String time = currentTime[3];
-                        String[] timeSplitted = time.split(":");
-                        int seconds =  Integer.parseInt(timeSplitted[2]);
-                        if (seconds == 0){
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
+                                        //View toRemove = layout.findViewById(1);
+                                        //View toRemove = findViewById(R.id.table_main);
+                                        TableLayout table = (TableLayout) findViewById(R.id.table_main);
+                                        //if ((table!=null))
+                                        //layout.removeView(toRemove);
+                                        generateTextView(cursorGlobal);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                ViewGroup layout = (ViewGroup) findViewById(R.id.content_main);
-                                //View toRemove = layout.findViewById(1);
-                                //View toRemove = findViewById(R.id.table_main);
-                                TableLayout table = (TableLayout) findViewById(R.id.table_main);
-                                //if ((table!=null))
-                                    //layout.removeView(toRemove);
-                                generateTextView(cursorGlobal);
-
+                                    }
+                                });
                             }
-                        });}
+                        }
                     }
                 } catch (InterruptedException e) {
                 }
@@ -254,26 +238,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void generateTextView(Cursor cursor){
+
+        flag_update = 1;
+
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         cleanTable(stk);
-
-        TableRow tbrow0 = new TableRow(this);
-        TextView tv0 = new TextView(this);
-        tv0.setText(" Line ");
-        tv0.setTextColor(Color.WHITE);
-        tv0.setGravity(Gravity.LEFT);
-        tbrow0.addView(tv0);
-        TextView tv1 = new TextView(this);
-        tv1.setText(" Direction ");
-        tv1.setTextColor(Color.WHITE);
-        tv1.setGravity(Gravity.LEFT);
-        tbrow0.addView(tv1);
-        TextView tv2 = new TextView(this);
-        tv2.setText(" time ");
-        tv2.setTextColor(Color.WHITE);
-        tv2.setGravity(Gravity.LEFT);
-        tbrow0.addView(tv2);
-        stk.addView(tbrow0);
+        createFirstLineTable(stk);
 
         try {
             int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
