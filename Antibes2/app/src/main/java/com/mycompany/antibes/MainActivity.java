@@ -47,6 +47,27 @@ public class MainActivity extends AppCompatActivity {
         table.removeAllViews();
     }
 
+    private void createFirstLineTable(TableLayout table)
+    {
+        TableRow tbrow0 = new TableRow(this);
+        TextView tv0 = new TextView(this);
+        tv0.setText(" Line ");
+        tv0.setTextColor(Color.WHITE);
+        tv0.setGravity(Gravity.LEFT);
+        tbrow0.addView(tv0);
+        TextView tv1 = new TextView(this);
+        tv1.setText(" Direction ");
+        tv1.setTextColor(Color.WHITE);
+        tv1.setGravity(Gravity.LEFT);
+        tbrow0.addView(tv1);
+        TextView tv2 = new TextView(this);
+        tv2.setText(" time ");
+        tv2.setTextColor(Color.WHITE);
+        tv2.setGravity(Gravity.LEFT);
+        tbrow0.addView(tv2);
+        table.addView(tbrow0);
+    }
+
 
 
     @Override
@@ -55,6 +76,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Button btnClean = (Button) findViewById(R.id.text3);
+
+        // create click listener
+        View.OnClickListener oclBtnClean = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TableLayout table = (TableLayout) findViewById(R.id.table_main);
+                cleanTable(table);
+                createFirstLineTable(table);
+
+            }
+        };
+
+        // assign click listener to the OK button (btnOK)
+        btnClean.setOnClickListener(oclBtnClean);
 
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);

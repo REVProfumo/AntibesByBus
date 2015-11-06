@@ -53,7 +53,7 @@
                 android:layout_toRightOf="@+id/text"
                 />
                 <Button
-                    android:id="@+id/text2"
+                    android:id="@+id/text3"
                     android:hint="Clean"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
