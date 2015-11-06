@@ -11,10 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
     EditText mEdit;
     Cursor cursorGlobal=null;
+    Menu menu_global;
+
 
     private void cleanTable(TableLayout table) {
 
@@ -112,22 +116,45 @@ public class MainActivity extends AppCompatActivity {
         };
 
         t.start();
+
+
+        Button buttonX = (Button)findViewById(R.id.text2);
+// Register the onClick listener with the implementation above
+        buttonX.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                EditText ed = (EditText) findViewById(R.id.text);
+
+                String text = ed.getText().toString();
+                menu_global.add(0, 1, 0, text);
+            }
+        });
+
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        SubMenu menuItem = menu.findItem(R.id.action_favorite2).getSubMenu();
+        this.menu_global = menuItem;
+
+        //the menu option text is defined in resources
+
 
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast toast;
         switch (item.getItemId()) {
 
-         case R.id.action_settings:
-            return true;
+            case R.id.action_settings:
+                return true;
 
             case R.id.action_favorite: {
                 RelativeLayout myLayout=(RelativeLayout) this.findViewById(R.id.content_main);
@@ -145,14 +172,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            case R.id.action_favorite2: {
-                toast = Toast.makeText(this, item.getTitle()+" Clicked!", Toast.LENGTH_SHORT);
-                toast.show();
+            case R.id.action_favorite2:
+            {
+                return true;
+            }
+
+
+            default: {
+                EditText ed = (EditText) findViewById(R.id.text);
+
+                String text = (String) item.getTitle();
+                ed.setText(text);
+                return super.onOptionsItemSelected(item);
             }
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 
     public Cursor cursor(String string){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
