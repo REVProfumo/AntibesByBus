@@ -71,16 +71,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.create_new: {
-                Toast.makeText(getBaseContext(), "You selected this", Toast.LENGTH_SHORT).show();
-                EditText ed = (EditText)findViewById(R.id.edittext);
-                ed.setText("ciao");
+            case R.id.menu_new_form:
+            {
                 return true;
             }
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
+
+
+            default: {
+                EditText ed = (EditText) findViewById(R.id.edittext);
+
+                String text = (String) item.getTitle();
+                ed.setText(text);
                 return super.onOptionsItemSelected(item);
+            }
         }
     }
 
