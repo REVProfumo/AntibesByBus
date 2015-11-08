@@ -63,29 +63,34 @@ public class MainActivity extends AppCompatActivity {
     private void createFirstLineTable(TableLayout table)
     {
         TableRow tbrow0 = new TableRow(this);
-
         TextView tv0 = new TextView(this);
         //TableRow.LayoutParams tvPar0 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f);
         tv0.setText("Line    ");
+        tv0.setPadding(0, 0, 10, 0);
+
+        tv0.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
         tv0.setTextColor(Color.WHITE);
         tv0.setGravity(Gravity.LEFT);
         //tv0.setLayoutParams(tvPar0);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
         //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
-        tv1.setText("Direction       ");
+        tv1.setText("Direction                                                                             ");
+        tv1.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
         tv1.setTextColor(Color.WHITE);
         tv1.setGravity(Gravity.LEFT);
        // tv1.setLayoutParams(tvPar1);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
         //TableRow.LayoutParams tvPar2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3f);
-        tv2.setText("time    ");
+        tv2.setText("time                                          ");
+        tv2.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
         tv2.setTextColor(Color.WHITE);
         tv2.setGravity(Gravity.LEFT);
         //tv2.setLayoutParams(tvPar2);
         tbrow0.addView(tv2);
         table.addView(tbrow0);
+        table.setStretchAllColumns(true);
     }
 
 
@@ -403,20 +408,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (flag > -1) {
                         TableRow tbrow = new TableRow(this);
+
                         TextView t1v = new TextView(this);
                         t1v.setText(cursor.getString(iDirection));
                         t1v.setTextColor(Color.WHITE);
                         t1v.setGravity(Gravity.LEFT);
+                        //t1v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
+
                         tbrow.addView(t1v);
                         TextView t2v = new TextView(this);
                         t2v.setText(newiName);
                         t2v.setTextColor(Color.WHITE);
                         t2v.setGravity(Gravity.LEFT);
+                        //t2v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
+
                         tbrow.addView(t2v);
                         TextView t3v = new TextView(this);
                         t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
                         t3v.setTextColor(Color.WHITE);
                         t3v.setGravity(Gravity.LEFT);
+                        //t3v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
+
                         tbrow.addView(t3v);
                         stk.addView(tbrow);
                     }

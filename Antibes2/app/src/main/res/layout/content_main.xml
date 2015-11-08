@@ -85,19 +85,20 @@
                     android:id="@+id/hscrll1"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content" >
-
                     <RelativeLayout
                         android:id="@+id/RelativeLayout1"
                         android:layout_width="fill_parent"
-                        android:layout_gravity="center"
+                        android:layout_gravity="left"
                         android:layout_height="fill_parent"
                         android:orientation="vertical" >
 
+
                         <TableLayout
                             android:id="@+id/table_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true" >
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_centerHorizontal="false"
+                            android:stretchColumns="2">
                         </TableLayout>
                     </RelativeLayout>
                 </HorizontalScrollView>
