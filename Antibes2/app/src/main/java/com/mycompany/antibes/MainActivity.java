@@ -64,17 +64,17 @@ public class MainActivity extends AppCompatActivity {
     {
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
-        tv0.setText(" Line ");
+        tv0.setText(" Line   ");
         tv0.setTextColor(Color.WHITE);
         tv0.setGravity(Gravity.LEFT);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
-        tv1.setText(" Direction ");
+        tv1.setText(" Direction                                                      ");
         tv1.setTextColor(Color.WHITE);
         tv1.setGravity(Gravity.LEFT);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
-        tv2.setText(" time ");
+        tv2.setText(" time             ");
         tv2.setTextColor(Color.WHITE);
         tv2.setGravity(Gravity.LEFT);
         tbrow0.addView(tv2);
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
                     String newiName = "";
                     int minsNext = 0;
                     int hoursNext = 0;
-                    if (flag == 1) {
+                    if (flag > -1) {
                         String nextTimesString = "";
                         System.out.println(nextTimes);
 
@@ -392,25 +392,26 @@ public class MainActivity extends AppCompatActivity {
                         " " + nextTimesChrono + "(next in "+ Integer.toString(minsNext) + " mins)" +
                         "\n";*/
                     }
+                    if (flag > -1) {
+                        TableRow tbrow = new TableRow(this);
+                        TextView t1v = new TextView(this);
+                        t1v.setText(cursor.getString(iDirection));
+                        t1v.setTextColor(Color.WHITE);
+                        t1v.setGravity(Gravity.LEFT);
+                        tbrow.addView(t1v);
+                        TextView t2v = new TextView(this);
+                        t2v.setText(newiName);
+                        t2v.setTextColor(Color.WHITE);
+                        t2v.setGravity(Gravity.LEFT);
+                        tbrow.addView(t2v);
+                        TextView t3v = new TextView(this);
+                        t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
+                        t3v.setTextColor(Color.WHITE);
+                        t3v.setGravity(Gravity.LEFT);
+                        tbrow.addView(t3v);
+                        stk.addView(tbrow);
+                    }
 
-
-                    TableRow tbrow = new TableRow(this);
-                    TextView t1v = new TextView(this);
-                    t1v.setText(cursor.getString(iDirection));
-                    t1v.setTextColor(Color.WHITE);
-                    t1v.setGravity(Gravity.LEFT);
-                    tbrow.addView(t1v);
-                    TextView t2v = new TextView(this);
-                    t2v.setText(newiName);
-                    t2v.setTextColor(Color.WHITE);
-                    t2v.setGravity(Gravity.LEFT);
-                    tbrow.addView(t2v);
-                    TextView t3v = new TextView(this);
-                    t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext)+ " hr "+ Integer.toString(minsNext)+" mn)");
-                    t3v.setTextColor(Color.WHITE);
-                    t3v.setGravity(Gravity.LEFT);
-                    tbrow.addView(t3v);
-                    stk.addView(tbrow);
                 }
             }
         } catch (Exception e) {
