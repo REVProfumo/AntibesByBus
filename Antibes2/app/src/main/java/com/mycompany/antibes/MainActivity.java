@@ -63,20 +63,27 @@ public class MainActivity extends AppCompatActivity {
     private void createFirstLineTable(TableLayout table)
     {
         TableRow tbrow0 = new TableRow(this);
+
         TextView tv0 = new TextView(this);
-        tv0.setText(" Line   ");
+        //TableRow.LayoutParams tvPar0 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f);
+        tv0.setText("Line    ");
         tv0.setTextColor(Color.WHITE);
         tv0.setGravity(Gravity.LEFT);
+        //tv0.setLayoutParams(tvPar0);
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
-        tv1.setText(" Direction                                                      ");
+        //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
+        tv1.setText("Direction       ");
         tv1.setTextColor(Color.WHITE);
         tv1.setGravity(Gravity.LEFT);
+       // tv1.setLayoutParams(tvPar1);
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
-        tv2.setText(" time             ");
+        //TableRow.LayoutParams tvPar2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3f);
+        tv2.setText("time    ");
         tv2.setTextColor(Color.WHITE);
         tv2.setGravity(Gravity.LEFT);
+        //tv2.setLayoutParams(tvPar2);
         tbrow0.addView(tv2);
         table.addView(tbrow0);
     }
@@ -100,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                 TableLayout table = (TableLayout) findViewById(R.id.table_main);
                 cleanTable(table);
                 createFirstLineTable(table);
+                EditText line = (EditText) findViewById(R.id.text);
+                line.setText("");
 
             }
         };
