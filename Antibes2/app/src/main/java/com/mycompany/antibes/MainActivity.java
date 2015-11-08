@@ -175,8 +175,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
 
     @Override
@@ -296,6 +294,8 @@ public class MainActivity extends AppCompatActivity {
                     String[] currentTime = currentDateTimeString.split(" ");
                     String time = currentTime[3];
 
+                    //System.out.println(currentDateTimeString+" this is all");
+
                     int actualMins;
                     int actualHours;
 
@@ -303,6 +303,19 @@ public class MainActivity extends AppCompatActivity {
                     int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
                             + Integer.parseInt(timeSplitted[2]);
 
+                    String pm ="am";
+                    try{
+                        pm = currentTime[4];
+                    }
+                    catch (Exception e){
+
+                    }
+//                    System.out.println(pm);
+
+                    if (pm.equals("pm")) {
+//                        System.out.println(currentDateTimeString + " we're is pm");
+                        seconds+=3600*12;
+                    }
                     actualMins = Integer.parseInt(timeSplitted[1]);
                     actualHours = Integer.parseInt(timeSplitted[0]);
 
@@ -311,7 +324,9 @@ public class MainActivity extends AppCompatActivity {
 
                     int j = 0;
                     int flag = -1;
-                    int[] nextTimes = new int[2];
+                    int[] nextTimes;
+                    nextTimes = new int[] {-1, -1};
+
                     for (int i = 0; i < parts.length; i++) {
                         try {
                             String[] partsSplit = parts[i].split(":");
@@ -334,14 +349,23 @@ public class MainActivity extends AppCompatActivity {
                     int hoursNext = 0;
                     if (flag == 1) {
                         String nextTimesString = "";
+                        System.out.println(nextTimes);
 
                         for (int i = 0; i < 2; i++) {
+
+                            if (nextTimes[i]==-1)
+                                break;
+
                             int hours = nextTimes[i] / 3600;
                             int mins = (nextTimes[i] - hours * 3600) / 60;
 
                             if (i == 0) {
                                 minsNext = mins - actualMins;
                                 hoursNext = hours - actualHours;
+
+                                if (pm.equals("pm"))
+                                    hoursNext -= 12;
+
                                 if (minsNext<0) {
                                     minsNext += 60;
                                     hoursNext -= 1;
