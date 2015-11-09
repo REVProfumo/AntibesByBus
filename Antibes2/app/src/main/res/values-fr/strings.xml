@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Antibes</string>
-    <string name="action_settings">parametres</string>
-    <string name="nr_hint">999</string>
-    <string name="choose_number">choisir arret</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="hint">Eganaude</string>
+    <string name="stop">choisir un arret</string>
+    <string name="favourites">+favoris</string>
+    <string name="clean">effacer</string>
+    <string name="request">demander</string>
 </resources>

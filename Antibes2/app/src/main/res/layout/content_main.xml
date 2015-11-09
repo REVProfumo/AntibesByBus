@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="0dp"
-                android:text="Please choose a line"
+                android:text="@string/stop"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
                 android:orientation="horizontal">
             <EditText
                 android:id="@+id/text"
-                android:hint="eganaude"
+                android:hint="@string/hint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/choose"
@@ -45,7 +45,7 @@
                 android:minWidth="200dp"/>
             <Button
                 android:id="@+id/text2"
-                android:hint="+Favorite"
+                android:hint="@string/favourites"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/choose"
@@ -54,7 +54,7 @@
                 />
                 <Button
                     android:id="@+id/text3"
-                    android:hint="Clean"
+                    android:hint="@string/clean"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/choose"
@@ -65,7 +65,7 @@
 
             <Button
                 android:id="@+id/button"
-                android:text="Request"
+                android:text="@string/request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text2"
