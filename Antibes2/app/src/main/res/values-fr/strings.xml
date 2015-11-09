@@ -7,4 +7,9 @@
     <string name="favourites">+favoris</string>
     <string name="clean">effacer</string>
     <string name="request">demander</string>
+    <string name="direction">"Direction                                                                             "</string>
+    <string name="time">"temps                                         "</string>
+    <string name="line">"Ligne   "</string>
+
+
 </resources>

@@ -2,6 +2,7 @@ package com.mycompany.antibes;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -65,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
         //TableRow.LayoutParams tvPar0 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f);
-        tv0.setText("Line    ");
+        Resources res = getResources();
+        String text0 = String.format(res.getString(R.string.line));
+        tv0.setText(text0);
         tv0.setPadding(0, 0, 10, 0);
 
         tv0.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
@@ -75,7 +78,10 @@ public class MainActivity extends AppCompatActivity {
         tbrow0.addView(tv0);
         TextView tv1 = new TextView(this);
         //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
-        tv1.setText("Direction                                                                             ");
+//        tv1.setText("Direction                                                                             ");
+        String text1 = String.format(res.getString(R.string.direction));
+        tv1.setText(text1);
+
         tv1.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
         tv1.setTextColor(Color.WHITE);
         tv1.setGravity(Gravity.LEFT);
@@ -83,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
         tbrow0.addView(tv1);
         TextView tv2 = new TextView(this);
         //TableRow.LayoutParams tvPar2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3f);
-        tv2.setText("time                                          ");
+        //tv2.setText("time                                          ");
+        String text2 = String.format(res.getString(R.string.time));
+        tv2.setText(text2);
+
         tv2.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
         tv2.setTextColor(Color.WHITE);
         tv2.setGravity(Gravity.LEFT);

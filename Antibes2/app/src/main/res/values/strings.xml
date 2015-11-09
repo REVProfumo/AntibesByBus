@@ -6,7 +6,8 @@
     <string name="favourites">+favourites</string>
     <string name="clean">clean</string>
     <string name="request">request</string>
-
-
+    <string name="direction">"Direction                                                                             "</string>
+    <string name="time">"time                                          "</string>
+    <string name="line">"Line    "</string>
 
 </resources>
