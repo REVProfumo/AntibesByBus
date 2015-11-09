@@ -103,6 +103,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        TextView noStop = new TextView (this);
+        noStop.setText("no stop found");
+        RelativeLayout myLayout=(RelativeLayout) this.findViewById(R.id.content_main);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.CENTER_IN_PARENT);
+        noStop.setLayoutParams(lp);
+        noStop.setId(1000);
+        noStop.setVisibility(View.GONE);
+        myLayout.addView(noStop);
+
+
+
         Button btnClean = (Button) findViewById(R.id.text3);
 
         // create click listener
@@ -114,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
                 createFirstLineTable(table);
                 EditText line = (EditText) findViewById(R.id.text);
                 line.setText("");
-
+                TextView noStop = (TextView) findViewById(1000);
+                noStop.setVisibility(View.GONE);
             }
         };
 
@@ -434,6 +449,10 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
+            }
+            else if(cursor != null && cursor.getCount() == 0) {
+                    TextView noStop = (TextView) findViewById(1000);
+                    noStop.setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
              System.out.println("Still no selected stop");
