@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
         return hash;
     }
 
+    public void init_hashes_existing(Menu menu){
+        for (int i = 0; i < menu.size(); i++) {
+                String text = (String) menu.getItem(i).getTitle();
+            hashes_existing[i] = hash_value(text);
+            nr_hashes += 1;
+        }
+    }
+
+
     private void cleanTable(TableLayout table) {
 
         table.removeAllViews();
@@ -191,20 +200,18 @@ public class MainActivity extends AppCompatActivity {
         Button buttonX = (Button)findViewById(R.id.text2);
 // Register the onClick listener with the implementation above
         buttonX.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 EditText ed = (EditText) findViewById(R.id.text);
 
                 String text = ed.getText().toString();
 
                 int new_hash_value = hash_value(text);
                 int flag_exist = 0;
-                for(int i=0;i<nr_hashes;i++) {
-                    if (hashes_existing[i]==new_hash_value)
-                            flag_exist = 1;
+                for (int i = 0; i < nr_hashes; i++) {
+                    if (hashes_existing[i] == new_hash_value)
+                        flag_exist = 1;
                 }
-                if (flag_exist==0)
-                {
+                if (flag_exist == 0) {
                     hashes_existing[nr_hashes] = hash_value(text);
                     nr_hashes += 1;
                     menu_global.add(0, new_hash_value, 0, text);
@@ -222,6 +229,8 @@ public class MainActivity extends AppCompatActivity {
 
         SubMenu menuItem = menu.findItem(R.id.action_favorite2).getSubMenu();
         this.menu_global = menuItem;
+        init_hashes_existing(menuItem);
+
         //the menu option text is defined in resources
 
         return true;
