@@ -33,6 +33,7 @@ import java.text.Normalizer;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -123,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
         noStop.setId(1000);
         noStop.setVisibility(View.GONE);
         myLayout.addView(noStop);
-
-
 
         Button btnClean = (Button) findViewById(R.id.text3);
 
@@ -283,8 +282,16 @@ public class MainActivity extends AppCompatActivity {
         String sortOrder =
                 FeedReaderContract.FeedEntry.SCHEDULE + " ASC";
 
-        Cursor cursor = db.query(
-                FeedReaderContract.FeedEntry.TABLE_NAME,
+        Cursor cursor;
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        System.out.println("day"+day);
+
+        if (day == 1)
+        {
+        cursor = db.query(
+                FeedReaderContract.FeedEntry.TABLE_NAME2,
                 projection,
                 FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
                 null,
@@ -292,6 +299,32 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null
         );
+        }
+        else if (day == 7)
+        {
+            cursor = db.query(
+                    FeedReaderContract.FeedEntry.TABLE_NAME3,
+                    projection,
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+        }
+        else
+        {
+            cursor = db.query(
+                    FeedReaderContract.FeedEntry.TABLE_NAME,
+                    projection,
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+        }
+
         return cursor;
     }
 
