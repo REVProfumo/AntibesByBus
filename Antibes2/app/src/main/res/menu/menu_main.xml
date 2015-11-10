@@ -1,28 +1,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+<!--
     <item
         android:id="@+id/action_favorite"
         android:icon="@drawable/arrow"
         android:title="arrow"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"/>-->
 
     <item
         android:id="@+id/action_favorite2"
         android:icon="@drawable/arrow"
         android:title="arrow"
         app:showAsAction="ifRoom">
-    <menu
-        android:id="@+id/submenu">
-        <item android:id="@+id/create_new"
-            android:title="eganaude" />
-        <item android:id="@+id/open"
-            android:title="skema" />
+
+        <menu
+            android:id="@+id/submenu">
+            <item android:id="@+id/create_new"
+                android:title="eganaude" />
+            <item android:id="@+id/open"
+                android:title="skema" />
+        </menu>
+        </item>
+
+
+
+        <item android:id="@+id/action_settings" android:title="@string/action_settings"
+            android:orderInCategory="100" app:showAsAction="never" />
     </menu>
-    </item>
-
-
-
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
-</menu>

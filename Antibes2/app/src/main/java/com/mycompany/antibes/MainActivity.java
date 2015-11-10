@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_settings:
                 return true;
-
+            /*
             case R.id.action_favorite: {
                 RelativeLayout myLayout=(RelativeLayout) this.findViewById(R.id.content_main);
 
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-            }
+            }*/
 
             case R.id.action_favorite2:
             {
