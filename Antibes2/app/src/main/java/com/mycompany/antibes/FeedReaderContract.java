@@ -7,6 +7,7 @@ public final class FeedReaderContract {
     public FeedReaderContract() {
     }
     public static abstract class FeedEntry implements BaseColumns {
+        public static final String TABLE_NAME0 = "entry_vacances";
         public static final String TABLE_NAME = "entry";
         public static final String TABLE_NAME2 = "entry_sat";
         public static final String TABLE_NAME3 = "entry_sun";

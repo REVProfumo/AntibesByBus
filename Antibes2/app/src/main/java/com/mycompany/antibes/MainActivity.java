@@ -276,6 +276,65 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public boolean check_vacances(String day, String month) {
+        int day_int = Integer.parseInt(day);
+        int month_int=0;
+        switch (month) {
+            case "Jan":
+                month_int = 1;
+                break;
+            case "Feb":
+                month_int = 2;
+                break;
+            case "Mar":
+                month_int = 3;
+                break;
+            case "Apr":
+                month_int = 4;
+                break;
+            case "May":
+                month_int = 5;
+                break;
+            case "Jun":
+                month_int = 6;
+                break;
+            case "Jul":
+                month_int = 7;
+                break;
+            case "Aug":
+                month_int = 8;
+                break;
+            case "Sept":
+                month_int = 9;
+                break;
+            case "Oct":
+                month_int = 10;
+                break;
+            case "Nov":
+                month_int = 11;
+                break;
+            case "Dec":
+                month_int = 12;
+                break;
+        }
+        int integer_date = month_int*100+day_int;
+        int first_down =6+200;
+        int first_up=21+200;
+        int second_down = 2+400;
+        int second_up = 17+400;
+        int third_down = 17+1000;
+        int third_up =1+1100;
+
+        if (  ((first_down <= integer_date ) & (first_up >= integer_date))
+                |((second_down <= integer_date ) & (second_up >= integer_date))
+                |((third_down <= integer_date ) & (third_up >= integer_date)))
+                {
+                  return true;
+                }
+        else
+            return false;
+
+    }
 
     public Cursor cursor(String string){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -293,17 +352,40 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor;
 
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        String[] currentTime = currentDateTimeString.split(" ");
+        String day_new = currentTime[0];
+        String month_new = currentTime[1];
+
+        boolean vacances_scolaire = check_vacances(day_new, month_new);
+        System.out.println(vacances_scolaire);
+
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-        System.out.println("day"+day);
+        System.out.println("day"+day+currentDateTimeString);
 
-        if (day == 1)
+        if (vacances_scolaire) {
+            cursor = db.query(
+                    FeedReaderContract.FeedEntry.TABLE_NAME0,
+                    projection,
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'", null,
+                    null,
+                    null,
+                    null
+            );
+        }
+        else if (day == 1)
         {
         cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME2,
                 projection,
-                FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
-                null,
+                FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
+                        +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
+                        +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
+                        +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'",                null,
                 null,
                 null,
                 null
@@ -314,8 +396,10 @@ public class MainActivity extends AppCompatActivity {
             cursor = db.query(
                     FeedReaderContract.FeedEntry.TABLE_NAME3,
                     projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
-                    null,
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
+                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
+                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
+                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'",                    null,
                     null,
                     null,
                     null
@@ -326,7 +410,10 @@ public class MainActivity extends AppCompatActivity {
             cursor = db.query(
                     FeedReaderContract.FeedEntry.TABLE_NAME,
                     projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'",
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
+                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
+                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
+                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'",
                     null,
                     null,
                     null,
