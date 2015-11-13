@@ -24,6 +24,9 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES2);
         db.execSQL(SQL_CREATE_ENTRIES3);
+        db.execSQL(SQL_CREATE_ENTRIES4);
+        db.execSQL(SQL_CREATE_ENTRIES5);
+
 
         ContentValues values = new ContentValues();
         ContentValues values_sat = new ContentValues();
@@ -36,6 +39,9 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         String[] myArray_sat = res.getStringArray(R.array.my_array_sat);
         String[] myArray_sun = res.getStringArray(R.array.my_array_sun);
         String[] myArray_vacances = res.getStringArray(R.array.my_array_vacances);
+        String[] myArray_sat_vacances = res.getStringArray(R.array.my_array_sat_vacances);
+        String[] myArray_sun_vacances = res.getStringArray(R.array.my_array_sun_vacances);
+
 
         for (String item : myArray){
             String[] split = item.split("\\s+");
@@ -133,6 +139,54 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
         }
 
+        for (String item : myArray_sat_vacances){
+            String[] split = item.split("\\s+");
+
+            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
+            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
+            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
+
+            String schedule="";
+
+            String[] stringArray = item.split("\\s+");
+            int length = stringArray.length;
+
+            for (int i = 3; i < length; i++) {
+                if(schedule.trim().length()>0){
+                    schedule += split[i]+" ";
+                }else{
+                    schedule = split[i]+" ";
+                }
+            }
+            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
+            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME4, null, values);
+
+        }
+
+        for (String item : myArray_sun_vacances){
+            String[] split = item.split("\\s+");
+
+            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
+            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
+            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
+
+            String schedule="";
+
+            String[] stringArray = item.split("\\s+");
+            int length = stringArray.length;
+
+            for (int i = 3; i < length; i++) {
+                if(schedule.trim().length()>0){
+                    schedule += split[i]+" ";
+                }else{
+                    schedule = split[i]+" ";
+                }
+            }
+            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
+            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME5, null, values);
+
+        }
+
 
     }
 
@@ -183,6 +237,29 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                     FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
                     FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
                     " )";
+
+    private static final String SQL_CREATE_ENTRIES4 =
+            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME4 + " ( " +
+                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
+                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
+                    " )";
+
+    private static final String SQL_CREATE_ENTRIES5 =
+            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME5 + " ( " +
+                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
+                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
+                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
+                    " )";
+
+
+
+
+
 
 
     private static final String SQL_DELETE_ENTRIES =

@@ -396,7 +396,37 @@ public class MainActivity extends AppCompatActivity {
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         System.out.println("day"+day+currentDateTimeString);
 
-        if (vacances_scolaire) {
+
+        if ((day == 7)&(vacances_scolaire)) {
+            cursor = db.query(
+                    FeedReaderContract.FeedEntry.TABLE_NAME4,
+                    projection,
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'", null,
+                    null,
+                    null,
+                    null
+            );
+        }
+
+        else if ((day == 1)&(vacances_scolaire)) {
+            cursor = db.query(
+                    FeedReaderContract.FeedEntry.TABLE_NAME0,
+                    projection,
+                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
+                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'", null,
+                    null,
+                    null,
+                    null
+            );
+        }
+
+
+        else if (vacances_scolaire) {
             cursor = db.query(
                     FeedReaderContract.FeedEntry.TABLE_NAME0,
                     projection,
