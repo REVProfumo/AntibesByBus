@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="my_array_sun_vacances" type="xs:string">
+<item>
+amphores gare+valbonne+sophia+antipolis 1 7:30 8:25 9:20 9:55 11:00 11:50 12:45 13:55 14:30 15:10 15:55 16:30 17:10 17:45 18:35 19:05 20:00
+ </item>
+<item>
+lycee-audiberti gare+valbonne+sophia+antipolis 1 7:38 8:33 9:31 10:06 11:12 12:02 12:58 14:05 14:41 15:20 16:09 16:42 17:23 17:58 18:47 19:17 20:12
+ </item>
+<item>
+dugommier gare+valbonne+sophia+antipolis 1 7:42 8:37 9:35 10:10 11:17 12:07 13:03 14:08 14:46 15:24 16:13 16:48 17:31 18:06 18:52 19:22 20:17
+ </item>
+<item>
+pole-echanges gare+valbonne+sophia+antipolis 1 7:46 8:41 9:39 10:14 11:20 12:10 13:07 14:11 14:49 15:27 16:19 16:53 17:36 18:11 18:56 19:28 20:23
+ </item>
+<item>
+chapelle-des-combes gare+valbonne+sophia+antipolis 1 7:54 8:49 9:48 10:23 11:29 12:19 13:16 14:19 14:59 15:36 16:28 17:04 17:50 18:25 19:05 19:39 20:34
+ </item>
+<item>
+foyer-le-roc gare+valbonne+sophia+antipolis 1 8:54 9:52 11:34 13:21 15:04 16:33 17:56 19:10 </item>
+<item>
+templiers gare+valbonne+sophia+antipolis 1 7:59 10:28 12:25 14:24 15:42 17:10 18:31 19:45 20:40
+ </item>
+<item>
+skema gare+valbonne+sophia+antipolis 1 8:03 10:32 12:30 14:29 15:47 17:16 18:36 19:51 20:46
+ </item>
+<item>
+eganaude gare+valbonne+sophia+antipolis 1 8:07 10:36 12:34 14:32 15:51 17:19 18:41 19:56 20:51
+ </item>
+<item>
+gare-valbonne-sophia-antipolis gare+valbonne+sophia+antipolis 1 8:11 10:40 12:39 14:37 15:56 17:24 18:46 20:01 20:56 </item>
+<item>
+gare-valbonne-sophia-antipolis amphores 1 7:30 8:25 10:55 12:55 14:55 16:10 17:35 19:00 20:10
+ </item>
+<item>
+eganaude amphores 1 7:35 8:30 11:00 13:01 15:01 16:16 17:41 19:05 20:14
+ </item>
+<item>
+skema amphores 1 7:39 8:34 11:04 13:06 15:06 16:21 17:46 19:10 20:19
+ </item>
+<item>
+templiers amphores 1 7:42 8:37 11:08 13:09 15:09 16:26 17:49 19:13 20:22
+ </item>
+<item>
+foyer-le-roc amphores 1 9:15 10:10 11:55 13:45 14:25 15:30 16:55 18:20 </item>
+<item>
+chapelle-des-combes amphores 1 7:48 8:43 9:19 10:14 11:13 11:59 13:15 13:49 14:30 15:15 15:35 16:32 17:00 17:56 18:24 19:19 20:28
+ </item>
+<item>
+pole-echanges amphores 1 7:55 8:50 9:27 10:22 11:21 12:08 13:25 13:57 14:39 15:25 15:43 16:40 17:08 18:05 18:32 19:27 20:35
+ </item>
+<item>
+briand amphores 1 7:59 8:54 9:32 10:28 11:27 12:13 13:31 14:02 14:43 15:31 15:49 16:46 17:14 18:09 18:38 19:33 20:39
+ </item>
+<item>
+lycee-audiberti amphores 1 8:03 8:58 9:37 10:33 11:32 12:18 13:36 14:07 14:48 15:36 15:54 16:51 17:19 18:15 18:44 19:39 20:43
+ </item>
+<item>
+amphores amphores 1 8:15 9:10 9:48 10:44 11:43 12:30 13:49 14:19 15:00 15:50 16:08 17:04 17:32 18:29 18:57 19:50 20:54 </item>
+<item>
+pole-d\'echanges-antibes eden+roc 2 7:55 8:40 9:25 10:15 11:00 11:50 12:40 13:30 14:15 15:05 15:55 16:45 17:35 18:30
+ </item>
+<item>
+guillabert eden+roc 2 8:00 8:45 9:30 10:20 11:05 11:55 12:45 13:35 14:20 15:10 16:00 16:50 17:40 18:35
+ </item>
+<item>
+chemin-de-la-salis eden+roc 2 8:05 8:50 9:36 10:26 11:12 12:03 12:53 13:42 14:26 15:17 16:06 16:57 17:47 18:42
+ </item>
+<item>
+phare-du-cap eden+roc 2 8:06 8:52 9:37 10:27 11:14 12:05 12:55 13:43 14:28 15:18 16:08 16:58 17:48 18:43
+ </item>
+<item>
+eden-roc eden+roc 2 8:10 8:55 9:41 10:31 11:18 12:09 12:59 13:47 14:32 15:22 16:12 17:02 17:52 18:47 </item>
+<item>
+eden-roc pole+d+echanges+antibes 2 8:12 8:57 9:43 10:33 11:20 12:11 13:01 13:49 14:34 15:24 16:14 17:04 17:54 18:49
+ </item>
+<item>
+phare-du-cap pole+d+echanges+antibes 2 8:15 9:00 9:47 10:37 11:23 12:14 13:04 13:52 14:38 15:28 16:18 17:08 17:58 18:53
+ </item>
+<item>
+chemin-de-la-salis pole+d+echanges+antibes 2 8:16 9:01 9:48 10:38 11:25 12:16 13:06 13:53 14:39 15:29 16:20 17:10 18:00 18:55
+ </item>
+<item>
+guillabert pole+d+echanges+antibes 2 8:22 9:07 9:55 10:45 11:32 12:23 13:13 14:01 14:46 15:37 16:27 17:17 18:08 19:04
+ </item>
+<item>
+pole-d-echanges-antibes pole+d+echanges+antibes 2 8:29 9:14 10:02 10:52 11:39 12:30 13:20 14:08 14:53 15:44 16:34 17:24 18:15 19:10 </item>
+<item>
+gare-antibes apollinaire+desnos 6 8:10 9:20 10:30 11:40 12:50 14:00 15:10 16:20 17:30 18:40 19:45
+ </item>
+<item>
+pole-echanges-antibes apollinaire+desnos 6 8:15 9:25 10:35 11:46 12:55 14:05 15:16 16:26 17:37 18:46 19:50
+ </item>
+<item>
+anthala apollinaire+desnos 6 8:16 9:27 10:37 11:48 12:57 14:07 15:18 16:27 17:39 18:48 19:52
+ </item>
+<item>
+bastides apollinaire+desnos 6 8:19 9:30 10:41 11:51 13:01 14:12 15:21 16:32 17:43 18:52 19:56
+ </item>
+<item>
+chapelle-des-combes apollinaire+desnos 6 8:24 9:35 10:45 11:56 13:06 14:17 15:27 16:37 17:49 18:57 20:01
+ </item>
+<item>
+zac-des-terriers apollinaire+desnos 6 8:29 9:39 10:50 12:01 13:11 14:22 15:32 16:42 17:54 19:02 </item>
+<item>
+apollinaire-desnos apollinaire+desnos 6 8:34 9:44 10:55 12:06 13:16 14:27 15:37 16:47 17:59 19:07 20:07 </item>
+<item>
+apollinaire-desnos gare+antibes 6 7:40 8:45 9:55 11:05 12:15 13:25 14:35 15:45 16:55 18:05 19:15
+ </item>
+<item>
+chapelle-des-combes gare+antibes 6 7:45 8:51 10:01 11:11 12:21 13:31 14:41 15:51 17:01 18:11 19:21
+ </item>
+<item>
+bastides gare+antibes 6 7:49 8:56 10:06 11:16 12:26 13:37 14:46 15:56 17:05 18:16 19:26
+ </item>
+<item>
+anthala gare+antibes 6 7:52 8:59 10:09 11:19 12:29 13:40 14:49 15:59 17:08 18:20 19:29
+ </item>
+<item>
+pole-echanges-antibes gare+antibes 6 7:53 9:00 10:11 11:21 12:30 13:41 14:50 16:00 17:10 18:21 19:30
+ </item>
+<item>
+gare-antibes gare+antibes 6 7:59 9:07 10:17 11:28 12:37 13:48 14:57 16:07 17:17 18:28 19:36 </item>
+<item>
+villa-chretien hopital+fontonne 8 6:45 7:30 8:15 9:00 9:50 10:35 11:25 12:20 13:05 13:40 14:10 14:45 15:20 15:55 16:30 17:05 17:35 18:10 18:40 19:15
+ </item>
+<item>
+square-nabonnand hopital+fontonne 8 6:53 7:38 8:24 9:09 9:59 10:45 11:35 12:30 13:14 13:50 14:20 14:55 15:30 16:05 16:40 17:15 17:44 18:19 18:49 19:24
+ </item>
+<item>
+amphores hopital+fontonne 8 2 6:56 7:42 8:28 9:13 10:03 10:50 11:40 12:35 13:18 13:55 14:24 14:59 15:34 16:10 16:45 17:20 17:48 18:24 18:54 19:28
+ </item>
+<item>
+terres-d\'antibes hopital+fontonne 8 7:01 7:47 8:33 9:18 10:08 10:55 11:45 12:39 13:22 13:59 14:28 15:03 15:39 16:14 16:49 17:25 17:52 18:29 18:59 19:32
+ </item>
+<item>
+dugommier hopital+fontonne 8 7:08 7:54 8:41 9:26 10:16 11:03 11:53 12:47 13:29 14:07 14:36 15:10 15:46 16:21 16:57 17:32 17:59 18:38 19:06 19:39
+ </item>
+<item>
+pole-echanges hopital+fontonne 8 7:13 7:58 8:45 9:29 10:18 11:05 11:56 12:50 13:34 14:11 14:40 15:14 15:51 16:25 17:01 17:36 18:04 18:42 19:10 19:43
+ </item>
+<item>
+lycee-horticole hopital+fontonne 8 7:17 8:02 8:49 9:33 10:22 11:09 12:00 12:57 13:38 14:15 14:44 15:18 15:55 16:29 17:05 17:40 18:08 18:46 19:14 19:47
+ </item>
+<item>
+hopital-fontonne hopital+fontonne 8 7:23 8:08 8:54 9:40 10:29 11:17 12:08 13:02 13:44 14:20 14:49 15:23 16:01 16:33 17:09 17:45 18:13 18:52 19:21 19:52 </item>
+<item>
+hopital-fontonne villa+chretien 8 7:30 8:15 9:05 9:50 10:40 11:30 12:15 13:10 13:55 14:30 15:00 15:35 16:10 16:45 17:20 17:55 18:25 19:00 19:30 20:00
+ </item>
+<item>
+lycee-horticole villa+chretien 8 7:32 8:17 9:07 9:52 10:42 11:32 12:17 13:12 13:57 14:32 15:02 15:37 16:12 16:47 17:22 17:57 18:27 19:02 19:32 20:02
+ </item>
+<item>
+pole-echanges villa+chretien 8 7:35 8:21 9:11 9:56 10:45 11:36 12:21 13:15 14:01 14:36 15:05 15:40 16:15 16:50 17:25 18:00 18:30 19:05 19:35 20:05
+ </item>
+<item>
+place-de-gaulle-ot villa+chretien 8 7:40 8:26 9:16 10:00 10:50 11:41 12:26 13:21 14:06 14:41 15:10 15:46 16:21 16:56 17:31 18:06 18:36 19:10 19:40 20:10
+ </item>
+<item>
+terres-d\'antibes villa+chretien 8 7:46 8:33 9:26 10:06 10:56 11:47 12:33 13:28 14:13 14:48 15:17 15:55 16:30 17:03 17:38 18:14 18:43 19:17 19:48 20:18
+ </item>
+<item>
+amphores villa+chretien 8 2 7:50 8:38 9:32 10:12 11:02 11:53 12:39 13:33 14:17 14:52 15:23 16:00 16:35 17:09 17:44 18:20 18:47 19:22 19:53 20:23
+ </item>
+<item>
+square-nabonnand villa+chretien 8 7:54 8:44 9:37 10:18 11:07 11:59 12:45 13:38 14:22 14:57 15:28 16:06 16:40 17:14 17:50 18:26 18:53 19:28 19:58 20:28
+ </item>
+<item>
+villa-chretien villa+chretien 8 8:03 8:52 9:46 10:27 11:16 12:08 12:54 13:47 14:31 15:06 15:37 16:14 16:49 17:23 17:59 18:35 19:02 19:37 20:07 20:37 </item>
+<item>
+dugommier gare+valbonne+sophia+antipolis 9 7:40 9:10 10:40 11:45 13:20 14:20 15:50 16:50 17:45 18:40 19:30
+ </item>
+<item>
+cimetiere-rabiac gare+valbonne+sophia+antipolis 9 7:46 9:16 10:46 11:51 13:26 14:26 15:56 16:56 17:51 18:46 19:36
+ </item>
+<item>
+croix-rouge gare+valbonne+sophia+antipolis 9 7:50 9:20 10:50 11:55 13:30 14:30 16:00 17:00 17:55 18:50 19:40
+ </item>
+<item>
+chapelle-des-combes gare+valbonne+sophia+antipolis 9 7:53 9:23 10:53 11:58 13:33 14:33 16:03 17:03 17:58 18:53 19:43
+ </item>
+<item>
+foyer-le-roc gare+valbonne+sophia+antipolis 9 10:58 13:38 16:08 17:08 18:03 18:58 19:48
+ </item>
+<item>
+templiers gare+valbonne+sophia+antipolis 9 7:57 9:27 12:02 14:37 </item>
+<item>
+eganaude gare+valbonne+sophia+antipolis 9 8:00 9:30 12:05 14:40 </item>
+<item>
+skema gare+valbonne+sophia+antipolis 9 8:04 9:34 12:09 14:44 </item>
+<item>
+gare-valbonne-sophia-antipolis gare+valbonne+sophia+antipolis 9 8:10 9:40 12:15 14:50 </item>
+<item>
+gare-valbonne-sophia-antipolis dugommier 9 8:30 10:00 12:35 15:10 </item>
+<item>
+skema dugommier 9 8:37 10:06 12:42 15:17 </item>
+<item>
+eganaude dugommier 9 8:41 10:10 12:46 15:21 </item>
+<item>
+templiers dugommier 9 8:43 10:13 12:49 15:24 </item>
+<item>
+foyer-le-roc dugommier 9 7:15 11:20 13:55 16:25 17:20 18:15 19:05
+ </item>
+<item>
+chapelle-des-combes dugommier 9 7:19 8:48 10:18 11:24 12:54 13:59 15:29 16:30 17:25 18:20 19:10
+ </item>
+<item>
+croix-rouge dugommier 9 7:22 8:51 10:20 11:27 12:57 14:02 15:32 16:33 17:28 18:23 19:13
+ </item>
+<item>
+cimetiere-rabiac dugommier 9 7:26 8:55 10:25 11:31 13:01 14:06 15:36 16:37 17:32 18:27 19:17
+ </item>
+<item>
+dugommier dugommier 9 7:33 9:02 10:33 11:38 13:10 14:15 15:43 16:44 17:39 18:34 19:24 </item>
+<item>
+gare-antibes valbonne+village 10 7:50 8:45 9:35 10:35 11:30 12:30 13:30 14:30 15:30 16:30 17:30 18:30 19:30
+ </item>
+<item>
+pole-echanges valbonne+village 10 7:56 8:51 9:41 10:41 11:36 12:36 13:36 14:36 15:36 16:36 17:35 18:35 19:35
+ </item>
+<item>
+fontonne valbonne+village 10 8:02 8:57 9:47 10:47 11:42 12:42 13:42 14:42 15:42 16:42 17:41 18:41 19:41
+ </item>
+<item>
+sncf-biot valbonne+village 10 8:06 9:01 9:51 10:52 11:47 12:47 13:47 14:46 15:46 16:46 17:45 18:45 19:45
+ </item>
+<item>
+biot-village valbonne+village 10 8:14 9:09 9:59 11:02 11:57 12:57 13:57 14:55 15:55 16:55 17:54 18:54 19:54
+ </item>
+<item>
+chemin-des-soulieres valbonne+village 10 8:19 9:14 10:04 11:07 12:02 13:02 14:02 15:01 16:01 17:01 18:00 19:00 20:00
+ </item>
+<item>
+val-d\'azur valbonne+village 10 8:24 9:19 10:09 11:12 12:07 13:07 14:07 15:06 16:06 17:06 18:05 19:05 20:05
+ </item>
+<item>
+lycee-vsa-haut valbonne+village 10 8:28 9:23 10:13 11:17 12:12 13:12 14:12 15:10 16:10 17:10 18:09 19:09 20:09
+ </item>
+<item>
+valbonne-village valbonne+village 10 8:34 9:29 10:19 11:23 12:18 13:18 14:18 15:16 16:16 17:16 18:15 19:15 20:15 </item>
+<item>
+valbonne-village gare+antibes 10 7:00 7:50 8:40 9:40 10:30 11:30 12:30 13:30 14:30 15:30 16:30 17:30 18:30
+ </item>
+<item>
+lycee-vsa-bas gare+antibes 10 7:05 7:55 8:45 9:45 10:35 11:35 12:35 13:35 14:35 15:35 16:35 17:35 18:35
+ </item>
+<item>
+val-d\'azur gare+antibes 10 7:08 7:58 8:48 9:48 10:38 11:38 12:38 13:38 14:38 15:38 16:38 17:38 18:38
+ </item>
+<item>
+chemin-des-soulieres gare+antibes 10 7:13 8:03 8:53 9:53 10:43 11:44 12:44 13:43 14:43 15:44 16:44 17:44 18:44
+ </item>
+<item>
+biot-village gare+antibes 10 7:19 8:09 8:59 9:59 10:49 11:50 12:50 13:49 14:49 15:50 16:50 17:50 18:50
+ </item>
+<item>
+sncf-biot gare+antibes 10 7:26 8:16 9:06 10:06 10:56 11:58 12:58 13:57 14:57 15:57 16:59 17:59 18:59
+ </item>
+<item>
+fontonne gare+antibes 10 7:31 8:21 9:11 10:11 11:01 12:03 13:03 14:02 15:02 16:02 17:04 18:04 19:04
+ </item>
+<item>
+pole-echanges gare+antibes 10 7:41 8:31 9:21 10:21 11:11 12:13 13:13 14:12 15:12 16:12 17:14 18:14 19:14
+ </item>
+<item>
+gare-antibes gare+antibes 10 7:47 8:37 9:27 10:27 11:17 12:19 13:19 14:18 15:18 16:18 17:20 18:20 19:20 </item>
+<item>
+des-arnoux pole+d\'echanges+antibes 23 8:45 10:10 11:40 13:15 14:45 16:15 17:45
+ </item>
+<item>
+saint-georges pole+d\'echanges+antibes 23 8:55 10:20 11:50 13:25 14:55 16:25 17:55
+ </item>
+<item>
+college-romee pole+d\'echanges+antibes 23 8:58 10:23 11:53 13:28 14:58 16:28 17:58
+ </item>
+<item>
+gare-sncf-villeneuve-loubet pole+d\'echanges+antibes 23 9:06 10:31 12:01 13:36 15:06 16:36 18:06
+ </item>
+<item>
+gare-sncf-biot pole+d\'echanges+antibes 23 9:10 10:35 12:05 13:40 15:10 16:40 18:10
+ </item>
+<item>
+hopital-fontonne pole+d\'echanges+antibes 23 9:14 10:39 12:09 13:44 15:14 16:44 18:14
+ </item>
+<item>
+pole-d\'echanges-antibes pole+d\'echanges+antibes 23 9:19 10:44 12:14 13:49 15:19 16:49 18:19 </item>
+<item>
+pole-d\'echanges-antibes arnoux 23 9:30 11:00 12:30 14:05 15:35 17:05 18:30
+ </item>
+<item>
+hopital-fontonne arnoux 23 9:35 11:05 12:35 14:10 15:40 17:10 18:35
+ </item>
+<item>
+gare-sncf-biot arnoux 23 9:39 11:09 12:39 14:14 15:44 17:14 18:39
+ </item>
+<item>
+gare-sncf-villeneuve-loubet arnoux 23 9:43 11:13 12:43 14:18 15:48 17:18 18:43
+ </item>
+<item>
+college-romee arnoux 23 9:51 11:21 12:51 14:26 15:56 17:26 18:51
+ </item>
+<item>
+saint-georges arnoux 23 9:54 11:24 12:54 14:29 15:59 17:29 18:54
+ </item>
+<item>
+arnoux arnoux 23 10:04 11:34 13:04 14:39 16:09 17:39 19:04 </item>
+</string-array>
+</resources>

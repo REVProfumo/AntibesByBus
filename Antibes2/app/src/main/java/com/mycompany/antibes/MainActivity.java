@@ -276,9 +276,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean check_vacances(String day, String month) {
-        int day_int = Integer.parseInt(day);
+    public int month_int_conversion(String month){
         int month_int=0;
+
         switch (month) {
             case "Jan":
                 month_int = 1;
@@ -317,6 +317,14 @@ public class MainActivity extends AppCompatActivity {
                 month_int = 12;
                 break;
         }
+        return month_int;
+    }
+
+
+    public boolean check_vacances(String day, String month) {
+        int day_int = Integer.parseInt(day);
+        int month_int=0;
+        month_int = month_int_conversion(month);
         int integer_date = month_int*100+day_int;
         int first_down =6+200;
         int first_up=21+200;
@@ -335,6 +343,30 @@ public class MainActivity extends AppCompatActivity {
             return false;
 
     }
+
+
+    public boolean check_joursferies(String day, String month) {
+        int day_int = Integer.parseInt(day);
+        int month_int=0;
+        month_int = month_int_conversion(month);
+        int integer_date = month_int*100+day_int;
+        String[] array_joursferies = {"01/01","28/03","01/05","08/05","05/05","16/05","14/07","15/08","01/11",
+        "11/11","25/12"};
+        int[] array_joursferies_int= new int[11];
+        boolean jourferie=false;
+        for (int i=0;i<11;i++) {
+            array_joursferies_int[i] = Integer.parseInt(array_joursferies[i].split("/")[0])
+                    + 100 * Integer.parseInt(array_joursferies[i].split("/")[1]);
+
+            if (array_joursferies_int[i]==integer_date) {
+                jourferie= true;
+            }
+        }
+        System.out.println(jourferie);
+        return jourferie;
+    }
+
+
 
     public Cursor cursor(String string){
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -377,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
                     null
             );
         }
-        else if (day == 1)
+        else if ((day == 1)|(check_joursferies(day_new, month_new)))
         {
         cursor = db.query(
                 FeedReaderContract.FeedEntry.TABLE_NAME2,
