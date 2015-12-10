@@ -10,7 +10,7 @@
 
     <item
         android:id="@+id/action_favorite2"
-        android:icon="@drawable/arrow"
+        android:icon="@drawable/star"
         android:title="arrow"
         app:showAsAction="ifRoom">
 

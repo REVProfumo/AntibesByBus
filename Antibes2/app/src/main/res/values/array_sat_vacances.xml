@@ -14,7 +14,7 @@ dugommier gare+valbonne+sophia+antipolis 1 6:47 7:12 7:42 8:05 8:25 8:46 9:12 9:
 pole-echanges gare+valbonne+sophia+antipolis 1 6:50 7:15 7:45 8:08 8:29 8:50 9:16 9:41 10:01 10:25 10:53 11:20 11:45 12:10 12:31 12:58 13:21 13:47 14:13 14:38 15:02 15:27 15:51 16:18 16:40 17:08 17:32 17:57 18:19 18:46 19:11 19:42 20:04 20:31 22:30 23:45
  </item>
 <item>
-chapelle-des-combes gare+valbonne+sophia+antipolis 1 6:57 7:22 7:52 8:17 8:38 9:00 9:25 9:50 10:10 10:34 11:02 11:30 11:55 12:20 12:41 13:09 13:32 13:57 14:23 14:50 15:12 15:37 16:01 16:28 16:50 17:18 17:42 18:07 18:29 18:56 19:21 19:52 20:14 20:41 22:36 23:51
+chapelle-combes gare+valbonne+sophia+antipolis 1 6:57 7:22 7:52 8:17 8:38 9:00 9:25 9:50 10:10 10:34 11:02 11:30 11:55 12:20 12:41 13:09 13:32 13:57 14:23 14:50 15:12 15:37 16:01 16:28 16:50 17:18 17:42 18:07 18:29 18:56 19:21 19:52 20:14 20:41 22:36 23:51
  </item>
 <item>
 foyer-le-roc gare+valbonne+sophia+antipolis 1 8:22 9:06 9:56 10:40 11:36 12:26 13:15 14:03 14:56 15:43 16:34 17:24 18:14 19:02 </item>
@@ -237,7 +237,7 @@ chemin-des-soulieres valbonne+village 10 6:45 7:15 7:47 8:28 9:11 9:51 10:31 11:
 val-d\'azur valbonne+village 10 6:49 7:19 7:51 8:32 9:14 9:54 10:34 11:14 11:54 12:34 13:14 13:54 14:34 15:14 15:55 16:35 17:17 18:00 18:40 19:17 20:07
  </item>
 <item>
-lycee-vsa-haut valbonne+village 10 6:52 7:22 7:54 8:35 9:17 9:57 10:37 11:17 11:57 12:37 13:17 13:57 14:37 15:17 15:58 16:38 17:20 18:03 18:43 19:20 20:10
+lycee-valbonne-sophia-antipolis-haut valbonne+village 10 6:52 7:22 7:54 8:35 9:17 9:57 10:37 11:17 11:57 12:37 13:17 13:57 14:37 15:17 15:58 16:38 17:20 18:03 18:43 19:20 20:10
  </item>
 <item>
 valbonne-village valbonne+village 10 6:57 7:27 7:59 8:40 9:22 10:02 10:42 11:22 12:02 12:42 13:22 14:02 14:42 15:22 16:03 16:43 17:25 18:08 18:48 19:25 20:15 </item>
@@ -245,13 +245,13 @@ valbonne-village valbonne+village 10 6:57 7:27 7:59 8:40 9:22 10:02 10:42 11:22 
 valbonne-village gare+antibes 10 6:30 7:05 7:40 8:20 9:00 9:40 10:20 11:00 11:40 12:20 13:00 13:40 14:20 15:00 15:40 16:20 17:00 17:40 18:20 19:00 19:40
  </item>
 <item>
-lycee-vsa-bas gare+antibes 10 6:35 7:10 7:45 8:25 9:05 9:45 10:25 11:05 11:45 12:25 13:05 13:45 14:25 15:05 15:45 16:25 17:05 17:45 18:25 19:05 19:45
+lycee-valbonne-sophia-antipolis-bas gare+antibes 10 6:35 7:10 7:45 8:25 9:05 9:45 10:25 11:05 11:45 12:25 13:05 13:45 14:25 15:05 15:45 16:25 17:05 17:45 18:25 19:05 19:45
  </item>
 <item>
 val-d\'azur gare+antibes 10 6:38 7:13 7:48 8:28 9:08 9:48 10:28 11:08 11:48 12:28 13:08 13:48 14:28 15:08 15:48 16:28 17:08 17:48 18:28 19:08 19:48
  </item>
 <item>
-chemin-des-soulieres gare+antibes 10 6:41 7:17 7:52 8:32 9:12 9:52 10:32 11:12 11:52 12:32 13:12 13:52 14:32 15:12 15:52 16:32 17:12 17:52 18:32 19:12 19:52
+chemin-soulieres gare+antibes 10 6:41 7:17 7:52 8:32 9:12 9:52 10:32 11:12 11:52 12:32 13:12 13:52 14:32 15:12 15:52 16:32 17:12 17:52 18:32 19:12 19:52
  </item>
 <item>
 biot-village gare+antibes 10 6:46 7:23 7:58 8:38 9:18 9:58 10:38 11:18 11:58 12:38 13:18 13:58 14:39 15:19 15:59 16:39 17:19 17:59 18:39 19:18 19:58
@@ -286,15 +286,15 @@ opio-font-neuve gare+valbonne+sophia+antipolis 11 7:10 8:20 9:50 10:50 11:20 12:
 oreades gare+valbonne+sophia+antipolis 11 7:17 8:28 9:57 10:57 11:27 12:22 12:52 13:47 14:16 15:38 16:08 17:03 17:33 18:58 19:32
  </item>
 <item>
-lycee-vsa-bas gare+valbonne+sophia+antipolis 11 7:21 8:31 10:00 11:00 11:30 12:25 12:55 13:50 14:19 15:41 16:11 17:06 17:36 19:01 19:35
+lycee-valbonne-sophia-antipolis-bas gare+valbonne+sophia+antipolis 11 7:21 8:31 10:00 11:00 11:30 12:25 12:55 13:50 14:19 15:41 16:11 17:06 17:36 19:01 19:35
  </item>
 <item>
-gare-valbonne-sophia-antipolis gare+valbonne+sophia+antipolis 11 7:28 8:38 10:07 11:07 11:37 12:31 13:01 13:57 14:26 15:47 16:17 17:13 17:43 19:08 19:42 </item>
+gare-valbonne-sophia-antipolis-c gare+valbonne+sophia+antipolis 11 7:28 8:38 10:07 11:07 11:37 12:31 13:01 13:57 14:26 15:47 16:17 17:13 17:43 19:08 19:42 </item>
 <item>
-gare-valbonne-sophia-antipolis-c jarrerie 11 7:21 8:45 9:52 10:20 11:20 11:50 12:45 13:15 14:35 15:05 16:00 16:30 17:55 18:27 20:22
+gare-valbonne-sophia-antipolis jarrerie 11 7:21 8:45 9:52 10:20 11:20 11:50 12:45 13:15 14:35 15:05 16:00 16:30 17:55 18:27 20:22
  </item>
 <item>
-lycee-vsa-haut jarrerie 11 7:29 8:53 9:59 10:27 11:28 11:58 12:53 13:23 14:43 15:13 16:08 16:38 18:02 18:34 20:29
+lycee-valbonne-sophia-antipolis-haut jarrerie 11 7:29 8:53 9:59 10:27 11:28 11:58 12:53 13:23 14:43 15:13 16:08 16:38 18:02 18:34 20:29
  </item>
 <item>
 oreades jarrerie 11 7:32 8:57 10:03 10:31 11:31 12:01 12:56 13:27 14:46 15:16 16:11 16:41 18:06 18:38 20:33
@@ -381,7 +381,7 @@ gare-sncf gare+sncf 15 14:08 14:28 14:48 15:08 15:28 15:48 16:08 16:28 16:58 17:
 gare-antibes fontonne 16 7:45 8:20 8:55 9:30 10:25 11:00 11:35 12:10 12:45 13:25 14:00 14:35 15:10 15:45 16:35 17:10 17:45 18:20 18:55 19:30
  </item>
 <item>
-fontonne 16 7:53 8:28 9:03 9:38 10:33 11:09 11:44 12:18 12:53 13:33 14:08 14:43 15:18 15:53 16:44 17:20 17:55 18:30 19:03 19:38
+saint-francois fontonne 16 7:53 8:28 9:03 9:38 10:33 11:09 11:44 12:18 12:53 13:33 14:08 14:43 15:18 15:53 16:44 17:20 17:55 18:30 19:03 19:38
  </item>
 <item>
 fontonne fontonne 16 7:58 8:33 9:08 9:43 10:38 11:14 11:49 12:23 12:58 13:38 14:13 14:48 15:23 15:58 16:50 17:25 18:00 18:35 19:08 19:43 </item>
@@ -389,7 +389,7 @@ fontonne fontonne 16 7:58 8:33 9:08 9:43 10:38 11:14 11:49 12:23 12:58 13:38 14:
 fontonne gare+antibes 16 7:25 8:00 8:35 9:10 9:45 10:40 11:15 11:50 12:25 13:00 13:40 14:15 14:50 15:25 16:00 16:50 17:25 18:00 18:35 19:10
  </item>
 <item>
-gare+antibes 16 7:34 8:09 8:44 9:19 9:54 10:49 11:24 11:59 12:34 13:09 13:49 14:24 14:59 15:34 16:09 16:59 17:34 18:09 18:44 19:19
+saint-francois gare+antibes 16 7:34 8:09 8:44 9:19 9:54 10:49 11:24 11:59 12:34 13:09 13:49 14:24 14:59 15:34 16:09 16:59 17:34 18:09 18:44 19:19
  </item>
 <item>
 gare-antibes gare+antibes 16 7:44 8:19 8:54 9:29 10:04 10:59 11:34 12:09 12:44 13:19 13:59 14:34 15:09 15:44 16:19 17:09 17:44 18:19 18:54 19:29 </item>
@@ -416,19 +416,19 @@ giordano villa+chretien 19 7:22 7:57 8:33 9:13 9:42 10:17 10:47 11:17 11:53 12:2
 <item>
 villa-chretien villa+chretien 19 7:31 8:06 8:42 9:22 9:52 10:27 10:58 11:28 12:03 12:38 13:28 13:58 14:28 15:04 15:44 16:20 16:55 17:32 18:11 18:46 19:22 19:52 </item>
 <item>
-val-d\'azur chapelle+desombes 21 7:55 9:10 10:25 11:45 13:00 14:15 15:35 16:50 18:05 19:20
+val-d\'azur chapelle+des+combes 21 7:55 9:10 10:25 11:45 13:00 14:15 15:35 16:50 18:05 19:20
  </item>
 <item>
-biot-village chapelle+desombes 21 8:04 9:19 10:34 11:54 13:10 14:24 15:44 16:59 18:14 19:29
+biot-village chapelle+des+combes 21 8:04 9:19 10:34 11:54 13:10 14:24 15:44 16:59 18:14 19:29
  </item>
 <item>
-templiers chapelle+desombes 21 8:15 9:31 10:46 12:06 13:21 14:36 15:55 17:11 18:26 19:41
+templiers chapelle+des+combes 21 8:15 9:31 10:46 12:06 13:21 14:36 15:55 17:11 18:26 19:41
  </item>
 <item>
-foyer-le-roc chapelle+desombes 21 8:21 10:52 14:42 17:17 19:47
+foyer-le-roc chapelle+des+combes 21 8:21 10:52 14:42 17:17 19:47
  </item>
 <item>
-chapelle-des-combes chapelle+desombes 21 9:37 12:12 13:27 16:03 18:33 </item>
+chapelle-des-combes chapelle+des+combes 21 9:37 12:12 13:27 16:03 18:33 </item>
 <item>
 chapelle-des-combes val+d\'azur 21 9:50 12:25 13:40 16:15 18:45
  </item>
@@ -446,7 +446,7 @@ val-d\'azur val+d\'azur 21 7:47 9:02 10:17 11:37 12:51 14:06 15:27 16:41 17:58 1
 bel-air foyer+le+roc 22 6:15 7:05 7:55 8:50 9:40 10:35 11:25 12:25 13:15 14:15 15:10 16:10 17:05 18:05
  </item>
 <item>
-lycee-vsa-haut foyer+le+roc 22 6:17 7:07 7:57 8:52 9:42 10:37 11:27 12:27 13:17 14:17 15:12 16:12 17:07 18:07
+lycee-valbonne-sophia-antipolis-haut foyer+le+roc 22 6:17 7:07 7:57 8:52 9:42 10:37 11:27 12:27 13:17 14:17 15:12 16:12 17:07 18:07
  </item>
 <item>
 valbonne-village foyer+le+roc 22 6:22 7:13 8:03 8:58 9:48 10:43 11:33 12:33 13:23 14:23 15:18 16:18 17:13 18:13
@@ -455,10 +455,10 @@ valbonne-village foyer+le+roc 22 6:22 7:13 8:03 8:58 9:48 10:43 11:33 12:33 13:2
 val-martin foyer+le+roc 22 6:27 7:19 8:09 9:04 9:55 10:49 11:39 12:39 13:30 14:30 15:24 16:25 17:20 18:20
  </item>
 <item>
-grv.sa-arrivee foyer+le+roc 22 6:33 7:24 8:14 9:11 10:03 10:56 11:46 12:46 13:37 14:38 15:31 16:32 17:27 18:27
+gare-valbonne-sophia-antipolis-arrivee foyer+le+roc 22 6:33 7:24 8:14 9:11 10:03 10:56 11:46 12:46 13:37 14:38 15:31 16:32 17:27 18:27
  </item>
 <item>
-gare-vsa-depart foyer+le+roc 22 6:35 7:26 8:16 9:13 10:05 10:58 11:48 12:48 13:39 14:40 15:33 16:34 17:29 18:29
+gare-valbonne-sophia-antipolis-depart foyer+le+roc 22 6:35 7:26 8:16 9:13 10:05 10:58 11:48 12:48 13:39 14:40 15:33 16:34 17:29 18:29
  </item>
 <item>
 atman foyer+le+roc 22 8:20 18:33
@@ -483,10 +483,10 @@ eganaude bel+air 22 6:31 7:20 8:11 9:01 9:55 10:45 11:40 12:31 13:31 14:26 15:26
 <item>
 atman bel+air 22 18:20 </item>
 <item>
-gare-vsa-arrivee bel+air 22 6:36 7:26 8:16 9:06 10:01 10:50 11:46 12:36 13:37 14:32 15:32 16:26 17:28 18:23 19:17
+gare-valbonne-sophia-antipolis-arrivee bel+air 22 6:36 7:26 8:16 9:06 10:01 10:50 11:46 12:36 13:37 14:32 15:32 16:26 17:28 18:23 19:17
  </item>
 <item>
-gare-vsa-depart bel+air 22 6:38 7:28 8:18 9:08 10:03 10:52 11:48 12:38 13:39 14:34 15:34 16:28 17:30 18:25 19:19
+gare-valbonne-sophia-antipolis-depart bel+air 22 6:38 7:28 8:18 9:08 10:03 10:52 11:48 12:38 13:39 14:34 15:34 16:28 17:30 18:25 19:19
  </item>
 <item>
 val-martin bel+air 22 6:46 7:36 8:25 9:16 10:10 10:59 11:56 12:45 13:46 14:42 15:40 16:37 17:37 18:32 19:26
@@ -495,12 +495,12 @@ val-martin bel+air 22 6:46 7:36 8:25 9:16 10:10 10:59 11:56 12:45 13:46 14:42 15
 valbonne-village bel+air 22 6:52 7:42 8:33 9:23 10:18 11:07 12:04 12:53 13:54 14:50 15:49 16:45 17:45 18:40 19:33
  </item>
 <item>
-lycee-vsa-bas bel+air 22 6:57 7:47 8:38 9:28 10:23 11:12 12:09 12:58 13:59 14:55 15:54 16:50 17:51 18:46 19:38
+lycee-valbonne-sophia-antipolis-bas bel+air 22 6:57 7:47 8:38 9:28 10:23 11:12 12:09 12:58 13:59 14:55 15:54 16:50 17:51 18:46 19:38
  </item>
 <item>
 bel-air bel+air 22 6:59 7:49 8:40 9:30 10:25 11:14 12:11 13:00 14:01 14:57 15:56 16:52 17:53 18:48 19:40 </item>
 <item>
-des-arnoux pole+d\'echanges+antibes 23 8:45 10:10 11:40 13:15 14:45 16:15 17:45
+rond-point-des-arnoux pole+d\'echanges+antibes 23 8:45 10:10 11:40 13:15 14:45 16:15 17:45
  </item>
 <item>
 saint-georges pole+d\'echanges+antibes 23 8:55 10:20 11:50 13:25 14:55 16:25 17:55
@@ -520,24 +520,24 @@ hopital-fontonne pole+d\'echanges+antibes 23 9:14 10:39 12:09 13:44 15:14 16:44 
 <item>
 pole-d\'echanges-antibes pole+d\'echanges+antibes 23 9:19 10:44 12:14 13:49 15:19 16:49 18:19 </item>
 <item>
-pole-d\'echanges-antibes arnoux 23 9:30 11:00 12:30 14:05 15:35 17:05 18:30
+pole-d\'echanges-antibes rond+point+arnoux 23 9:30 11:00 12:30 14:05 15:35 17:05 18:30
  </item>
 <item>
-hopital-fontonne arnoux 23 9:35 11:05 12:35 14:10 15:40 17:10 18:35
+hopital-fontonne rond+point+arnoux 23 9:35 11:05 12:35 14:10 15:40 17:10 18:35
  </item>
 <item>
-gare-sncf-biot arnoux 23 9:39 11:09 12:39 14:14 15:44 17:14 18:39
+gare-sncf-biot rond+point+arnoux 23 9:39 11:09 12:39 14:14 15:44 17:14 18:39
  </item>
 <item>
-gare-sncf-villeneuve-loubet arnoux 23 9:43 11:13 12:43 14:18 15:48 17:18 18:43
+gare-sncf-villeneuve-loubet rond+point+arnoux 23 9:43 11:13 12:43 14:18 15:48 17:18 18:43
  </item>
 <item>
-college-romee arnoux 23 9:51 11:21 12:51 14:26 15:56 17:26 18:51
+college-romee rond+point+arnoux 23 9:51 11:21 12:51 14:26 15:56 17:26 18:51
  </item>
 <item>
-saint-georges arnoux 23 9:54 11:24 12:54 14:29 15:59 17:29 18:54
+saint-georges rond+point+arnoux 23 9:54 11:24 12:54 14:29 15:59 17:29 18:54
  </item>
 <item>
-arnoux arnoux 23 10:04 11:34 13:04 14:39 16:09 17:39 19:04 </item>
+rond-point-arnoux rond+point+arnoux 23 10:04 11:34 13:04 14:39 16:09 17:39 19:04 </item>
 </string-array>
 </resources>

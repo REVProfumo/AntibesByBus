@@ -86,6 +86,20 @@ public class MainActivity extends AppCompatActivity {
         tv0.setGravity(Gravity.LEFT);
         //tv0.setLayoutParams(tvPar0);
         tbrow0.addView(tv0);
+
+        TextView tv01 = new TextView(this);
+        //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
+//        tv1.setText("Direction                                                                             ");
+        String text01 = String.format(res.getString(R.string.origin));
+        tv01.setText(text01);
+
+        tv01.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
+        tv01.setTextColor(Color.WHITE);
+        tv01.setGravity(Gravity.LEFT);
+        // tv1.setLayoutParams(tvPar1);
+        tbrow0.addView(tv01);
+
+
         TextView tv1 = new TextView(this);
         //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
 //        tv1.setText("Direction                                                                             ");
@@ -574,6 +588,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     String nextTimesChrono = "";
                     String newiName = "";
+                    String newiRow = "";
+
                     int minsNext = 0;
                     int hoursNext = 0;
                     if (flag > -1) {
@@ -614,8 +630,9 @@ public class MainActivity extends AppCompatActivity {
 
                             nextTimesString += Integer.toString(nextTimes[i]) + " ";
                         }
-                        newiName += cursor.getString(iName).replace('+', ' ');
-
+                        newiName += cursor.getString(iName).replace('+', '\n');
+                        newiRow += cursor.getString(iRow).replace('-', '\n');
+                        System.out.println("new"+newiRow);
                 /*resultSchedule = resultSchedule + auxString + " " + newiName +
                         " " +  cursor.getString(iDirection)+
                         " " + nextTimesChrono + "(next in "+ Integer.toString(minsNext) + " mins)" +
@@ -623,14 +640,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (flag > -1) {
                         TableRow tbrow = new TableRow(this);
+                        //t1v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
                         TextView t1v = new TextView(this);
                         t1v.setText(cursor.getString(iDirection));
                         t1v.setTextColor(Color.WHITE);
                         t1v.setGravity(Gravity.LEFT);
-                        //t1v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
-
                         tbrow.addView(t1v);
+
+                        TextView t01v = new TextView(this);
+                        t01v.setText(newiRow);
+                        t01v.setTextColor(Color.WHITE);
+                        t01v.setGravity(Gravity.LEFT);
+                        tbrow.addView(t01v);
+
+
                         TextView t2v = new TextView(this);
                         t2v.setText(newiName);
                         t2v.setTextColor(Color.WHITE);
@@ -645,6 +669,7 @@ public class MainActivity extends AppCompatActivity {
                         //t3v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
                         tbrow.addView(t3v);
+
                         stk.addView(tbrow);
                     }
 
