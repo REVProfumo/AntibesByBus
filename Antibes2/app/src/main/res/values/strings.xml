@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Antibes</string>
+    <string name="app_name">Antibes by bus</string>
     <string name="action_settings">Settings</string>
     <string name="hint">Eganaude</string>
     <string name="stop">please choose a stop</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Antibes</string>
+    <string name="app_name">Antibes par bus</string>
     <string name="action_settings">Paramètres</string>
     <string name="hint">Eganaude</string>
     <string name="stop">choisir un arret</string>
