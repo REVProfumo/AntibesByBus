@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="hint">Eganaude</string>
     <string name="stop">please choose a stop</string>
-    <string name="favourites">+favourites</string>
+    <string name="favourites">add to favourites</string>
     <string name="clean">clean</string>
     <string name="request">request</string>
     <string name="origin">"Origin                                   "</string>

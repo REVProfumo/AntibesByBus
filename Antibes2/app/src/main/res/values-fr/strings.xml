@@ -4,7 +4,7 @@
     <string name="action_settings">Paramètres</string>
     <string name="hint">Eganaude</string>
     <string name="stop">choisir un arret</string>
-    <string name="favourites">+favoris</string>
+    <string name="favourites">ajouter aux favoris</string>
     <string name="clean">effacer</string>
     <string name="request">demander</string>
     <string name="origin">"Origine                                  "</string>
