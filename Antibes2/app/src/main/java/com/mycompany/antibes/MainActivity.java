@@ -225,6 +225,10 @@ public class MainActivity extends AppCompatActivity {
                     if (hashes_existing[i] == new_hash_value)
                         flag_exist = 1;
                 }
+
+                if (new_hash_value==0)
+                    flag_exist = 1;
+
                 if (flag_exist == 0) {
                     hashes_existing[nr_hashes] = hash_value(text);
                     nr_hashes += 1;
@@ -413,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
 
         if ((day == 7)&(vacances_scolaire)) {
             cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME4,
+                    FeedReaderContract.FeedEntry.TABLE_NAME5,
                     projection,
                     FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
                             + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
@@ -427,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
 
         else if ((day == 1)&(vacances_scolaire)) {
             cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME0,
+                    FeedReaderContract.FeedEntry.TABLE_NAME4,
                     projection,
                     FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
                             + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
