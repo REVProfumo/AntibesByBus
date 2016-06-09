@@ -1,6 +1,7 @@
 package com.mycompany.antibes;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -28,6 +29,13 @@ import android.widget.TextView;
 import android.text.TextUtils;
 import android.widget.Toast;
 import android.view.Menu;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.nio.charset.Charset;
 import java.text.Normalizer;
 
 import java.text.DateFormat;
@@ -45,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     int flag_update=0;
     int[] hashes_existing = new int[200];
     int nr_hashes = 0;
+    String fileName = "MyFile";
 
     public int hash_value(String text) {
         int hash = 0;
@@ -163,13 +172,15 @@ public class MainActivity extends AppCompatActivity {
                 noStop.setVisibility(View.GONE);
             }
         };
-
         // assign click listener to the OK button (btnOK)
         btnClean.setOnClickListener(oclBtnClean);
 
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
+
         createFirstLineTable(stk);
+
+        createOutputFile();
 
         //following is to update the textview each 1 minute
         Thread t = new Thread() {
@@ -226,17 +237,20 @@ public class MainActivity extends AppCompatActivity {
                         flag_exist = 1;
                 }
 
-                if (new_hash_value==0)
+                if (new_hash_value == 0)
                     flag_exist = 1;
 
                 if (flag_exist == 0) {
                     hashes_existing[nr_hashes] = hash_value(text);
                     nr_hashes += 1;
                     menu_global.add(0, new_hash_value, 0, text);
+                    addToOutputFile(text);
+
                 }
             }
 
         });
+
     }
 
     @Override
@@ -250,10 +264,28 @@ public class MainActivity extends AppCompatActivity {
         init_hashes_existing(menuItem);
 
         //the menu option text is defined in resources
+        getInputFile(menu);
 
         return true;
     }
 
+    public void getInputFile(Menu menu){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(getFilesDir() + "/" + fileName));
+            String thisLine;
+            while ((thisLine = br.readLine()) != null) {
+                System.out.println(thisLine);
+                String stop = thisLine;
+                int hash = hash_value(stop);
+                hashes_existing[nr_hashes] = hash;
+                nr_hashes += 1;
+                menu_global.add(0, hash, 0, stop);
+            }
+            br.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -293,6 +325,42 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void createOutputFile() {
+        //trying to write and read on file
+        //String content = "hello";
+        FileOutputStream outputStream = null;
+        File f=new File(getFilesDir() + "/" + fileName);
+        try {
+            if (f.isFile()==false) {
+                //FileOutputStream outputStream = new FileOutputStream(f, true);
+                outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+                //outputStream.write(content.getBytes());
+                outputStream.close();
+                System.out.println("file doesn't exist");
+
+            }
+            else{
+                System.out.println("file exist");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addToOutputFile(String newStop){
+  //      FileOutputStream outputStream = null;
+        try {
+            FileOutputStream outputStream=new FileOutputStream(getFilesDir() + "/" + fileName,true);
+//            outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream.write(newStop.getBytes());
+            outputStream.write("\n".getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public int month_int_conversion(String month){
         int month_int=0;
