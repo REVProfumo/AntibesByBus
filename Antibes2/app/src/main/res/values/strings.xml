@@ -6,10 +6,17 @@
     <string name="favourites">add to favourites</string>
     <string name="clean">clean</string>
     <string name="request">request</string>
-    <string name="origin">"Origin                                   "</string>
 
-    <string name="direction">"Direction                                "</string>
-    <string name="time">"time                                            "</string>
+
+    <string name="origin_large">"Origin                                   "</string>
+    <string name="direction_large">"Direction                                "</string>
+    <string name="time_large">"time                                            "</string>
+    <string name="line_large">"Line    "</string>
+
+
+    <string name="origin">"Origin               "</string>
+    <string name="direction">"Direction                 "</string>
+    <string name="time">"time                         "</string>
     <string name="line">"Line    "</string>
 
 </resources>

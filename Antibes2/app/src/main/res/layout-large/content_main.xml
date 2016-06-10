@@ -10,9 +10,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-
-
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -22,14 +19,14 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            >
+            android:layout_marginBottom="400dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginTop="0dp"
                 android:text="@string/stop"
-                android:textSize="18dp"
+                android:textSize="30dp"
                 android:textStyle="bold" />
 
 
@@ -45,8 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/choose"
                 android:layout_alignParentLeft="true"
-                android:minWidth="150dp"
-                android:textSize="10sp"/>
+                android:minWidth="200dp"/>
             <Button
                 android:id="@+id/text2"
                 android:hint="@string/favourites"
@@ -55,7 +51,6 @@
                 android:layout_below="@+id/choose"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/text"
-                android:textSize="10sp"
                 />
                 <Button
                     android:id="@+id/text3"
@@ -65,7 +60,6 @@
                     android:layout_below="@+id/choose"
                     android:layout_alignParentRight="true"
                     android:layout_toRightOf="@+id/text"
-                    android:textSize="10sp"
                     />
             </LinearLayout>
 
@@ -76,7 +70,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text2"
                 android:onClick="lookUp"
-                android:textSize="10sp"
                 />
 
 

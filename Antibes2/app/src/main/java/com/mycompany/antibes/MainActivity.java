@@ -3,6 +3,7 @@ package com.mycompany.antibes;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,6 +37,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.nio.charset.Charset;
+import java.sql.Time;
 import java.text.Normalizer;
 
 import java.text.DateFormat;
@@ -82,11 +84,45 @@ public class MainActivity extends AppCompatActivity {
 
     private void createFirstLineTable(TableLayout table)
     {
-        TableRow tbrow0 = new TableRow(this);
-        TextView tv0 = new TextView(this);
-        //TableRow.LayoutParams tvPar0 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 2f);
         Resources res = getResources();
-        String text0 = String.format(res.getString(R.string.line));
+        TableRow tbrow0 = new TableRow(this);
+
+        int screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        String toastMsg;
+        String text0="";
+        String text01="";
+        String text1="";
+        String text2="";
+        switch(screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                text0 = String.format(res.getString(R.string.line_large));
+                text01 = String.format(res.getString(R.string.origin_large));
+                text1 = String.format(res.getString(R.string.direction_large));
+                text2 = String.format(res.getString(R.string.time_large));
+                toastMsg = "Large screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                text0 = String.format(res.getString(R.string.line));
+                text01 = String.format(res.getString(R.string.origin));
+                text1 = String.format(res.getString(R.string.direction));
+                text2 = String.format(res.getString(R.string.time));
+                toastMsg = "Normal screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                toastMsg = "Small screen";
+                break;
+            default:
+                toastMsg = "Screen size is neither large, normal or small";
+        }
+        Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+
+        TextView tv0 = new TextView(this);
+        TextView tv01 = new TextView(this);
+        TextView tv1 = new TextView(this);
+        TextView tv2 = new TextView(this);
+
         tv0.setText(text0);
         tv0.setPadding(0, 0, 10, 0);
 
@@ -96,10 +132,7 @@ public class MainActivity extends AppCompatActivity {
         //tv0.setLayoutParams(tvPar0);
         tbrow0.addView(tv0);
 
-        TextView tv01 = new TextView(this);
-        //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
-//        tv1.setText("Direction                                                                             ");
-        String text01 = String.format(res.getString(R.string.origin));
+
         tv01.setText(text01);
 
         tv01.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
@@ -109,10 +142,7 @@ public class MainActivity extends AppCompatActivity {
         tbrow0.addView(tv01);
 
 
-        TextView tv1 = new TextView(this);
-        //TableRow.LayoutParams tvPar1 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 5f);
-//        tv1.setText("Direction                                                                             ");
-        String text1 = String.format(res.getString(R.string.direction));
+
         tv1.setText(text1);
 
         tv1.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
@@ -120,10 +150,7 @@ public class MainActivity extends AppCompatActivity {
         tv1.setGravity(Gravity.LEFT);
        // tv1.setLayoutParams(tvPar1);
         tbrow0.addView(tv1);
-        TextView tv2 = new TextView(this);
-        //TableRow.LayoutParams tvPar2 = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 3f);
-        //tv2.setText("time                                          ");
-        String text2 = String.format(res.getString(R.string.time));
+
         tv2.setText(text2);
 
         tv2.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
@@ -190,9 +217,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
-
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyy HH:mm:ss");
+                        String currentDateandTime = sdf.format(new Date());
+                        System.out.println(currentDateandTime);
+                        //System.out.println(DateFormat.getDateTimeInstance().format(new Date()));
                         if (flag_update ==1) {
-                            String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                            String currentDateTimeString =  currentDateandTime;//DateFormat.getDateTimeInstance().format(new Date());
                             String[] currentTime = currentDateTimeString.split(" ");
                             String time = currentTime[3];
                             String[] timeSplitted = time.split(":");
@@ -221,6 +251,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         t.start();
+
+
 
         Button buttonX = (Button)findViewById(R.id.text2);
 // Register the onClick listener with the implementation above
@@ -408,6 +440,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public boolean check_vacances(String day, String month) {
+        System.out.println(day);
         int day_int = Integer.parseInt(day);
         int month_int=0;
         month_int = month_int_conversion(month);
@@ -470,7 +503,9 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor cursor;
 
-        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyy HH:mm:ss");
+        String currentDateandTime = sdf.format(new Date());
+        String currentDateTimeString = currentDateandTime;
         String[] currentTime = currentDateTimeString.split(" ");
         String day_new = currentTime[0];
         String month_new = currentTime[1];
