@@ -14,9 +14,9 @@
     <string name="line_large">"Line    "</string>
 
 
-    <string name="origin">"Origin               "</string>
-    <string name="direction">"Direction                 "</string>
-    <string name="time">"time                         "</string>
+    <string name="origin">"Origin                      "</string>
+    <string name="direction">"Direction                   "</string>
+    <string name="time">"time                                               "</string>
     <string name="line">"Line    "</string>
 
 </resources>

@@ -87,14 +87,21 @@ public class MainActivity extends AppCompatActivity {
         Resources res = getResources();
         TableRow tbrow0 = new TableRow(this);
 
-        int screenSize = getResources().getConfiguration().screenLayout &
-                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        TextView tv0 = new TextView(this);
+        TextView tv01 = new TextView(this);
+        TextView tv1 = new TextView(this);
+        TextView tv2 = new TextView(this);
 
         String toastMsg;
         String text0="";
         String text01="";
         String text1="";
         String text2="";
+
+        int screenSize = getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+
         switch(screenSize) {
             case Configuration.SCREENLAYOUT_SIZE_LARGE:
                 text0 = String.format(res.getString(R.string.line_large));
@@ -105,9 +112,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Configuration.SCREENLAYOUT_SIZE_NORMAL:
                 text0 = String.format(res.getString(R.string.line));
+                tv0.setTextSize(10);
                 text01 = String.format(res.getString(R.string.origin));
+                tv01.setTextSize(10);
                 text1 = String.format(res.getString(R.string.direction));
+                tv1.setTextSize(10);
                 text2 = String.format(res.getString(R.string.time));
+                tv2.setTextSize(10);
                 toastMsg = "Normal screen";
                 break;
             case Configuration.SCREENLAYOUT_SIZE_SMALL:
@@ -116,12 +127,9 @@ public class MainActivity extends AppCompatActivity {
             default:
                 toastMsg = "Screen size is neither large, normal or small";
         }
-        Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
 
-        TextView tv0 = new TextView(this);
-        TextView tv01 = new TextView(this);
-        TextView tv1 = new TextView(this);
-        TextView tv2 = new TextView(this);
+
 
         tv0.setText(text0);
         tv0.setPadding(0, 0, 10, 0);
@@ -753,13 +761,11 @@ public class MainActivity extends AppCompatActivity {
                         t1v.setText(cursor.getString(iDirection));
                         t1v.setTextColor(Color.WHITE);
                         t1v.setGravity(Gravity.LEFT);
-                        tbrow.addView(t1v);
 
                         TextView t01v = new TextView(this);
                         t01v.setText(newiRow);
                         t01v.setTextColor(Color.WHITE);
                         t01v.setGravity(Gravity.LEFT);
-                        tbrow.addView(t01v);
 
 
                         TextView t2v = new TextView(this);
@@ -768,13 +774,32 @@ public class MainActivity extends AppCompatActivity {
                         t2v.setGravity(Gravity.LEFT);
                         //t2v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
-                        tbrow.addView(t2v);
                         TextView t3v = new TextView(this);
                         t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
                         t3v.setTextColor(Color.WHITE);
                         t3v.setGravity(Gravity.LEFT);
                         //t3v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
+                        int screenSize = getResources().getConfiguration().screenLayout &
+                                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+                        switch(screenSize) {
+                            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                                break;
+                            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                                t01v.setTextSize(10);
+                                t1v.setTextSize(10);
+                                t2v.setTextSize(10);
+                                t3v.setTextSize(10);
+                                break;
+                            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                                break;
+                            default:
+                        }
+
+                        tbrow.addView(t1v);
+                        tbrow.addView(t01v);
+                        tbrow.addView(t2v);
                         tbrow.addView(t3v);
 
                         stk.addView(tbrow);
