@@ -3,8 +3,8 @@
     <string name="action_settings">Settings</string>
     <string name="hint">Eganaude</string>
     <string name="stop">please choose a stop</string>
-    <string name="favourites">add to favourites</string>
-    <string name="clean">clean</string>
+    <string name="favourites">add to\n favorites</string>
+    <string name="clean">clean \nresult</string>
     <string name="request">request</string>
 
 

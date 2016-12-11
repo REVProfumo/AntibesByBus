@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/choose"
                 android:layout_alignParentLeft="true"
-                android:minWidth="150dp"
+                android:minWidth="100dp"
                 android:textSize="10sp"/>
             <Button
                 android:id="@+id/text2"
@@ -60,13 +60,13 @@
 
                 <Button
                     android:id="@+id/textremove"
-                    android:hint="clean favorites"
+                    android:hint="clean\n favorites"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/choose"
                     android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@+id/text"
-                    android:textSize="5sp"
+                    android:layout_toRightOf="@+id/text2"
+                    android:textSize="10sp"
                     />
 
                 <Button
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/choose"
                     android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@+id/text"
+                    android:layout_toRightOf="@+id/textremove"
                     android:textSize="10sp"
                     />
             </LinearLayout>
