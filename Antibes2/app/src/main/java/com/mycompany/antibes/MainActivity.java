@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void init_hashes_existing(Menu menu){
+        hashes_existing = new int[200];
         for (int i = 0; i < menu.size(); i++) {
                 String text = (String) menu.getItem(i).getTitle();
             hashes_existing[i] = hash_value(text);
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TableLayout table = (TableLayout) findViewById(R.id.table_main);
                 cleanTable(table);
-                createFirstLineTable(table);
+                //createFirstLineTable(table);
                 EditText line = (EditText) findViewById(R.id.text);
                 line.setText("");
                 TextView noStop = (TextView) findViewById(1000);
@@ -213,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
 
-        createFirstLineTable(stk);
+        //createFirstLineTable(stk);
 
         createOutputFile();
 
@@ -269,7 +270,9 @@ public class MainActivity extends AppCompatActivity {
                 EditText ed = (EditText) findViewById(R.id.text);
 
                 String text = ed.getText().toString();
-
+                Cursor aCursor = cursor(text);
+                if (aCursor != null && aCursor.getCount() > 0)
+                {
                 int new_hash_value = hash_value(text);
                 int flag_exist = 0;
                 for (int i = 0; i < nr_hashes; i++) {
@@ -287,10 +290,21 @@ public class MainActivity extends AppCompatActivity {
                     addToOutputFile(text);
 
                 }
+                }
             }
 
         });
 
+
+        Button buttonclean = (Button)findViewById(R.id.textremove);
+// Register the onClick listener with the implementation above
+        buttonclean.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                cleanFavorites();
+                invalidateOptionsMenu();
+            }
+        });
     }
 
     @Override
@@ -305,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
 
         //the menu option text is defined in resources
         getInputFile(menu);
+
 
         return true;
     }
@@ -326,6 +341,28 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void cleanFavorites()
+    {
+     try{
+         (new File(getFilesDir() + "/"+ fileName )).delete();
+         (new File(getFilesDir() + "/" + fileName)).mkdir();
+         int size = menu_global.size();
+         for(int i=0;i<size;i++)
+            menu_global.removeItem(i);
+         init_hashes_existing(menu_global);
+
+
+
+     }
+     catch (Exception e){
+        e.printStackTrace();
+
+     }
+
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -621,7 +658,8 @@ public class MainActivity extends AppCompatActivity {
 
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         cleanTable(stk);
-        createFirstLineTable(stk);
+        stk.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape2));
+        //createFirstLineTable(stk);
 
         try {
             int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
@@ -745,8 +783,8 @@ public class MainActivity extends AppCompatActivity {
 
                             nextTimesString += Integer.toString(nextTimes[i]) + " ";
                         }
-                        newiName += cursor.getString(iName).replace('+', '\n');
-                        newiRow += cursor.getString(iRow).replace('-', '\n');
+                        newiName += cursor.getString(iName).replace('+', ' ');
+                        newiRow += cursor.getString(iRow).replace('-', ' ');
                         System.out.println("new"+newiRow);
                 /*resultSchedule = resultSchedule + auxString + " " + newiName +
                         " " +  cursor.getString(iDirection)+
@@ -755,7 +793,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (flag > -1) {
                         TableRow tbrow = new TableRow(this);
-                        //t1v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
+                        tbrow.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape2));
 
                         TextView t1v = new TextView(this);
                         t1v.setText(cursor.getString(iDirection));
@@ -772,12 +810,14 @@ public class MainActivity extends AppCompatActivity {
                         t2v.setText(newiName);
                         t2v.setTextColor(Color.WHITE);
                         t2v.setGravity(Gravity.LEFT);
+
                         //t2v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
                         TextView t3v = new TextView(this);
                         t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
                         t3v.setTextColor(Color.WHITE);
                         t3v.setGravity(Gravity.LEFT);
+
                         //t3v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
                         int screenSize = getResources().getConfiguration().screenLayout &
@@ -787,21 +827,34 @@ public class MainActivity extends AppCompatActivity {
                             case Configuration.SCREENLAYOUT_SIZE_LARGE:
                                 break;
                             case Configuration.SCREENLAYOUT_SIZE_NORMAL:
-                                t01v.setTextSize(10);
-                                t1v.setTextSize(10);
-                                t2v.setTextSize(10);
-                                t3v.setTextSize(10);
+                                t01v.setTextSize(15);
+                                t1v.setTextSize(20);
+                                t2v.setTextSize(15);
+                                t3v.setTextSize(15);
                                 break;
                             case Configuration.SCREENLAYOUT_SIZE_SMALL:
                                 break;
                             default:
                         }
-
-                        tbrow.addView(t1v);
-                        tbrow.addView(t01v);
-                        tbrow.addView(t2v);
-                        tbrow.addView(t3v);
-
+                        LinearLayout linearLayout = new LinearLayout(this);
+                        linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+                        linearLayout.setHorizontalGravity(Gravity.CENTER);
+                        linearLayout.setVerticalGravity(Gravity.CENTER);
+                        linearLayout.setGravity(Gravity.CENTER);
+                        t1v.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+                        linearLayout.addView(t1v,new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.20f));
+//                        tbrow.addView(t1v);
+//                        tbrow.addView(t01v);
+//                        tbrow.addView(t2v);
+//                        tbrow.addView(t3v);
+                        LinearLayout sublinearLayout = new LinearLayout(this);
+                        sublinearLayout.setOrientation(LinearLayout.VERTICAL);
+                        sublinearLayout.setWeightSum(4);
+                        sublinearLayout.addView(t01v);
+                        sublinearLayout.addView(t2v);
+                        sublinearLayout.addView(t3v);
+                        linearLayout.addView(sublinearLayout,new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.80f));
+                        tbrow.addView(linearLayout);
                         stk.addView(tbrow);
                     }
 
