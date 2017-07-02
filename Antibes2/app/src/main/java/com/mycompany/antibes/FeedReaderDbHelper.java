@@ -19,30 +19,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         fContext = context;
     }
 
-    public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES0);
-        db.execSQL(SQL_CREATE_ENTRIES);
-        db.execSQL(SQL_CREATE_ENTRIES2);
-        db.execSQL(SQL_CREATE_ENTRIES3);
-        db.execSQL(SQL_CREATE_ENTRIES4);
-        db.execSQL(SQL_CREATE_ENTRIES5);
-
-
+    private void insertValue(SQLiteDatabase db, String[] myArray, String tableName){
         ContentValues values = new ContentValues();
-        ContentValues values_sat = new ContentValues();
-        ContentValues values_sun = new ContentValues();
-        ContentValues values_vacances = new ContentValues();
-
-        Resources res = fContext.getResources();
-
-        String[] myArray = res.getStringArray(R.array.my_array);
-        String[] myArray_sat = res.getStringArray(R.array.my_array_sat);
-        String[] myArray_sun = res.getStringArray(R.array.my_array_sun);
-        String[] myArray_vacances = res.getStringArray(R.array.my_array_vacances);
-        String[] myArray_sat_vacances = res.getStringArray(R.array.my_array_sat_vacances);
-        String[] myArray_sun_vacances = res.getStringArray(R.array.my_array_sun_vacances);
-
-
         for (String item : myArray){
             String[] split = item.split("\\s+");
 
@@ -63,130 +41,27 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                 }
             }
             values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
-            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
+            db.insert(tableName, null, values);
         }
+    }
 
 
-        for (String item : myArray_sat){
-            String[] split = item.split("\\s+");
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME0 + SQL_CREATE_ENTRIES);
+        db.execSQL("CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + SQL_CREATE_ENTRIES);
+        db.execSQL("CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME2 + SQL_CREATE_ENTRIES);
+        db.execSQL("CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME3 + SQL_CREATE_ENTRIES);
+        db.execSQL("CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME4 + SQL_CREATE_ENTRIES);
+        db.execSQL("CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME5 + SQL_CREATE_ENTRIES);
 
-            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
-            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
-            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
+        Resources res = fContext.getResources();
 
-            String schedule="";
-
-            String[] stringArray = item.split("\\s+");
-            int length = stringArray.length;
-
-            for (int i = 3; i < length; i++) {
-                if(schedule.trim().length()>0){
-                    schedule += split[i]+" ";
-                }else{
-                    schedule = split[i]+" ";
-                }
-            }
-            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
-            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME2, null, values);
-
-        }
-
-        for (String item : myArray_sun){
-            String[] split = item.split("\\s+");
-
-            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
-            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
-            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
-
-            String schedule="";
-
-            String[] stringArray = item.split("\\s+");
-            int length = stringArray.length;
-
-            for (int i = 3; i < length; i++) {
-                if(schedule.trim().length()>0){
-                    schedule += split[i]+" ";
-                }else{
-                    schedule = split[i]+" ";
-                }
-            }
-            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
-            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME3, null, values);
-
-        }
-
-        for (String item : myArray_vacances){
-            String[] split = item.split("\\s+");
-
-            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
-            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
-            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
-
-            String schedule="";
-
-            String[] stringArray = item.split("\\s+");
-            int length = stringArray.length;
-
-            for (int i = 3; i < length; i++) {
-                if(schedule.trim().length()>0){
-                    schedule += split[i]+" ";
-                }else{
-                    schedule = split[i]+" ";
-                }
-            }
-            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
-            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME0, null, values);
-
-        }
-
-        for (String item : myArray_sat_vacances){
-            String[] split = item.split("\\s+");
-
-            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
-            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
-            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
-
-            String schedule="";
-
-            String[] stringArray = item.split("\\s+");
-            int length = stringArray.length;
-
-            for (int i = 3; i < length; i++) {
-                if(schedule.trim().length()>0){
-                    schedule += split[i]+" ";
-                }else{
-                    schedule = split[i]+" ";
-                }
-            }
-            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
-            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME4, null, values);
-
-        }
-
-        for (String item : myArray_sun_vacances){
-            String[] split = item.split("\\s+");
-
-            values.put(FeedReaderContract.FeedEntry.STOP, split[0]);
-            values.put(FeedReaderContract.FeedEntry.LINE, split[1]);
-            values.put(FeedReaderContract.FeedEntry.DIRECTION, split[2]);
-
-            String schedule="";
-
-            String[] stringArray = item.split("\\s+");
-            int length = stringArray.length;
-
-            for (int i = 3; i < length; i++) {
-                if(schedule.trim().length()>0){
-                    schedule += split[i]+" ";
-                }else{
-                    schedule = split[i]+" ";
-                }
-            }
-            values.put(FeedReaderContract.FeedEntry.SCHEDULE, schedule);
-            db.insert(FeedReaderContract.FeedEntry.TABLE_NAME5, null, values);
-
-        }
-
+        insertValue(db, res.getStringArray(R.array.my_array), FeedReaderContract.FeedEntry.TABLE_NAME);
+        insertValue(db, res.getStringArray(R.array.my_array_sat), FeedReaderContract.FeedEntry.TABLE_NAME2);
+        insertValue(db, res.getStringArray(R.array.my_array_sun), FeedReaderContract.FeedEntry.TABLE_NAME3);
+        insertValue(db, res.getStringArray(R.array.my_array_vacances), FeedReaderContract.FeedEntry.TABLE_NAME0);
+        insertValue(db, res.getStringArray(R.array.my_array_sat_vacances), FeedReaderContract.FeedEntry.TABLE_NAME4);
+        insertValue(db, res.getStringArray(R.array.my_array_sun_vacances), FeedReaderContract.FeedEntry.TABLE_NAME5);
 
     }
 
@@ -202,15 +77,6 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
 
-    private static final String SQL_CREATE_ENTRIES0 =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME0 + " ( " +
-                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
-                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
-                    " )";
-
 
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " ( " +
@@ -220,44 +86,6 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                     FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
                     FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
                     " )";
-    private static final String SQL_CREATE_ENTRIES2 =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME2 + " ( " +
-                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
-                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
-                    " )";
-
-    private static final String SQL_CREATE_ENTRIES3 =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME3 + " ( " +
-                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
-                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
-                    " )";
-
-    private static final String SQL_CREATE_ENTRIES4 =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME4 + " ( " +
-                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
-                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
-                    " )";
-
-    private static final String SQL_CREATE_ENTRIES5 =
-            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME5 + " ( " +
-                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY, " +
-                    FeedReaderContract.FeedEntry.STOP + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.LINE + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.DIRECTION + TEXT_TYPE + COMMA_SEP +
-                    FeedReaderContract.FeedEntry.SCHEDULE + TEXT_TYPE +
-                    " )";
-
-
-
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FeedReaderContract.FeedEntry.TABLE_NAME;
