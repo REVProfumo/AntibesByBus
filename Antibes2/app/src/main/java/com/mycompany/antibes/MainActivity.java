@@ -435,137 +435,38 @@ public class MainActivity extends AppCompatActivity {
         //createFirstLineTable(stk);
 
         try {
-            int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
-            int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
-            int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
-            int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
+
 
             if (cursor != null && cursor.getCount() > 0) {
                 for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                    //String resultSchedule = "";
 
+                    Utils.ObjectRow objectRow = Utils.getRowElements(cursor);
 
-                    String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+                    if (objectRow != null) {
 
-                    String[] currentTime = currentDateTimeString.split(" ");
-                    String time = currentTime[3];
-
-                    int actualMins;
-                    int actualHours;
-
-                    String[] timeSplitted = time.split(":");
-                    int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
-                            + Integer.parseInt(timeSplitted[2]);
-
-                    String pm ="am";
-                    try{
-                        pm = currentTime[4];
-                    }
-                    catch (Exception e){
-
-                    }
-
-                    if (pm.equals("pm")) {
-                        seconds+=3600*12;
-                    }
-                    actualMins = Integer.parseInt(timeSplitted[1]);
-                    actualHours = Integer.parseInt(timeSplitted[0]);
-
-                    String[] parts = cursor.getString(iSchedule).split(" ");
-                    int[] times = new int[parts.length];
-
-                    int j = 0;
-                    int flag = -1;
-                    int[] nextTimes;
-                    nextTimes = new int[] {-1, -1};
-
-                    for (int i = 0; i < parts.length; i++) {
-                        try {
-                            String[] partsSplit = parts[i].split(":");
-                            times[i] = Integer.parseInt(partsSplit[0]) * 3600 + Integer.parseInt(partsSplit[1]) * 60;
-
-                            if ((times[i] > seconds) & (j < 2)) {
-                                nextTimes[j] = times[i];
-                                j += 1;
-                                flag += 1;
-                            }
-
-                            if (j == 2) break;
-                        } catch (NumberFormatException nfe) {
-                        }
-                        ;
-                    }
-                    String nextTimesChrono = "";
-                    String newiName = "";
-                    String newiRow = "";
-
-                    int minsNext = 0;
-                    int hoursNext = 0;
-                    if (flag > -1) {
-                        String nextTimesString = "";
-                        System.out.println(nextTimes);
-
-                        for (int i = 0; i < 2; i++) {
-
-                            if (nextTimes[i]==-1)
-                                break;
-
-                            int hours = nextTimes[i] / 3600;
-                            int mins = (nextTimes[i] - hours * 3600) / 60;
-
-                            if (i == 0) {
-                                minsNext = mins - actualMins;
-                                hoursNext = hours - actualHours;
-
-                                if (pm.equals("pm"))
-                                    hoursNext -= 12;
-
-                                if (minsNext<0) {
-                                    minsNext += 60;
-                                    hoursNext -= 1;
-                                }
-                            }
-
-                            String formattedHours = Integer.toString(hours);
-                            if (formattedHours.length() == 1)
-                                formattedHours = "0" + formattedHours;
-
-                            String formattedMins = Integer.toString(mins);
-                            if (formattedMins.length() == 1)
-                                formattedMins = "0" + formattedMins;
-
-
-                            nextTimesChrono += formattedHours + ":" + formattedMins + " ";
-
-                            nextTimesString += Integer.toString(nextTimes[i]) + " ";
-                        }
-                        newiName += cursor.getString(iName).replace('+', ' ');
-                        newiRow += cursor.getString(iRow).replace('-', ' ');
-                        System.out.println("new"+newiRow);
-                    }
-                    if (flag > -1) {
+                        //from here I create the view in the table
                         TableRow tbrow = new TableRow(this);
                         tbrow.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape2));
 
                         TextView t1v = new TextView(this);
-                        t1v.setText(cursor.getString(iDirection));
+                        t1v.setText(objectRow.getDirection());
                         t1v.setTextColor(Color.WHITE);
                         t1v.setGravity(Gravity.LEFT);
 
                         TextView t01v = new TextView(this);
-                        t01v.setText(newiRow);
+                        t01v.setText(objectRow.getRow());
                         t01v.setTextColor(Color.WHITE);
                         t01v.setGravity(Gravity.LEFT);
 
 
                         TextView t2v = new TextView(this);
-                        t2v.setText(newiName);
+                        t2v.setText(objectRow.getName());
                         t2v.setTextColor(Color.WHITE);
                         t2v.setGravity(Gravity.LEFT);
 
 
                         TextView t3v = new TextView(this);
-                        t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
+                        t3v.setText(objectRow.getTime());
                         t3v.setTextColor(Color.WHITE);
                         t3v.setGravity(Gravity.LEFT);
 
@@ -573,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
                         int screenSize = getResources().getConfiguration().screenLayout &
                                 Configuration.SCREENLAYOUT_SIZE_MASK;
 
-                        switch(screenSize) {
+                        switch (screenSize) {
                             case Configuration.SCREENLAYOUT_SIZE_LARGE:
                                 break;
                             case Configuration.SCREENLAYOUT_SIZE_NORMAL:
@@ -592,18 +493,18 @@ public class MainActivity extends AppCompatActivity {
                         linearLayout.setVerticalGravity(Gravity.CENTER);
                         linearLayout.setGravity(Gravity.CENTER);
                         t1v.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                        linearLayout.addView(t1v,new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.40f));
+                        linearLayout.addView(t1v, new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.40f));
                         LinearLayout sublinearLayout = new LinearLayout(this);
                         sublinearLayout.setOrientation(LinearLayout.VERTICAL);
                         sublinearLayout.addView(t01v);
                         sublinearLayout.addView(t2v);
                         sublinearLayout.addView(t3v);
-                        linearLayout.addView(sublinearLayout,new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1.20f));
+                        linearLayout.addView(sublinearLayout, new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1.20f));
                         tbrow.addView(linearLayout);
                         stk.addView(tbrow);
                     }
-
                 }
+
             }
             else if(cursor != null && cursor.getCount() == 0) {
                     TextView noStop = (TextView) findViewById(1000);

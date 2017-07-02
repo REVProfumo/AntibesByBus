@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.mycompany.antibes.FeedReaderContract;
 import com.mycompany.antibes.FeedReaderDbHelper;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -143,6 +144,163 @@ public class Utils {
         }
         else {
             return FeedReaderContract.FeedEntry.TABLE_NAME;
+        }
+    }
+
+    public static ObjectRow getRowElements(Cursor cursor) {
+
+        ObjectRow objectRow = null;
+        int iRow = cursor.getColumnIndex(FeedReaderContract.FeedEntry.STOP);
+        int iName = cursor.getColumnIndex(FeedReaderContract.FeedEntry.LINE);
+        int iSchedule = cursor.getColumnIndex(FeedReaderContract.FeedEntry.SCHEDULE);
+        int iDirection = cursor.getColumnIndex(FeedReaderContract.FeedEntry.DIRECTION);
+
+
+        String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
+
+        String[] currentTime = currentDateTimeString.split(" ");
+        String time = currentTime[3];
+
+        int actualMins;
+        int actualHours;
+
+        String[] timeSplitted = time.split(":");
+        int seconds = Integer.parseInt(timeSplitted[0]) * 3600 + Integer.parseInt(timeSplitted[1]) * 60
+                + Integer.parseInt(timeSplitted[2]);
+
+        String pm = "am";
+        try {
+            pm = currentTime[4];
+        } catch (Exception e) {
+
+        }
+
+        if (pm.equals("pm")) {
+            seconds += 3600 * 12;
+        }
+        actualMins = Integer.parseInt(timeSplitted[1]);
+        actualHours = Integer.parseInt(timeSplitted[0]);
+
+        String[] parts = cursor.getString(iSchedule).split(" ");
+        int[] times = new int[parts.length];
+
+        int j = 0;
+        int flag = -1;
+        int[] nextTimes;
+        nextTimes = new int[]{-1, -1};
+
+        for (int i = 0; i < parts.length; i++) {
+            try {
+                String[] partsSplit = parts[i].split(":");
+                times[i] = Integer.parseInt(partsSplit[0]) * 3600 + Integer.parseInt(partsSplit[1]) * 60;
+
+                if ((times[i] > seconds) & (j < 2)) {
+                    nextTimes[j] = times[i];
+                    j += 1;
+                    flag += 1;
+                }
+
+                if (j == 2) break;
+            } catch (NumberFormatException nfe) {
+            }
+            ;
+        }
+        String nextTimesChrono = "";
+        String newiName = "";
+        String newiRow = "";
+
+        int minsNext = 0;
+        int hoursNext = 0;
+        if (flag > -1) {
+            String nextTimesString = "";
+            System.out.println(nextTimes);
+
+            for (int i = 0; i < 2; i++) {
+
+                if (nextTimes[i] == -1)
+                    break;
+
+                int hours = nextTimes[i] / 3600;
+                int mins = (nextTimes[i] - hours * 3600) / 60;
+
+                if (i == 0) {
+                    minsNext = mins - actualMins;
+                    hoursNext = hours - actualHours;
+
+                    if (pm.equals("pm"))
+                        hoursNext -= 12;
+
+                    if (minsNext < 0) {
+                        minsNext += 60;
+                        hoursNext -= 1;
+                    }
+                }
+
+                String formattedHours = Integer.toString(hours);
+                if (formattedHours.length() == 1)
+                    formattedHours = "0" + formattedHours;
+
+                String formattedMins = Integer.toString(mins);
+                if (formattedMins.length() == 1)
+                    formattedMins = "0" + formattedMins;
+
+
+                nextTimesChrono += formattedHours + ":" + formattedMins + " ";
+
+                nextTimesString += Integer.toString(nextTimes[i]) + " ";
+            }
+            newiName += cursor.getString(iName).replace('+', ' ');
+            newiRow += cursor.getString(iRow).replace('-', ' ');
+            System.out.println("new" + newiRow);
+            objectRow = new ObjectRow();
+            objectRow.setDirection(cursor.getString(iDirection));
+            objectRow.setName(newiName);
+            objectRow.setRow(newiRow);
+            objectRow.setTime(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
+        }
+
+
+
+        return objectRow;
+    }
+
+
+    public static class ObjectRow{
+        private String time;
+        private String direction;
+        private String name;
+        private String row;
+
+        public String getTime() {
+            return time;
+        }
+
+        public void setTime(String time) {
+            this.time = time;
+        }
+
+        public String getDirection() {
+            return direction;
+        }
+
+        public void setDirection(String direction) {
+            this.direction = direction;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getRow() {
+            return row;
+        }
+
+        public void setRow(String row) {
+            this.row = row;
         }
     }
 
