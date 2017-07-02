@@ -1,17 +1,13 @@
 package com.mycompany.antibes;
 
-import android.app.ActionBar;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.SubMenu;
@@ -21,35 +17,27 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.text.TextUtils;
-import android.widget.Toast;
-import android.view.Menu;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.nio.charset.Charset;
-import java.sql.Time;
 import java.text.Normalizer;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+
+import Utils.Utils;
+
 
 public class MainActivity extends AppCompatActivity {
     FeedReaderDbHelper mDbHelper;
-    EditText mEdit;
     Cursor cursorGlobal=null;
     Menu menu_global;
     int flag_update=0;
@@ -270,26 +258,25 @@ public class MainActivity extends AppCompatActivity {
                 EditText ed = (EditText) findViewById(R.id.text);
 
                 String text = ed.getText().toString();
-                Cursor aCursor = cursor(text);
-                if (aCursor != null && aCursor.getCount() > 0)
-                {
-                int new_hash_value = hash_value(text);
-                int flag_exist = 0;
-                for (int i = 0; i < nr_hashes; i++) {
-                    if (hashes_existing[i] == new_hash_value)
+                Cursor aCursor = Utils.cursor(mDbHelper, text);
+                if (aCursor != null && aCursor.getCount() > 0) {
+                    int new_hash_value = hash_value(text);
+                    int flag_exist = 0;
+                    for (int i = 0; i < nr_hashes; i++) {
+                        if (hashes_existing[i] == new_hash_value)
+                            flag_exist = 1;
+                    }
+
+                    if (new_hash_value == 0)
                         flag_exist = 1;
-                }
 
-                if (new_hash_value == 0)
-                    flag_exist = 1;
+                    if (flag_exist == 0) {
+                        hashes_existing[nr_hashes] = hash_value(text);
+                        nr_hashes += 1;
+                        menu_global.add(0, new_hash_value, 0, text);
+                        addToOutputFile(text);
 
-                if (flag_exist == 0) {
-                    hashes_existing[nr_hashes] = hash_value(text);
-                    nr_hashes += 1;
-                    menu_global.add(0, new_hash_value, 0, text);
-                    addToOutputFile(text);
-
-                }
+                    }
                 }
             }
 
@@ -405,14 +392,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void createOutputFile() {
         //trying to write and read on file
-        //String content = "hello";
         FileOutputStream outputStream = null;
         File f=new File(getFilesDir() + "/" + fileName);
         try {
             if (f.isFile()==false) {
-                //FileOutputStream outputStream = new FileOutputStream(f, true);
                 outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-                //outputStream.write(content.getBytes());
                 outputStream.close();
                 System.out.println("file doesn't exist");
 
@@ -426,10 +410,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addToOutputFile(String newStop){
-  //      FileOutputStream outputStream = null;
         try {
             FileOutputStream outputStream=new FileOutputStream(getFilesDir() + "/" + fileName,true);
-//            outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
             outputStream.write(newStop.getBytes());
             outputStream.write("\n".getBytes());
             outputStream.close();
@@ -439,218 +421,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public int month_int_conversion(String month){
-        int month_int=0;
-
-        switch (month) {
-            case "Jan":
-                month_int = 1;
-                break;
-            case "Feb":
-                month_int = 2;
-                break;
-            case "Mar":
-                month_int = 3;
-                break;
-            case "Apr":
-                month_int = 4;
-                break;
-            case "May":
-                month_int = 5;
-                break;
-            case "Jun":
-                month_int = 6;
-                break;
-            case "Jul":
-                month_int = 7;
-                break;
-            case "Aug":
-                month_int = 8;
-                break;
-            case "Sept":
-                month_int = 9;
-                break;
-            case "Oct":
-                month_int = 10;
-                break;
-            case "Nov":
-                month_int = 11;
-                break;
-            case "Dec":
-                month_int = 12;
-                break;
-        }
-        return month_int;
-    }
-
-
-    public boolean check_vacances(String day, String month) {
-        System.out.println(day);
-        int day_int = Integer.parseInt(day);
-        int month_int=0;
-        month_int = month_int_conversion(month);
-        int integer_date = month_int*100+day_int;
-        int first_down =6+200;
-        int first_up=21+200;
-        int second_down = 2+400;
-        int second_up = 17+400;
-        int third_down = 17+1000;
-        int third_up =1+1100;
-
-        if (  ((first_down <= integer_date ) & (first_up >= integer_date))
-                |((second_down <= integer_date ) & (second_up >= integer_date))
-                |((third_down <= integer_date ) & (third_up >= integer_date)))
-                {
-                  return true;
-                }
-        else
-            return false;
-
-    }
-
-
-    public boolean check_joursferies(String day, String month) {
-        int day_int = Integer.parseInt(day);
-        int month_int=0;
-        month_int = month_int_conversion(month);
-        int integer_date = month_int*100+day_int;
-        String[] array_joursferies = {"01/01","28/03","01/05","08/05","05/05","16/05","14/07","15/08","01/11",
-        "11/11","25/12"};
-        int[] array_joursferies_int= new int[11];
-        boolean jourferie=false;
-        for (int i=0;i<11;i++) {
-            array_joursferies_int[i] = Integer.parseInt(array_joursferies[i].split("/")[0])
-                    + 100 * Integer.parseInt(array_joursferies[i].split("/")[1]);
-
-            if (array_joursferies_int[i]==integer_date) {
-                jourferie= true;
-            }
-        }
-        System.out.println(jourferie);
-        return jourferie;
-    }
 
 
 
-    public Cursor cursor(String string){
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-        String[] projection = {
-                FeedReaderContract.FeedEntry.STOP,
-                FeedReaderContract.FeedEntry.LINE,
-                FeedReaderContract.FeedEntry.SCHEDULE,
-                FeedReaderContract.FeedEntry.DIRECTION,
-
-        };
-
-        String sortOrder =
-                FeedReaderContract.FeedEntry.SCHEDULE + " ASC";
-
-        Cursor cursor;
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyy HH:mm:ss");
-        String currentDateandTime = sdf.format(new Date());
-        String currentDateTimeString = currentDateandTime;
-        String[] currentTime = currentDateTimeString.split(" ");
-        String day_new = currentTime[0];
-        String month_new = currentTime[1];
-
-        boolean vacances_scolaire = check_vacances(day_new, month_new);
-        System.out.println(vacances_scolaire);
-
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-        System.out.println("day"+day+currentDateTimeString);
-
-
-        if ((day == 7)&(vacances_scolaire)) {
-            cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME5,
-                    projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'", null,
-                    null,
-                    null,
-                    null
-            );
-        }
-
-        else if ((day == 1)&(vacances_scolaire)) {
-            cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME4,
-                    projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'", null,
-                    null,
-                    null,
-                    null
-            );
-        }
-
-
-        else if (vacances_scolaire) {
-            cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME0,
-                    projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
-                            + " OR " + FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'", null,
-                    null,
-                    null,
-                    null
-            );
-        }
-        else if ((day == 1)|(check_joursferies(day_new, month_new)))
-        {
-        cursor = db.query(
-                FeedReaderContract.FeedEntry.TABLE_NAME2,
-                projection,
-                FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
-                        +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
-                        +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
-                        +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'",                null,
-                null,
-                null,
-                null
-        );
-        }
-        else if (day == 7)
-        {
-            cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME3,
-                    projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
-                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
-                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
-                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'",                    null,
-                    null,
-                    null,
-                    null
-            );
-        }
-        else
-        {
-            cursor = db.query(
-                    FeedReaderContract.FeedEntry.TABLE_NAME,
-                    projection,
-                    FeedReaderContract.FeedEntry.STOP + " = \'" + string + "\'"
-                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'%-" + string + "-%\'"
-                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'"
-                            +" OR "+ FeedReaderContract.FeedEntry.STOP + " LIKE \'" + string + "-%\'",
-                    null,
-                    null,
-                    null,
-                    null
-            );
-        }
-
-        return cursor;
-    }
 
     public void generateTextView(Cursor cursor){
 
@@ -670,27 +443,12 @@ public class MainActivity extends AppCompatActivity {
             if (cursor != null && cursor.getCount() > 0) {
                 for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
                     //String resultSchedule = "";
-                    String auxString = cursor.getString(iRow);
-                    auxString = auxString.replace("-", " ");
 
-                    String toBeCapped = auxString;
-
-                    String[] tokens = toBeCapped.split("\\s");
-                    toBeCapped = "";
-
-                    for (int i = 0; i < tokens.length; i++) {
-                        char capLetter = Character.toUpperCase(tokens[i].charAt(0));
-                        toBeCapped += " " + capLetter + tokens[i].substring(1);
-                    }
-                    toBeCapped = toBeCapped.trim();
-                    auxString = toBeCapped;
 
                     String currentDateTimeString = DateFormat.getDateTimeInstance().format(new Date());
 
                     String[] currentTime = currentDateTimeString.split(" ");
                     String time = currentTime[3];
-
-                    //System.out.println(currentDateTimeString+" this is all");
 
                     int actualMins;
                     int actualHours;
@@ -706,10 +464,8 @@ public class MainActivity extends AppCompatActivity {
                     catch (Exception e){
 
                     }
-//                    System.out.println(pm);
 
                     if (pm.equals("pm")) {
-//                        System.out.println(currentDateTimeString + " we're is pm");
                         seconds+=3600*12;
                     }
                     actualMins = Integer.parseInt(timeSplitted[1]);
@@ -786,10 +542,6 @@ public class MainActivity extends AppCompatActivity {
                         newiName += cursor.getString(iName).replace('+', ' ');
                         newiRow += cursor.getString(iRow).replace('-', ' ');
                         System.out.println("new"+newiRow);
-                /*resultSchedule = resultSchedule + auxString + " " + newiName +
-                        " " +  cursor.getString(iDirection)+
-                        " " + nextTimesChrono + "(next in "+ Integer.toString(minsNext) + " mins)" +
-                        "\n";*/
                     }
                     if (flag > -1) {
                         TableRow tbrow = new TableRow(this);
@@ -811,14 +563,12 @@ public class MainActivity extends AppCompatActivity {
                         t2v.setTextColor(Color.WHITE);
                         t2v.setGravity(Gravity.LEFT);
 
-                        //t2v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
                         TextView t3v = new TextView(this);
                         t3v.setText(nextTimesChrono + "(in " + Integer.toString(hoursNext) + " hr " + Integer.toString(minsNext) + " mn)");
                         t3v.setTextColor(Color.WHITE);
                         t3v.setGravity(Gravity.LEFT);
 
-                        //t3v.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape));
 
                         int screenSize = getResources().getConfiguration().screenLayout &
                                 Configuration.SCREENLAYOUT_SIZE_MASK;
@@ -843,13 +593,8 @@ public class MainActivity extends AppCompatActivity {
                         linearLayout.setGravity(Gravity.CENTER);
                         t1v.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
                         linearLayout.addView(t1v,new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.40f));
-//                        tbrow.addView(t1v);
-//                        tbrow.addView(t01v);
-//                        tbrow.addView(t2v);
-//                        tbrow.addView(t3v);
                         LinearLayout sublinearLayout = new LinearLayout(this);
                         sublinearLayout.setOrientation(LinearLayout.VERTICAL);
-                        //sublinearLayout.setWeightSum(4);
                         sublinearLayout.addView(t01v);
                         sublinearLayout.addView(t2v);
                         sublinearLayout.addView(t3v);
@@ -867,20 +612,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
              System.out.println("Still no selected stop");
         }
-        /*
-        TextView textview = new TextView(getApplicationContext());
-        textview.setText(resultSchedule);
-        textview.setId(1);
-        RelativeLayout myLayout;
-        myLayout = (RelativeLayout) findViewById(R.id.content_main);
-        RelativeLayout.LayoutParams params =
-                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        TextView tv = (TextView) findViewById(R.id.button);
-        textview.setTextColor(Color.RED);
-        params.addRule(RelativeLayout.BELOW, tv.getId());
-        myLayout.addView(textview, params);
-        */
 
 
     }
@@ -890,7 +622,7 @@ public class MainActivity extends AppCompatActivity {
         View toRemove = layout.findViewById(1);
         layout.removeView(toRemove);
 
-        mEdit = (EditText) findViewById(R.id.text);
+        EditText mEdit = (EditText) findViewById(R.id.text);
         String string = mEdit.getText().toString();
 
         System.out.println(string);
@@ -909,7 +641,7 @@ public class MainActivity extends AppCompatActivity {
         string = string.replaceAll("'", "''");
         System.out.println(string);
 
-        Cursor cursor = cursor(string);
+        Cursor cursor = Utils.cursor(mDbHelper, string);
         cursorGlobal = cursor;
         generateTextView(cursorGlobal);
 
