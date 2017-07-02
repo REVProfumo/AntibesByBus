@@ -842,18 +842,18 @@ public class MainActivity extends AppCompatActivity {
                         linearLayout.setVerticalGravity(Gravity.CENTER);
                         linearLayout.setGravity(Gravity.CENTER);
                         t1v.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
-                        linearLayout.addView(t1v,new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.20f));
+                        linearLayout.addView(t1v,new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 0.40f));
 //                        tbrow.addView(t1v);
 //                        tbrow.addView(t01v);
 //                        tbrow.addView(t2v);
 //                        tbrow.addView(t3v);
                         LinearLayout sublinearLayout = new LinearLayout(this);
                         sublinearLayout.setOrientation(LinearLayout.VERTICAL);
-                        sublinearLayout.setWeightSum(4);
+                        //sublinearLayout.setWeightSum(4);
                         sublinearLayout.addView(t01v);
                         sublinearLayout.addView(t2v);
                         sublinearLayout.addView(t3v);
-                        linearLayout.addView(sublinearLayout,new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.80f));
+                        linearLayout.addView(sublinearLayout,new TableRow.LayoutParams(0, TableRow.LayoutParams.MATCH_PARENT, 1.20f));
                         tbrow.addView(linearLayout);
                         stk.addView(tbrow);
                     }
