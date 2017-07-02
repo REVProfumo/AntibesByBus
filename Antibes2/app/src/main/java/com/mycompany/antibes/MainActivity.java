@@ -29,7 +29,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.text.Normalizer;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -116,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 toastMsg = "Screen size is neither large, normal or small";
         }
-        //Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
 
 
 
@@ -202,7 +200,8 @@ public class MainActivity extends AppCompatActivity {
         mDbHelper = new FeedReaderDbHelper(getApplicationContext());
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
 
-        //createFirstLineTable(stk);
+        //TODO this will be useful , it should be reintroduced
+        //TODO use method createFirstLineTable(stk);
 
         createOutputFile();
 
@@ -357,22 +356,6 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_settings:
                 return true;
-            /*
-            case R.id.action_favorite: {
-                RelativeLayout myLayout=(RelativeLayout) this.findViewById(R.id.content_main);
-
-                TextView tv=new TextView(this);
-                tv.setText("test");
-                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                        RelativeLayout.LayoutParams.WRAP_CONTENT,
-                        RelativeLayout.LayoutParams.WRAP_CONTENT);
-                lp.addRule(RelativeLayout.CENTER_IN_PARENT);
-                tv.setLayoutParams(lp);
-                myLayout.addView(tv);
-
-                return true;
-
-            }*/
 
             case R.id.action_favorite2:
             {
@@ -432,8 +415,9 @@ public class MainActivity extends AppCompatActivity {
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
         cleanTable(stk);
         stk.setBackgroundDrawable(getResources().getDrawable(R.drawable.cell_shape2));
-        //createFirstLineTable(stk);
 
+        //TODO this will be useful , it should be reintroduced
+        //TODO use method createFirstLineTable(stk);
         try {
 
 
