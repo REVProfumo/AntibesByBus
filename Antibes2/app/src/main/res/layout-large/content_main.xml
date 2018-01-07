@@ -52,6 +52,18 @@
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/text"
                 />
+
+                <Button
+                    android:id="@+id/textremove"
+                    android:hint="clean\n favorites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/choose"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@+id/text2"
+                    />
+
+
                 <Button
                     android:id="@+id/text3"
                     android:hint="@string/clean"
@@ -59,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/choose"
                     android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@+id/text"
+                    android:layout_toRightOf="@+id/textremove"
                     />
             </LinearLayout>
 

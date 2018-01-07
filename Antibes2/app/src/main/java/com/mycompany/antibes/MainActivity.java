@@ -338,8 +338,6 @@ public class MainActivity extends AppCompatActivity {
             menu_global.removeItem(i);
          init_hashes_existing(menu_global);
 
-
-
      }
      catch (Exception e){
         e.printStackTrace();
@@ -402,9 +400,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 
