@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">Button_show</string>
-
-    <string name="hello_world">Button!</string>
-    <string name="action_settings">Settings</string>
-    <string name="back">back</string>
-
-</resources>
